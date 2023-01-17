@@ -1,22 +1,48 @@
 @startuml
+left to right direction
 
 actor User as u
 actor Administrator as a
+
 package inz {
 	usecase "Create account" as register
 	usecase "Sign in" as sign_in
 	usecase "Change password" as chg_pass
+	usecase "Browse categories" as browse_cat
+	usecase "View category" as view_cat
+	usecase "View task" as view_task
+	usecase "Solve challenge" as solve_challenge
+	usecase "Answer question" as answer
 
 	usecase "Create category" as add_category
+	usecase "Edit category" as edit_category
+	usecase "View users" as view_users
+	usecase "Change user role" as chg_role
+	usecase "Delete user" as del_user
+	usecase "View tasks" as view_tasks
+	usecase "Add task" as add_task
 }
 
 u --> register
 u --> sign_in
 u --> chg_pass
+u --> browse_cat
+u --> view_cat
+u --> view_task
+u --> solve_challenge
+u --> answer
 
-register .-> sign_in : precedes
-chg_pass .-> sign_in : precedes
+sign_in .-> register : precedes
+sign_in .-> chg_pass : precedes
+sign_in .-> solve_challenge : precedes
+answer <-. solve_challenge : precedes
 
 a --> add_category
+a --> edit_category
+a --> view_users
+a --> chg_role
+a --> del_user
+a --> view_tasks
+a --> add_task
 
 @enduml
