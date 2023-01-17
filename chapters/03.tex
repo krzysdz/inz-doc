@@ -6,3 +6,109 @@
 \item description of tools
 \item methodology of design and implementation
 \end{itemize}
+
+\section{Functional requirements}
+
+\subsection{Account creation}
+
+\begin{tabular}{ l l }
+	\textbf{Description} & Users must be able to register an account in the system.\\
+	\textbf{Input data} & Username and password.\\
+	\textbf{Input data source} & HTML form submitted in a POST request.\\
+	\textbf{Result} & User account is created. User is redirected to login page.\\
+	\textbf{Pre-condition} & There exists no account with the same username.\\
+	\textbf{Post-condition} & User account is created.\\
+	\textbf{Side effects} & None.
+\end{tabular}
+
+\subsection{Sign in}
+
+\begin{tabular}{ l l }
+	\textbf{Description} & Users must be able to log into their accounts.\\
+	\textbf{Input data} & Username and password.\\
+	\textbf{Input data source} & HTML form submitted in a POST request.\\
+	\textbf{Result} & User is logged in and redirected to the home page.\\
+	\textbf{Pre-condition} & Username and password match an existing account.\\
+	\textbf{Post-condition} & Website template is filled using user data.\\
+	\textbf{Side effects} & A session is created in the database.
+\end{tabular}
+
+\subsection{Logging out}
+
+\begin{tabular}{ l l }
+	\textbf{Description} & Users must be able to log out of their accounts.\\
+	\textbf{Input data} & None.\\
+	\textbf{Input data source} & None.\\
+	\textbf{Result} & User is logged out.\\
+	\textbf{Pre-condition} & A logged in user session exists.\\
+	\textbf{Post-condition} & User session no longer exists.\\
+	\textbf{Side effects} & A session entry is removed from the database.
+\end{tabular}
+
+\subsection{Changing password}
+
+\begin{tabular}{ l l }
+	\textbf{Description} & Users must be able to change their password.\\
+	\textbf{Input data} & Old password and new password.\\
+	\textbf{Input data source} & HTML form submitted in a POST request.\\
+	\textbf{Result} & User password is changed.\\
+	\textbf{Pre-condition} & A user is logged in.\\
+	\textbf{Post-condition} & User can log in only using the new password.\\
+	\textbf{Side effects} & User's password hash is updated in the database.
+\end{tabular}
+
+\subsection{Listing categories}
+
+\begin{tabular}{ l l }
+	\textbf{Description} & Users must be able to see a list of categories.\\
+	\textbf{Input data} & None.\\
+	\textbf{Input data source} & None.\\
+	\textbf{Result} & User password is changed.\\
+	\textbf{Pre-condition} & A user is logged in.\\
+	\textbf{Post-condition} & User can log in only using the new password.\\
+	\textbf{Side effects} & None.
+\end{tabular}
+
+% TODO
+\subsection{Displaying category}
+\subsection{Displaying task}
+\subsection{Solving challenge}
+\subsection{Answering quiz}
+\subsection{Administrator panel}
+\subsection{Listing users}
+\subsection{Changing user permissions}
+\subsection{Deleting user}
+\subsection{Creating category}
+\subsection{Editing category}
+\subsection{Adding tasks}
+\subsection{Starting challenges}
+
+\section{Non-functional requirements}
+
+\subsection{Responsiveness}
+
+UI should properly scale across different display sizes. It must be mobile-friendly.
+
+\subsection{Accessibility}
+
+There should be no errors in the Accessibility section of a \href{https://webhint.io/}{webhint} scan.
+
+\subsection{Visual consistency}
+
+A single set of styling rules, such as colours, fonts and icons should be used across whole user interface.
+
+\subsection{Page load performance}
+
+The system should have a score of over 90 in \href{https://pagespeed.web.dev}{PageSpeed Insights} report for mobile.
+
+\subsection{Compatibility}
+
+User interface should work in latest (for January 2023) versions of Firefox, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
+
+\section{Use cases}
+
+\begin{figure}
+	\centering
+	\includesvg{uml/render/usecase.svg}
+	\caption{Use case diagram}
+\end{figure}

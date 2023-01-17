@@ -1,0 +1,22 @@
+@startuml
+
+actor User as u
+actor Administrator as a
+package inz {
+	usecase "Create account" as register
+	usecase "Sign in" as sign_in
+	usecase "Change password" as chg_pass
+
+	usecase "Create category" as add_category
+}
+
+u --> register
+u --> sign_in
+u --> chg_pass
+
+register .-> sign_in : precedes
+chg_pass .-> sign_in : precedes
+
+a --> add_category
+
+@enduml
