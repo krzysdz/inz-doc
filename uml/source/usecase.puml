@@ -32,7 +32,6 @@ u --> view_task
 u --> solve_challenge
 u --> answer
 
-sign_in .-> register : precedes
 sign_in .-> chg_pass : precedes
 sign_in .-> solve_challenge : precedes
 answer <-. solve_challenge : precedes

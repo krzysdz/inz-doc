@@ -9,68 +9,31 @@
 
 \section{Functional requirements}
 
-\subsection{Account creation}
+Functional requirements list functionality available in the system. Each of the requirements contains a description detailing the desired behaviour.
 
-\begin{tabular}{ l l }
-	\textbf{Description} & Users must be able to register an account in the system.\\
-	\textbf{Input data} & Username and password.\\
-	\textbf{Input data source} & HTML form submitted in a POST request.\\
-	\textbf{Result} & User account is created. User is redirected to login page.\\
-	\textbf{Pre-condition} & There exists no account with the same username.\\
-	\textbf{Post-condition} & User account is created.\\
-	\textbf{Side effects} & None.
-\end{tabular}
+\begin{itemize}
+	\item \textbf{Account creation}: Users must be able to register an account in the system.
+	This operation requires username and password submission from an HTML form in a POST request.
+	Registration is allowed only using unique username. If there already exists an account in the system with the same username, the action must be refused.
+	As a result of a successful registration, a document with the username, cryptographic hash of the user's password and a default role \texttt{"user"} is inserted into a collection storing user accounts. After the registration succeeds, the user is redirected to the login page.
 
-\subsection{Sign in}
+	\item \textbf{Signing in}: Users must be able to log into their accounts.
+	Username and password must be sent in a POST request as HTML form data. The operation must fail if there is no account in the database with the provided username or if the password hash does not match the one stored in the database.
+	If there has been no failure, a session is created and the user is redirected to the home page.
 
-\begin{tabular}{ l l }
-	\textbf{Description} & Users must be able to log into their accounts.\\
-	\textbf{Input data} & Username and password.\\
-	\textbf{Input data source} & HTML form submitted in a POST request.\\
-	\textbf{Result} & User is logged in and redirected to the home page.\\
-	\textbf{Pre-condition} & Username and password match an existing account.\\
-	\textbf{Post-condition} & Website template is filled using user data.\\
-	\textbf{Side effects} & A session is created in the database.
-\end{tabular}
+	\item \textbf{Logging out}: Users must be able to log out of their accounts.
+	It is expected that the user is signed in when they log out. This operation destroys the session (if any) and redirects to the home page.
 
-\subsection{Logging out}
+	\item \textbf{Changing password}: Users must be able to change their account password.
+	New password must be sent in a POST request as HTML form data. User must be logged in in order to change the password.
+	As a result of this operation, user's password hash in the database is updated.
 
-\begin{tabular}{ l l }
-	\textbf{Description} & Users must be able to log out of their accounts.\\
-	\textbf{Input data} & None.\\
-	\textbf{Input data source} & None.\\
-	\textbf{Result} & User is logged out.\\
-	\textbf{Pre-condition} & A logged in user session exists.\\
-	\textbf{Post-condition} & User session no longer exists.\\
-	\textbf{Side effects} & A session entry is removed from the database.
-\end{tabular}
+	\item \textbf{Listing categories}: Users must be able to see a list of categories that exist in the system. List of categories must link to category pages.
 
-\subsection{Changing password}
-
-\begin{tabular}{ l l }
-	\textbf{Description} & Users must be able to change their password.\\
-	\textbf{Input data} & Old password and new password.\\
-	\textbf{Input data source} & HTML form submitted in a POST request.\\
-	\textbf{Result} & User password is changed.\\
-	\textbf{Pre-condition} & A user is logged in.\\
-	\textbf{Post-condition} & User can log in only using the new password.\\
-	\textbf{Side effects} & User's password hash is updated in the database.
-\end{tabular}
-
-\subsection{Listing categories}
-
-\begin{tabular}{ l l }
-	\textbf{Description} & Users must be able to see a list of categories.\\
-	\textbf{Input data} & None.\\
-	\textbf{Input data source} & None.\\
-	\textbf{Result} & User password is changed.\\
-	\textbf{Pre-condition} & A user is logged in.\\
-	\textbf{Post-condition} & User can log in only using the new password.\\
-	\textbf{Side effects} & None.
-\end{tabular}
+	\item \textbf{Displaying category}: Users must be able to see category details on a category page. The details should include category name, description and a list of related tasks.
+\end{itemize}
 
 % TODO
-\subsection{Displaying category}
 \subsection{Displaying task}
 \subsection{Solving challenge}
 \subsection{Answering quiz}
@@ -103,12 +66,29 @@ The system should have a score of over 90 in \href{https://pagespeed.web.dev}{Pa
 
 \subsection{Compatibility}
 
-User interface should work in latest (for January 2023) versions of Firefox, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
+User interface should work in latest (as of January 2023) versions of Firefox, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
 
 \section{Use cases}
+
+The use case diagram presented on Fig. \ref{fig:use-case-diag} shows actions offered to actors using the system. There are two actors, with different sets of allowed interactions. The actor \textit{User} represents anyone with access to the system. Users with special account role \texttt{"admin"}, which allows them to perform operations related to management of the system.
 
 \begin{figure}
 	\centering
 	\includesvg[scale=0.9]{uml/render/usecase.svg}
 	\caption{Use case diagram}
+	\label{fig:use-case-diag}
 \end{figure}
+
+\section{Tools}
+
+
+
+\subsection{Node.js + Express}
+
+\subsection{MongoDB}
+
+\subsection{Docker}
+
+\subsection{nginx}
+
+\subsection{Bootstrap}
