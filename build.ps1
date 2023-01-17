@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pdflatex -shell-escape -synctex=1 main.tex
-bibtex main.tex
-pdflatex -shell-escape -synctex=1 main.tex
-pdflatex -shell-escape -synctex=1 main.tex
+pdflatex -shell-escape -synctex=1 main
+bibtex main
+pdflatex -shell-escape -synctex=1 main
+pdflatex -shell-escape -synctex=1 main
