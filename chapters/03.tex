@@ -97,13 +97,24 @@ The system is built on tools, which are regarded to as \textit{core tools}. Thes
 
 \subsubsection{Node.js + Express + EJS}
 
+Node.js is a JavaScript runtime based on V8 engine. There is an enormous ecosystem built around Node.js with over 1.3 million packages available in the npm registry \cite{bib:npm-packages}. The server code runs on Node.js and uses the Express framework for request routing and middleware management. Express is a popular web framework with many features and compatible middleware packages. One of Express' features is template rendering support. The project uses EJS templates, which allows creating HTML templates using embedded JavaScript logic.
+
 \subsubsection{MongoDB}
+
+MongoDB is a NoSQL document-oriented database capable of storing BSON documents. Because BSON stands for Binary JSON, which in turn is JavaScript Object Notation, it integrates nicely with JavaScript. The MongoDB Node.js driver also supports TypeScript, which helps with suggestions and type checking.\\
+During development MongoDB Compass, MongoDB Visual Studio Code extension and mongosh were used. These tools allow database management and, except for mongosh, provide helpful user interfaces.
 
 \subsubsection{Docker}
 
+Docker is a platform for managing containerised software. Challenges are running as Docker containers and managed using Docker Engine API. For debugging, development and management standalone Docker tools such as Docker CLI and Docker Desktop can be used.
+
 \subsubsection{nginx}
 
+To manage multiple domains and subdomain on a single system with one external network interface nginx was used as a proxy. nginx offers multiple functionalities besides proxying. It is also used to serve static files, redirect to HTTPS protocol and terminate TLS connections.
+
 \subsubsection{Bootstrap}
+
+Bootstrap is a frontend toolkit, which is helpful for designing user interfaces. It provides CSS classes and JavaScript utilities to help with styling and providing interactivity in HTML without the need to write own style sheets and JS scripts.
 
 \subsection{Development tools}
 
