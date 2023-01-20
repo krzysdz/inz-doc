@@ -1,11 +1,6 @@
 \chapter{Requirements and tools}
 
-\begin{itemize}
-\item functional and nonfunctional requirements
-\item use cases (UML diagrams)
-\item description of tools
-\item methodology of design and implementation
-\end{itemize}
+The project development consisted of multiple stages. One of the most important parts was specifying requirements, which then dictated tool selection and the design process.
 
 \section{Functional requirements}
 
@@ -32,7 +27,7 @@ Functional requirements list functionality available in the system. Each of the 
 
 	\item \textbf{Displaying category}: Users must be able to see category details on a category page. The details should include category name, description and a list of related tasks.
 
-	\item  \textbf{Displaying task}: Users must be able to display task details on task pages. The details should include task name, description, challenge URL, hints (if any), and if the user is logged in, a flag submission form. If the task has been solved by the user, instead of the flag submission form, a question is displayed.
+	\item \textbf{Displaying task}: Users must be able to display task details on task pages. The details should include task name, description, challenge URL, hints (if any), and if the user is logged in, a flag submission form. If the task has been solved by the user, instead of the flag submission form, a question is displayed.
 
 	\item \textbf{Solving challenge}: Users must be able to submit a form with flag from the task page. This action is allowed only for signed in users. Submitted flag must be verified with the one stored in the database for the given challenge. If the flags match, a success message should be shown to the user and date of solving the challenge by user ought to be saved to the database. Otherwise, a message informing the user about incorrect flag should be presented.
 
@@ -135,3 +130,51 @@ ESLint is a JavaScript linter, which can be used to detect problems and potentia
 \subsubsection{Prettier}
 
 Prettier is a popular code formatting tool. It was used to maintain a consistent style in JavaScript files. Thanks to Visual Studio Code plugin the tool could be used as a default formatter in the editor. A plugin for ESLint allowed marking improperly formatted code as lint error.
+
+\section{Methodology of design and implementation}
+
+The development process was split into two parts. Before the implementation started the system had to be designed.
+
+\subsection{Design}
+
+The first step in designing the project was defining initial requirements.
+This resulted in the first (and only) UI concept drawing, which is presented on Fig. \ref{fig:init-ui-sketch}. It was meant to help with defining the exact functionality and the structure of documents in the database. Based on that the structure presented on Fig. \ref{fig:init-db-struct} was created.
+
+After those first ideas were noted, the process of defining the architecture began. The choice of Node.js and Express as a base for the server was easy, as the author had already years of experience with those tools. Similarly, MongoDB was selected as a database server, because of experience and because it can store arrays and objects. To improve experience on low-end devices and enable basic functionality on browsers without JavaScript, server-side rendering was chosen instead of a JavaScript user interface library such as React or Vue. For a template rendering engine two solutions were considered - Handlebars and EJS. Ultimately, EJS was chosen, because of its richer capabilities.
+
+The last problem to solve during the design phase, was coming up with an idea to direct different subdomains to appropriate challenge containers. The simplest solution was using a wildcard DNS record and setting up virtual servers in the proxy (Fig. \ref{fig:subdomain-idea}). Creation of subdomains could be achieved by creating additional configuration files, which could be automatically picked up by the proxy on reload.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/init-ui-sketch.png}
+	\caption{Initial task page UI sketch before and after solving the challenge.}
+	\label{fig:init-ui-sketch}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/init-db-struct.png}
+	\caption{Initial design of documents representing users and tasks.}
+	\label{fig:init-db-struct}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/subdomain-idea.png}
+	\caption{Subdomain management design idea.}
+	\label{fig:subdomain-idea}
+\end{figure}
+
+\subsection{Implementation}
+
+The implementation started with setting up a Node.js project with some of the required dependencies and a basic \textit{Hello world} Express server. Additional tools such as Eslint were also set up at the beginning so that they could be used during the development.
+
+The next step was preparing database connection and setting up code for session support. Once the server could handle sessions, related utilities such as message flashing were prepared. Sessions were required to implement authentication, which was done in the next step. The first part of implementing authentication was enabling user account creation, so that it would be possible to test each element as it was developed. With the code responsible for registration ready, logging in could be worked on. In both cases the server logic was prepared first with the UI following right after to test the whole component.
+
+After the authentication was done and there were some simple pages ready, work on styling the interface could begin. This stage of the development was realised at that moment, because there were already pages which could be tested with the styles and could serve as a base for later content.
+
+Before more public pages could be created, an administration panel had to be made in order to insert data for testing. Unlike all other components, this panel required a lot of interactivity and relied on client-side scripting. To facilitate this requirement, the server code exposes REST-like API, which is consumed by scripts running in the browser. The administrator panel started with user management, continued to category management and finished with task creation.\\
+Since some of the inputs supported Markdown, a Markdown parser was integrated on both the server and in browser. To allow for syntax highlighting in code blocks, \href{https://highlightjs.org}{highlight.js} was added to the Markdown parser. Syntax highlighting required additional styles, which were available separately in light and dark modes and would not integrate well with Bootstrap's theming. To avoid this problem, a variable-based style sheet with colours from Panda Syntax Light and Dark themes was created with CSS variables set depending on the theme used in Bootstrap.\\
+With the last part of the administration panel, task creation, a system for managing challenge containers had to be prepared. During the implementation of this functionality, the initial database schema shown on Fig \ref{fig:init-db-struct} was recognised as suboptimal and had to be changed.
+
+Finally, user-facing category and task pages were prepared. Because these were template-based and in case of the task page relatively complicated, the user interface and server code were implemented in parallel. As a finishing touch a simple home page was added.
