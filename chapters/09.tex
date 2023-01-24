@@ -1,6 +1,111 @@
 \chapter{Listings}
 
 (Put long listings here.)
+\begin{figure}
+	\centering
+	\begin{minted}[linenos, breaklines, frame=lines]{yaml}
+# mongod.conf
+
+# for documentation of all options, see:
+#   http://docs.mongodb.org/manual/reference/configuration-options/
+
+# Where and how to store data.
+storage:
+  dbPath: /var/lib/mongodb
+
+# where to write logging data.
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/log/mongodb/mongod.log
+
+# network interfaces
+net:
+  port: 27017
+  bindIp: 127.0.0.1
+
+# how the process runs
+processManagement:
+  timeZoneInfo: /usr/share/zoneinfo
+
+replication:
+  replSetName: rs0
+	\end{minted}
+	\caption{Example \texttt{/etc/mongod.conf} configuration file. Based on the default \href{https://github.com/mongodb/mongo/blob/e4fff3e1fe7b31b25cedde7b05205325b47b4a7d/debian/mongod.conf}{config} for Debian and Ubuntu}
+	\label{fig:example-mongod}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{minted}[linenos, breaklines, frame=lines]{INI}
+# /etc/systemd/system/inz-nginx.service
+
+[Unit]
+Description=nginx proxy for inz
+Documentation=https://nginx.org/en/docs/
+After=network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+WorkingDirectory=/inz
+ExecStart=/usr/sbin/nginx -p /inz/nginx -c /inz/nginx/conf/nginx.conf
+ExecReload=/bin/sh -c "/bin/kill -s HUP $(/bin/cat /run/nginx.pid)"
+ExecStop=/bin/sh -c "/bin/kill -s TERM $(/bin/cat /run/nginx.pid)"
+
+[Install]
+WantedBy=multi-user.target
+	\end{minted}
+	\caption{Example unit file for the nginx proxy. Project root is assumed to be \texttt{/inz}.}
+	\label{fig:example-nginx-service}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{minted}[linenos, breaklines, frame=lines]{INI}
+# /etc/systemd/system/inz.service
+
+[Unit]
+Description=inz server
+After=network-online.target remote-fs.target nss-lookup.target mongod.service inz-nginx.service
+Wants=network-online.target
+Requires=mongod.service inz-nginx.service
+
+[Service]
+Type=simple
+WorkingDirectory=/inz
+Environment="NODE_ENV=production"
+# Remember to change the secret!
+Environment="SECRET=SECRET"
+ExecStart=/usr/bin/node /inz/index.js
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+	\end{minted}
+	\caption{Example unit file for the main server. Project root is assumed to be \texttt{/inz}.}
+	\label{fig:example-server-service}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{minted}[linenos, breaklines, frame=lines]{js}
+import { MongoClient } from "mongodb";
+import { DB_NAME, DB_URL } from "./config.js";
+
+const USERNAME = "administrator_username";
+
+const client = new MongoClient(DB_URL, { directConnection: true });
+await client
+	.db(DB_NAME)
+	.collection("users")
+	.updateOne({ _id: USERNAME }, { $set: { role: "user" } });
+await client.close();
+	\end{minted}
+	\caption{A simple Node.js script, which makes the user \texttt{administrator\_username} an administrator.}
+	\label{fig:make-admin-script}
+\end{figure}
 
 % \begin{lstlisting}
 % if (_nClusters < 1)

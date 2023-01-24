@@ -37,6 +37,23 @@
 % package minted
 \usepackage{minted}
 
+% minted 2.7 quotes command-line arguments, this allows us to escape the quotes
+% and pass arguments directly to pygmentize, forcing it to use custom lexer.
+% Quoting lexer argument: https://github.com/gpoore/minted/blob/9ac85a3a1ae09936d80daf46927f55c51449555b/source/minted.sty#L842
+% Quoting macro: https://github.com/gpoore/minted/blob/9ac85a3a1ae09936d80daf46927f55c51449555b/source/minted.sty#L820-L824
+\usepackage{ifplatform}
+\makeatletter
+\@ifpackagelater{minted}{2022/12/12}{
+	\ifwindows
+		\newenvironment{mintedlexer}[1]{\minted{#1" "-x}}{\endminted}
+	\else
+		\newenvironment{mintedlexer}[1]{\minted{#1' '-x}}{\endminted}
+	\fi
+}{
+	\newenvironment{mintedlexer}[1]{\minted{#1 -x}}{\endminted}
+}
+\makeatother
+
 % This package requires a special command line option in compilation
 % pdflatex -shell-escape main.tex
 % xelatex  -shell-escape main.tex
