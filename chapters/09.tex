@@ -107,28 +107,51 @@ await client.close();
 	\label{fig:make-admin-script}
 \end{figure}
 
-% \begin{lstlisting}
-% if (_nClusters < 1)
-% 	throw std::string ("unknown number of clusters");
-% if (_nIterations < 1 and _epsilon < 0)
-% 	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
-% if (_nIterations > 0 and _epsilon > 0)
-% 	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-% \end{lstlisting}
-
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% To use the minted packages uncomment the package import in        %
-% file config/settings.tex :  \usepackage{minted}                   %
-% and compile with the shell escape                                 %
-% pdflatex -shell-escape main                                       %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-
-\begin{minted}[linenos,breaklines,frame=lines]{c++}
-if (_nClusters < 1)
-	throw std::string ("unknown number of clusters");
-if (_nIterations < 1 and _epsilon < 0)
-	throw std::string ("You should set a maximal number of iteration or minimal difference -- epsilon.");
-if (_nIterations > 0 and _epsilon > 0)
-	throw std::string ("Both number of iterations and minimal epsilon set -- you should set either number of iterations or minimal epsilon.");
-\end{minted}
+\begin{figure}
+	\centering
+	\begin{minted}[linenos, breaklines, frame=lines, tabsize=4, obeytabs]{js}
+[
+	// add challenge as "challenge" array of 1 document
+	{ $lookup: {
+			from: "challenges",
+			localField: "challengeId",
+			foreignField: "_id",
+			as: "challenge",
+	}},
+	// add challenges from answers as "answerChallenges" array
+	{ $lookup: {
+			from: "challenges",
+			localField: "answers.challengeId",
+			foreignField: "_id",
+			as: "answerChallenges",
+	}},
+	// select and modify returned fields
+	{ $project: {
+			name: 1,
+			categoryId: 1,
+			descriptionMd: 1,
+			descriptionRendered: 1,
+			question: 1,
+			hints: 1,
+			visible: 1,
+			// Replace the "challenge" array with the only document inside it
+			challenge: { $first: "$challenge" },
+			// Add a challenge field (subdocument) to each answer with challengeId
+			answers: {
+				$map: {
+					input: "$answers",
+					as: "a",
+					in: {
+						$mergeObjects: [
+							"$$a",
+							{ challenge: {
+									$first: {
+										$filter: {
+											input: "$answerChallenges",
+											cond: { $eq: ["$$this._id", "$$a.challengeId"] },
+											limit: 1,
+}}}}]}}}}}]
+	\end{minted}
+	\caption{Aggregation pipeline for the \texttt{fullTasks} collection.}
+	\label{fig:fullTasks-agg}
+\end{figure}

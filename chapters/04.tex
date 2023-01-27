@@ -126,3 +126,13 @@ If setting up the server with a fresh database, an administrator account must be
     \item Set the \texttt{role} field of the user document to string \texttt{admin}. A Node.js script which does that is presented on Fig. \ref{fig:make-admin-script}.
     \item Log in into the account again.
 \end{itemize}
+
+\section{Types of users}
+
+There are three types of users considered in the system:
+
+\begin{itemize}
+    \item anonymous/not signed in
+    \item regular users - account with role \texttt{"user"}
+    \item administrators - account with role \texttt{"admin"}
+\end{itemize}

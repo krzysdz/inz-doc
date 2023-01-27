@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 1400 1980"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="db-schema.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="false"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#4f4f4f"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="1.5076999"
+     inkscape:cx="501.75768"
+     inkscape:cy="787.95522"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1432"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g52315" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       refX="3"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyDiamond"
+       id="EmptyDiamond"
+       markerWidth="11"
+       markerHeight="7"
+       viewBox="0 0 7.6367532 7.6367533"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path108" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleStart"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <rect
+       x="93.33041"
+       y="79.260499"
+       width="66.597578"
+       height="18.759882"
+       id="rect47844" />
+    <rect
+       x="92.861413"
+       y="76.446517"
+       width="179.62586"
+       height="64.252594"
+       id="rect47838" />
+    <rect
+       x="1.8759881"
+       y="231.68452"
+       width="99.427368"
+       height="127.0982"
+       id="rect29253" />
+    <rect
+       x="164.74576"
+       y="68.644066"
+       width="330.23118"
+       height="46.58997"
+       id="rect16577" />
+    <rect
+       x="192.20338"
+       y="179.61864"
+       width="408.43222"
+       height="259.7034"
+       id="rect2976" />
+    <rect
+       x="192.20338"
+       y="179.61864"
+       width="404.33707"
+       height="165.55475"
+       id="rect2976-2" />
+    <rect
+       x="164.74576"
+       y="68.644066"
+       width="426.66746"
+       height="49.511723"
+       id="rect16577-7" />
+    <rect
+       x="192.20338"
+       y="179.61864"
+       width="331.17685"
+       height="214.9024"
+       id="rect2976-2-8" />
+    <rect
+       x="164.74576"
+       y="68.644066"
+       width="432.14085"
+       height="47.999141"
+       id="rect16577-7-2" />
+    <rect
+       x="192.20338"
+       y="179.61864"
+       width="470.66327"
+       height="495.85922"
+       id="rect2976-2-0" />
+    <rect
+       x="164.74576"
+       y="68.644066"
+       width="331.18685"
+       height="46.359409"
+       id="rect16577-7-21" />
+    <rect
+       x="192.20338"
+       y="179.61864"
+       width="283.62341"
+       height="608.61377"
+       id="rect33661" />
+    <rect
+       x="164.74576"
+       y="68.644066"
+       width="292.64665"
+       height="46.672618"
+       id="rect33663" />
+    <rect
+       x="93.33041"
+       y="79.260499"
+       width="66.597578"
+       height="18.759882"
+       id="rect49417" />
+    <rect
+       x="93.33041"
+       y="79.260499"
+       width="90.475009"
+       height="18.09662"
+       id="rect49467" />
+    <rect
+       x="93.33041"
+       y="79.260499"
+       width="98.489376"
+       height="22.511858"
+       id="rect50434" />
+    <rect
+       x="93.33041"
+       y="79.260499"
+       width="105.73003"
+       height="20.086406"
+       id="rect51281" />
+    <marker
+       style="overflow:visible"
+       refX="3"
+       refY="0"
+       orient="-30"
+       inkscape:stockid="EmptyDiamond"
+       id="EmptyDiamond-4"
+       markerWidth="11"
+       markerHeight="7"
+       viewBox="0 0 7.6367532 7.6367533"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="none">
+      <path
+         transform="scale(0.45)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         id="path108-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleStart-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="TriangleStart"
+       markerWidth="5.3244081"
+       markerHeight="6.155385"
+       viewBox="0 0 5.3244081 6.1553851"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-5" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       id="text29251"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29253);display:inline;fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       transform="scale(1.7638889)"
+       id="text47836"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect47838);display:inline;fill:#000000;fill-opacity:1;stroke:none" />
+    <g
+       id="g48682">
+      <text
+         xml:space="preserve"
+         id="text16575"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect16577);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+         transform="translate(-5.6343514,12.216257)"><tspan
+           x="164.74609"
+           y="105.03954"
+           id="tspan63701">Collection &quot;users&quot;</tspan></text>
+      <path
+         id="rect36725"
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 542.15377,428.93435 v 20 H 83.429551 v -293.97851 0 l 21.999979,-1e-5" />
+      <text
+         xml:space="preserve"
+         id="text2974"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;white-space:pre;shape-inside:url(#rect2976);shape-padding:1.14407;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         transform="translate(-58.747022,-27.448473)"><tspan
+           x="193.34766"
+           y="198.38271"
+           id="tspan63705"><tspan
+   style="fill:#5ca831"
+   id="tspan63703">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="221.71608"
+           id="tspan63711">  <tspan
+   style="fill:#173182"
+   id="tspan63707">_id</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63709">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="245.04945"
+           id="tspan63717">  <tspan
+   style="fill:#173182"
+   id="tspan63713">hash</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63715">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="268.38283"
+           id="tspan63723">  <tspan
+   style="fill:#173182"
+   id="tspan63719">role</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63721">: &quot;user&quot; | &quot;admin&quot;,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="291.7162"
+           id="tspan63731">  <tspan
+   style="fill:#173182"
+   id="tspan63725">solves</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63727">?: </tspan><tspan
+   style="fill:#5ca831"
+   id="tspan63729">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="315.04958"
+           id="tspan63737">    <tspan
+   style="fill:#173182"
+   id="tspan63733">[challengeId: string]</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63735">: Date | undefined</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="338.38295"
+           id="tspan63743">  <tspan
+   style="fill:#5ca831"
+   id="tspan63739">}</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63741">,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="361.71632"
+           id="tspan63751">  <tspan
+   style="fill:#173182"
+   id="tspan63745">answers</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63747">?: </tspan><tspan
+   style="fill:#5ca831"
+   id="tspan63749">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="385.0497"
+           id="tspan63757">    <tspan
+   style="fill:#173182"
+   id="tspan63753">[taskId: string]</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63755">: boolean[]</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="408.38307"
+           id="tspan63761">  <tspan
+   style="fill:#5ca831"
+   id="tspan63759">}</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="431.71645"
+           id="tspan63765"><tspan
+             style="fill:#5ca831"
+             id="tspan63763">}</tspan></tspan></text>
+      <rect
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect788"
+         width="458.72421"
+         height="293.97852"
+         x="105.42955"
+         y="134.95584" />
+      <text
+         xml:space="preserve"
+         transform="matrix(1.7638889,0,0,1.7638889,112.89078,-1.6545173)"
+         id="text47842"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect47844);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="93.330078"
+           y="93.817769"
+           id="tspan63767">UserDoc</tspan></text>
+    </g>
+    <g
+       id="g49689">
+      <text
+         xml:space="preserve"
+         id="text16575-2-6"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect16577-7-21);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+         transform="translate(-67.497737,488.15524)"><tspan
+           x="164.74609"
+           y="105.03954"
+           id="tspan63769">Collection &quot;tasks&quot;</tspan></text>
+      <path
+         id="rect36749"
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 414.21215,1135.9836 v 20 H 83.284513 v -524.83186 0 l 21.999987,-2e-5" />
+      <rect
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect788-7-0"
+         width="330.92764"
+         height="524.83191"
+         x="105.28452"
+         y="611.15173" />
+      <text
+         xml:space="preserve"
+         id="text2974-8-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;white-space:pre;shape-inside:url(#rect2976-2-0);shape-padding:1.14407;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         transform="translate(-60.7889,447.50725)"><tspan
+           x="193.34766"
+           y="198.38271"
+           id="tspan63773"><tspan
+   style="fill:#5ca831"
+   id="tspan63771">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="221.71608"
+           id="tspan63779">  <tspan
+   style="fill:#173182"
+   id="tspan63775">_id</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63777">: ObjectId,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="245.04945"
+           id="tspan63785">  <tspan
+   style="fill:#173182"
+   id="tspan63781">name</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63783">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="268.38283"
+           id="tspan63793"><tspan
+             style="fill:#2a86c0"
+             id="tspan63787">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63789">categoryId</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63791">: ObjectId,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="291.7162"
+           id="tspan63801"><tspan
+   style="fill:#2a86c0"
+   id="tspan63795">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan63797">descriptionMd</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63799">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="315.04958"
+           id="tspan63807">  <tspan
+   style="fill:#173182"
+   id="tspan63803">descriptionRendered</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63805">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="338.38295"
+           id="tspan63815"><tspan
+             style="fill:#2a86c0"
+             id="tspan63809">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63811">challengeId</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63813">: ObjectId,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="361.71632"
+           id="tspan63823"><tspan
+             style="fill:#2a86c0"
+             id="tspan63817">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63819">hints</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63821">: string[],
+</tspan></tspan><tspan
+           x="193.34766"
+           y="385.0497"
+           id="tspan63831"><tspan
+             style="fill:#2a86c0"
+             id="tspan63825">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63827">question</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63829">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="408.38307"
+           id="tspan63843"><tspan
+             style="fill:#2a86c0"
+             id="tspan63833">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63835">answers</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63837">: (</tspan><tspan
+             style="fill:#5ca831"
+             id="tspan63839">{</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63841">
+</tspan></tspan><tspan
+           x="193.34766"
+           y="431.71645"
+           id="tspan63851"><tspan
+             style="fill:#2a86c0"
+             id="tspan63845">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63847">text</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63849">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="455.04982"
+           id="tspan63859"><tspan
+             style="fill:#2a86c0"
+             id="tspan63853">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63855">correct</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63857">: true,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="478.38319"
+           id="tspan63867"><tspan
+             style="fill:#2a86c0"
+             id="tspan63861">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63863">explanation</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63865">?: string
+</tspan></tspan><tspan
+           x="193.34766"
+           y="501.71657"
+           id="tspan63879"><tspan
+             style="fill:#2a86c0"
+             id="tspan63869">    </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan63871">}</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63873"> | </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan63875">{</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63877">
+</tspan></tspan><tspan
+           x="193.34766"
+           y="525.04994"
+           id="tspan63887"><tspan
+             style="fill:#2a86c0"
+             id="tspan63881">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63883">text</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63885">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="548.38332"
+           id="tspan63895"><tspan
+             style="fill:#2a86c0"
+             id="tspan63889">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63891">correct</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63893">: false,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="571.71669"
+           id="tspan63903"><tspan
+             style="fill:#2a86c0"
+             id="tspan63897">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63899">explanation</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63901">?: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="595.05006"
+           id="tspan63911"><tspan
+             style="fill:#2a86c0"
+             id="tspan63905">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan63907">challengeId</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63909">?: ObjectId
+</tspan></tspan><tspan
+           x="193.34766"
+           y="618.38344"
+           id="tspan63919"><tspan
+             style="fill:#2a86c0"
+             id="tspan63913">    </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan63915">}</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63917">)[],
+</tspan></tspan><tspan
+           x="193.34766"
+           y="641.71681"
+           id="tspan63927"><tspan
+   style="fill:#2a86c0"
+   id="tspan63921">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan63923">visible</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63925">: boolean</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="665.05019"
+           id="tspan63931"><tspan
+             style="fill:#5ca831"
+             id="tspan63929">}</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1.7638889,0,0,1.7638889,51.909552,474.59572)"
+         id="text49415"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect49417);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="93.330078"
+           y="93.817769"
+           id="tspan63933">TaskDoc</tspan></text>
+    </g>
+    <g
+       id="g52315">
+      <text
+         xml:space="preserve"
+         id="text33657"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect33663);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+         transform="translate(405.16095,1121.9238)"><tspan
+           x="164.74609"
+           y="105.03954"
+           id="tspan63935">View &quot;fullTasks&quot;</tspan></text>
+      <path
+         id="rect38222"
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 868.3596,1886.3551 v 20 H 537.69442 v -641.3036 0 h 21.99996" />
+      <rect
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect33577"
+         width="330.66522"
+         height="641.30359"
+         x="559.6944"
+         y="1245.0515" />
+      <text
+         xml:space="preserve"
+         id="text33653"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;white-space:pre;shape-inside:url(#rect33661);shape-padding:1.14407;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         transform="translate(393.48983,1081.3095)"><tspan
+           x="193.34766"
+           y="198.38271"
+           id="tspan63939"><tspan
+   style="fill:#5ca831"
+   id="tspan63937">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="221.71608"
+           id="tspan63945">  <tspan
+   style="fill:#173182"
+   id="tspan63941">_id</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63943">: ObjectId,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="245.04945"
+           id="tspan63951">  <tspan
+   style="fill:#173182"
+   id="tspan63947">name</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63949">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="268.38283"
+           id="tspan63959"><tspan
+             style="fill:#2a86c0"
+             id="tspan63953">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63955">categoryId</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63957">: ObjectId,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="291.7162"
+           id="tspan63967"><tspan
+   style="fill:#2a86c0"
+   id="tspan63961">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan63963">descriptionMd</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63965">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="315.04958"
+           id="tspan63973">  <tspan
+   style="fill:#173182"
+   id="tspan63969">descriptionRendered</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan63971">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="338.38295"
+           id="tspan63981"><tspan
+             style="fill:#2a86c0"
+             id="tspan63975">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63977">challenge</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63979">: ChallengeDoc,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="361.71632"
+           id="tspan63989"><tspan
+             style="fill:#2a86c0"
+             id="tspan63983">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63985">hints</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63987">: string[],
+</tspan></tspan><tspan
+           x="193.34766"
+           y="385.0497"
+           id="tspan63997"><tspan
+             style="fill:#2a86c0"
+             id="tspan63991">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan63993">question</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan63995">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="408.38307"
+           id="tspan64009"><tspan
+             style="fill:#2a86c0"
+             id="tspan63999">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan64001">answers</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64003">: (</tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64005">{</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64007">
+</tspan></tspan><tspan
+           x="193.34766"
+           y="431.71645"
+           id="tspan64017"><tspan
+             style="fill:#2a86c0"
+             id="tspan64011">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64013">text</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64015">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="455.04982"
+           id="tspan64025"><tspan
+             style="fill:#2a86c0"
+             id="tspan64019">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64021">correct</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64023">: true,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="478.38319"
+           id="tspan64033"><tspan
+             style="fill:#2a86c0"
+             id="tspan64027">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64029">explanation</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64031">?: string
+</tspan></tspan><tspan
+           x="193.34766"
+           y="501.71657"
+           id="tspan64045"><tspan
+             style="fill:#2a86c0"
+             id="tspan64035">    </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64037">}</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64039"> | </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64041">{</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64043">
+</tspan></tspan><tspan
+           x="193.34766"
+           y="525.04994"
+           id="tspan64053"><tspan
+             style="fill:#2a86c0"
+             id="tspan64047">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64049">text</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64051">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="548.38332"
+           id="tspan64061"><tspan
+             style="fill:#2a86c0"
+             id="tspan64055">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64057">correct</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64059">: false,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="571.71669"
+           id="tspan64069"><tspan
+             style="fill:#2a86c0"
+             id="tspan64063">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64065">explanation</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64067">?: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="595.05006"
+           id="tspan64077"><tspan
+             style="fill:#2a86c0"
+             id="tspan64071">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64073">challengeId</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64075">: ObjectId,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="618.38344"
+           id="tspan64085"><tspan
+             style="fill:#2a86c0"
+             id="tspan64079">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64081">challenge</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64083">: ChallengeDoc
+</tspan></tspan><tspan
+           x="193.34766"
+           y="641.71681"
+           id="tspan64095"><tspan
+             style="fill:#2a86c0"
+             id="tspan64087">    </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64089">}</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64091"> | </tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64093">{
+</tspan></tspan><tspan
+           x="193.34766"
+           y="665.05019"
+           id="tspan64103"><tspan
+             style="fill:#2a86c0"
+             id="tspan64097">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64099">text</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64101">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="688.38356"
+           id="tspan64111"><tspan
+             style="fill:#2a86c0"
+             id="tspan64105">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64107">correct</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64109">: false,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="711.71693"
+           id="tspan64121"><tspan
+             style="fill:#2a86c0"
+             id="tspan64113">      </tspan><tspan
+             style="fill:#173182"
+             id="tspan64115">explanation</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64117">?: string</tspan><tspan
+             style="fill:#5ca831"
+             id="tspan64119">
+</tspan></tspan><tspan
+           x="193.34766"
+           y="735.05031"
+           id="tspan64127"><tspan
+             style="fill:#5ca831"
+             id="tspan64123">    }</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64125">)[],
+</tspan></tspan><tspan
+           x="193.34766"
+           y="758.38368"
+           id="tspan64135"><tspan
+   style="fill:#2a86c0"
+   id="tspan64129">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan64131">visible</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64133">: boolean</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="781.71706"
+           id="tspan64139"><tspan
+             style="fill:#5ca831"
+             id="tspan64137">}</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1.7638889,0,0,1.7638889,481.63498,1106.0689)"
+         id="text49465"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect49467);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="93.330078"
+           y="93.817769"
+           id="tspan64141">FullTaskDoc</tspan></text>
+    </g>
+    <g
+       id="g50504">
+      <text
+         xml:space="preserve"
+         id="text16575-2"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect16577-7);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+         transform="translate(659.64645,47.394801)"><tspan
+           x="164.74609"
+           y="105.03954"
+           id="tspan64143">Collection &quot;categories&quot;</tspan></text>
+      <path
+         id="rect36756"
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 1252.0767,369.41533 v 20.00001 H 796.74825 v -199.54105 0 l 22.00004,1e-5" />
+      <rect
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect788-7"
+         width="455.32843"
+         height="199.54105"
+         x="818.74823"
+         y="169.8743" />
+      <text
+         xml:space="preserve"
+         id="text2974-8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;white-space:pre;shape-inside:url(#rect2976-2);shape-padding:1.14407;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         transform="translate(652.87379,6.918001)"><tspan
+           x="193.34766"
+           y="198.38271"
+           id="tspan64147"><tspan
+   style="fill:#5ca831"
+   id="tspan64145">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="221.71608"
+           id="tspan64153">  <tspan
+   style="fill:#173182"
+   id="tspan64149">_id</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64151">: ObjectId,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="245.04945"
+           id="tspan64159">  <tspan
+   style="fill:#173182"
+   id="tspan64155">name</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64157">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="268.38283"
+           id="tspan64167"><tspan
+   style="fill:#2a86c0"
+   id="tspan64161">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan64163">descriptionRaw</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64165">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="291.7162"
+           id="tspan64173">  <tspan
+   style="fill:#173182"
+   id="tspan64169">descriptionFormat</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64171">: &quot;html&quot; | &quot;md&quot;,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="315.04958"
+           id="tspan64181"><tspan
+   style="fill:#2a86c0"
+   id="tspan64175">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan64177">descriptionProcessed</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64179">?: string | undefined</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="338.38295"
+           id="tspan64185"><tspan
+             style="fill:#5ca831"
+             id="tspan64183">}</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1.7638889,0,0,1.7638889,795.65438,31.105606)"
+         id="text50432"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect50434);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="93.330078"
+           y="93.817769"
+           id="tspan64187">CategoryDoc</tspan></text>
+    </g>
+    <g
+       id="g51368">
+      <text
+         xml:space="preserve"
+         id="text16575-2-3"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect16577-7-2);display:inline;fill:#000000;fill-opacity:1;stroke:none"
+         transform="translate(691.43322,482.81536)"><tspan
+           x="164.74609"
+           y="105.03954"
+           id="tspan64189">Collection &quot;challenges&quot;</tspan></text>
+      <path
+         id="rect38215"
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 1248.7374,851.73444 v 22.00014 H 866.26106 v -246.41769 0 h 24" />
+      <rect
+         style="fill:none;stroke:#10a300;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect788-7-5"
+         width="382.47632"
+         height="246.41769"
+         x="890.26105"
+         y="605.31689" />
+      <text
+         xml:space="preserve"
+         id="text2974-8-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;line-height:1.25;font-family:Inconsolata;-inkscape-font-specification:Inconsolata;white-space:pre;shape-inside:url(#rect2976-2-8);shape-padding:1.14407;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-opacity:1"
+         transform="translate(726.07796,442.46555)"><tspan
+           x="193.34766"
+           y="198.38271"
+           id="tspan64193"><tspan
+   style="fill:#5ca831"
+   id="tspan64191">{</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="221.71608"
+           id="tspan64199">  <tspan
+   style="fill:#173182"
+   id="tspan64195">_id</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64197">: ObjectId,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="245.04945"
+           id="tspan64205">  <tspan
+   style="fill:#173182"
+   id="tspan64201">taskImage</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64203">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="268.38283"
+           id="tspan64213"><tspan
+   style="fill:#2a86c0"
+   id="tspan64207">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan64209">subdomain</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64211">: string,</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="291.7162"
+           id="tspan64219">  <tspan
+   style="fill:#173182"
+   id="tspan64215">flag</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64217">: string,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="315.04958"
+           id="tspan64227"><tspan
+             style="fill:#2a86c0"
+             id="tspan64221">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan64223">flagInEnv</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64225">?: boolean | undefined,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="338.38295"
+           id="tspan64235"><tspan
+             style="fill:#2a86c0"
+             id="tspan64229">  </tspan><tspan
+             style="fill:#173182"
+             id="tspan64231">resetInterval</tspan><tspan
+             style="fill:#2a86c0"
+             id="tspan64233">: number,
+</tspan></tspan><tspan
+           x="193.34766"
+           y="361.71632"
+           id="tspan64243"><tspan
+   style="fill:#2a86c0"
+   id="tspan64237">  </tspan><tspan
+   style="fill:#173182"
+   id="tspan64239">challengeKind</tspan><tspan
+   style="fill:#2a86c0"
+   id="tspan64241">: &quot;task&quot; | &quot;subtask&quot;</tspan>
+</tspan><tspan
+           x="193.34766"
+           y="385.0497"
+           id="tspan64247"><tspan
+             style="fill:#5ca831"
+             id="tspan64245">}</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1.7638889,0,0,1.7638889,824.71572,466.35222)"
+         id="text51279"
+         style="font-style:normal;font-weight:normal;font-size:16px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect51281);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
+           x="93.330078"
+           y="93.817769"
+           id="tspan64249">ChallengeDoc</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.76389px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#EmptyDiamond);marker-end:url(#TriangleStart)"
+       d="M 843.80511,1412.9714 C 1206.4804,1331.077 470.9608,530.25573 979.00441,611.71426"
+       id="path53070"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.76389px;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#EmptyDiamond-4);marker-end:url(#TriangleStart-4)"
+       d="M 877.72879,1685.9272 C 1194.0777,1391.4273 575.53404,498.75847 979.34313,624.88901"
+       id="path53070-1"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

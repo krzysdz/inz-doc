@@ -11,58 +11,76 @@
 \item UML diagrams
 \end{itemize}
 
+% \section{Concept of the system}
+% Let's just skip this section. I believe that the requirements contain enough information
 
+\section{System architecture}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% To use the minted packages uncomment the package import in        %
-% file config/settings.tex :  \usepackage{minted}                   %
-% and compile with the shell escape                                 %
-% pdflatex -shell-escape main                                       %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-
-
-Use special environments for inline code, eg  %\lstinline|int a;| (package \texttt{listings})% or
-\mintinline{C++}|int a;| (package \texttt{minted})
-. Longer parts of code put in the figure environment, eg. code in %Fig. \ref{fig:pseudocode:listings}% and
-Fig. \ref{fig:pseudocode:minted}
-. Very long listings–move to an appendix.
-
-
-\clearpage
-% \begin{figure}
-% \centering
-% \begin{lstlisting}
-% class test : public basic
-% {
-%     public:
-%       test (int a);
-%       friend std::ostream operator<<(std::ostream & s,
-%                                      const test & t);
-%     protected:
-%       int _a;
-
-% };
-% \end{lstlisting}
-% \caption{Pseudocode in \texttt{listings}.}
-% \label{fig:pseudocode:listings}
-% \end{figure}
+The system is managed by a server running on Node.js. As presented on Fig. \ref{fig:system-architecture}, this process manages the MongoDB database, challenge containers via Docker Engine API and the nginx proxy configuration. Challenges are run as Docker containers to enable easy configuration by just puling an appropriate image and each of them is bound to a different subdomain of a dedicated challenge domain thanks to the single proxy server.
 
 \begin{figure}
-\centering
-\begin{minted}[linenos,frame=lines]{c++}
-class test : public basic
-{
-   public:
-     test (int a);
-     friend std::ostream operator<<(std::ostream & s,
-                                    const test & t);
-   protected:
-     int _a;
-
-};
-\end{minted}
-\caption{Pseudocode in \texttt{minted}.}
-\label{fig:pseudocode:minted}
+    \centering
+    % Text renders wrong without inkscapelatex=false
+    \includesvg[inkscapelatex=false,scale=0.785]{img/system-architecture.svg}
+    \caption{Visual representation of system architecture.}
+    \label{fig:system-architecture}
 \end{figure}
 
+The nginx process is the only one exposed publicly. Other software can listen only on localhost for security reasons.
 
+\section{Database structure}
+
+The use of a NoSQL database, allowed for a more flexible schema, based on the desired access to the data. A mix of embedded data model and normalized data model is used. The used database schema is presented on Fig. \ref{fig:db-schema}. Despite preferring the denormalised model, it was necessary to keep some relations between documents. This is achieved by storing fields with \texttt{\_id}s of referenced documents. There is also a relation between keys of embedded documents in the \texttt{users} collection, which are stored as stringified \texttt{ObjectId}s and documents from \texttt{tasks} and \texttt{challenges}. This relation, however, is not used in queries to the database, but managed completely by the server code.
+
+There are two additional indexes:
+
+\begin{itemize}
+    \item a unique index on the \texttt{subdomain} field in the \texttt{challenges} collection to make sure that there are no duplicate subdomains,
+    \item a unique index with a collation on the \texttt{name} field in the \texttt{categories} collection to accelerate case-insensitive search by category name and prevent duplicates.
+\end{itemize}
+
+The view \texttt{fullTasks} is a view collection on the \texttt{tasks}, which uses an aggregation pipeline to embed documents from the \texttt{challenges} collection using \texttt{\$lookup} where necessary. The pipeline is presented on Fig. \ref{fig:fullTasks-agg}.
+
+\begin{figure}
+    \centering
+    % inkscapelatex=false, because the generated LaTeX file is invalid
+    \includesvg[inkscapelatex=false,scale=0.87]{img/db-schema.svg}
+    \caption{Visual diagram of the database schema.}
+    \label{fig:db-schema}
+\end{figure}
+
+\section{Code organisation}
+
+The code is divided into ECMAScript modules. The main one is \texttt{index.js}, which imports all the other required modules, some external tools, configures and starts the server. Each module serves a separate function.
+
+\subsection{Middleware}
+
+Two modules are responsible for middleware functions. Middleware is a function called during request processing, which can act on the request and response objects and pass execution to functions declared later in the router stack.
+
+One of them, \texttt{src/middleware.js}, contains general utility middleware functions:
+
+\begin{itemize}
+    \item \texttt{authenticated} - a middleware which returns 401 if the user is not logged in,
+    \item \texttt{adminOnly} - a middleware which returns 403 if the user is not an administrator,
+    \item \texttt{addCategoriesList} - a middleware executed before any routers, which fetches all category names and makes them available as response locals to use within templates.
+\end{itemize}
+
+The other module was separated, because it alters the request object and has an associated \texttt{.d.ts} typings file to help with type checking and code suggestions. It is \texttt{src/flash.js} and adds the following methods to each request object:
+
+\begin{itemize}
+    \item \texttt{flash(message, category = "info")} - a function which adds a message with category to a list of flash messages connected with the session
+    \item \texttt{getFlashedMessages(options)} - a function which returns the flashed messages with associated categories. This function can also filter the returned flashes by category. It is also available in response locals for direct use in templates.
+\end{itemize}
+
+The behaviour of this middleware is supposed to mimic the message flashing \href{https://flask.palletsprojects.com/en/2.2.x/quickstart/#message-flashing}{functionality} of the Flask framework.
+
+\subsection{Routers}
+
+The \texttt{index.js} module provides only the request handler for the root path \texttt{/}. Other paths are delegated to separate routers, which live inside modules under \texttt{src/routes}. The following paths are registered:
+
+\begin{itemize}
+    \item \texttt{/auth} handled by \texttt{authRouter} from the \texttt{auth.js} module. It serves the register, login and logout pages, as well as handles password change requests.
+    \item \texttt{/profile} guarded by the \texttt{authenticated} middleware, handled by \texttt{profileRouter} from the \texttt{profile.js} module. It serves only the profile page.
+    \item \texttt{/admin} guarded by the \texttt{authenticated} middleware, handled by \texttt{adminRouter} from the \texttt{admin.js} module.\\
+    The router uses additional middleware \texttt{adminOnly} and \texttt{express.json()}. It renders only a single page - the admin panel. It provides a REST-like JSON API, which is used by a script on the admin panel page.
+\end{itemize}
