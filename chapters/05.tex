@@ -68,7 +68,7 @@ One of them, \texttt{src/middleware.js}, contains general utility middleware fun
 The other module was separated, because it alters the request object and has an associated \texttt{.d.ts} typings file to help with type checking and code suggestions. It is \texttt{src/flash.js} and adds the following methods to each request object:
 
 \begin{itemize}
-    \item \texttt{flash(message, category = "info")} - a function which adds a message with category to a list of flash messages connected with the session
+    \item \mintinline{js}|flash(message, category = "info")| - a function which adds a message with category to a list of flash messages connected with the session
     \item \texttt{getFlashedMessages(options)} - a function which returns the flashed messages with associated categories. This function can also filter the returned flashes by category. It is also available in response locals for direct use in templates.
 \end{itemize}
 
@@ -83,4 +83,33 @@ The \texttt{index.js} module provides only the request handler for the root path
     \item \texttt{/profile} guarded by the \texttt{authenticated} middleware, handled by \texttt{profileRouter} from the \texttt{profile.js} module. It serves only the profile page.
     \item \texttt{/admin} guarded by the \texttt{authenticated} middleware, handled by \texttt{adminRouter} from the \texttt{admin.js} module.\\
     The router uses additional middleware \texttt{adminOnly} and \texttt{express.json()}. It renders only a single page - the admin panel. It provides a REST-like JSON API, which is used by a script on the admin panel page.
+    \item \texttt{/category} handled by \texttt{categoryRouter} from the \texttt{category.js} module. It serves category pages with lists of related tasks and a category list page \texttt{/categories/}.
+    \item \texttt{/task} handled by \texttt{taskRouter} from the \texttt{task} module. It serves task details pages and handles challenge and quiz submissions. All submissions are guarded with \texttt{authenticated}. The details page is handled separately for anonymous and other users as described in section \ref{chap:types-of-users}.
+\end{itemize}
+
+\subsection{Markdown parser}
+
+To parse descriptions in Markdown the \href{https://marked.js.org/}{\texttt{marked}} parser is used together with syntax highlighting library \href{https://highlightjs.org/}{\texttt{highlight.js}}. Because the processing can take some time and the execution runtime is single-threaded, it is offloaded to a \href{https://nodejs.org/dist/latest-v19.x/docs/api/worker_threads.html}{worker thread}. The thread is terminated after a timeout passes to avoid blocking the thread pool. \cite{bib:event-loop-explained,bib:event-loop-blocking}
+
+The first module responsible for this functionality \texttt{src/markedThread.js} listens to messages on \texttt{parentPort} and responds to them with an HTML string containing parsed Markdown.
+
+The second module \texttt{src/markdown.js} exports a \texttt{processMarkdown} function, which manages the worker thread. It returns a \href{https://tc39.es/ecma262/multipage/control-abstraction-objects.html#sec-promise-objects}{\texttt{Promise}}, which is resolved after the worker sends the rendered string. If the worker emits an error event, the promise is rejected. After a specified time passes the worker is terminated and the promise rejected, unless it had finished successfully earlier.
+
+\subsection{Database connection}
+
+The module \texttt{src/db.js} does not export any functions. When it is imported it creates a \texttt{MongoClient} connected to the database server and opens the database specified in the configuration file. It calls then an \texttt{async} function \texttt{setupDb}, which prepares necessary indexes and views. Both the client (\texttt{client}) and database (\texttt{db}) are exported. All modules importing either exported variable reuse the same client connection.
+
+\subsection{Challenge management}
+
+Challenges are managed using functions from the \texttt{src/challenges.js} module. The module has the following functions:
+
+\begin{itemize}
+    \item \mintinline{js}|getChallengeContainers(all = false)| - returns challenge containers (only running, unless \texttt{all} is \texttt{true}). It relies on label \texttt{pl.krzysdz.inz.challenge-kind} being present.
+    \item \texttt{startupChallenges()} - removes all nginx subdomain configuration files, stops and removes all challenge containers and calls \texttt{addChallenge} with each challenge document from the database.
+    \item \mintinline{js}|addChallenge(challengeDoc, reload = false)| - verifies the image tag, calls functions \texttt{startChallengeContainer} and \texttt{createNginxConfig}. If \texttt{reload} is \texttt{true}, calls a function responsible for reloading nginx configuration.
+    \item \texttt{checkTag(challengeDoc)} - checks if the document contains an image with a tag. If there is no tag, \texttt{:latest} is appended to the image name. Returns the \texttt{challengeDoc} with corrected \texttt{taskImage} field.
+    \item \texttt{startChallengeContainer(challengeDoc)} - pulls the image specified in the argument, stops and removes containers with the same name if they exist, creates a new container and starts it. If \texttt{resetInterval} is not 0, \texttt{setInterval} is created, which uses \texttt{restartChallengeContainer} to periodically restart the container.
+    \item \texttt{restartChallengeContainer(port, challengeDoc)} - restarts the container specified in \texttt{challengeDoc}. This function is not exported and called only in interval, which is created after starting the container for the first time. It stops and removes the container including volumes, creates a new container reusing the same port and starts the new container.
+    \item \texttt{createNginxConfig(subdomain, port)} - creates an nginx configuration file in \texttt{nginx/conf/subdomains} directory, which defines an HTTPS server proxying request made to the subdomain of domain specified in config to the specified port on localhost.
+    \item \texttt{reloadNginx()} - executes the nginx binary with \texttt{-s reload} and prefix set to \texttt{./nginx} from the project directory to instruct the proxy to reload its configuration.
 \end{itemize}
