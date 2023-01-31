@@ -113,3 +113,70 @@ Challenges are managed using functions from the \texttt{src/challenges.js} modul
     \item \texttt{createNginxConfig(subdomain, port)} - creates an nginx configuration file in \texttt{nginx/conf/subdomains} directory, which defines an HTTPS server proxying request made to the subdomain of domain specified in config to the specified port on localhost.
     \item \texttt{reloadNginx()} - executes the nginx binary with \texttt{-s reload} and prefix set to \texttt{./nginx} from the project directory to instruct the proxy to reload its configuration.
 \end{itemize}
+
+\section{Sequence diagrams}
+
+Basic system functionality in a simplified form can be presented in form of UML sequence diagrams. Figures \ref{fig:seq-register}, \ref{fig:seq-login} and \ref{fig:seq-change-pass} demonstrate flows related to authentication and account management. The next three diagrams \ref{fig:seq-task}, \ref{fig:seq-task-flag} and \ref{fig:seq-task-answer} present operations connected with tasks. The diagrams are simplified, to avoid repeating the process of fetching task and checking user progress before rendering the page.
+
+% Text in diagrams doesn't look good without inkscapelatex=false
+% Too wide or positioned incorrectly
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false]{uml/render/seq-register.svg}
+    \caption{Registration sequence diagram}
+    \label{fig:seq-register}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false]{uml/render/seq-login.svg}
+    \caption{Logging in sequence diagram}
+    \label{fig:seq-login}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false]{uml/render/seq-change-pass.svg}
+    \caption{Password change sequence diagram}
+    \label{fig:seq-change-pass}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false, scale=0.9]{uml/render/seq-open-solve-task.svg}
+    \caption{Navigation and solving a task}
+    \label{fig:seq-task}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false]{uml/render/seq-task-flag.svg}
+    \caption{Submitting challenge flag}
+    \label{fig:seq-task-flag}
+\end{figure}
+
+\begin{figure}
+    % Don't use inkscapelatex=false to render \ref, make font smaller manually
+    \fontsize{10}{12}\selectfont
+    \centering
+    \includesvg[]{uml/render/seq-task-answer.svg}
+    \caption{Answering task question}
+    \label{fig:seq-task-answer}
+\end{figure}
+
+Actions available for the administrators involve an additional participant - a script running in the browser which is responsible for managing the UI and communication with the server. Because the panel is not rendered on the server, the process of loading it is more complicated as can be seen on Fig. \ref{fig:seq-admin-load}. The most complicated operation is adding a new task. The flow is presented on \ref{fig:seq-admin-add-task} and requires interactions with even more system components.
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false, scale=0.9]{uml/render/seq-admin-load.svg}
+    \caption{Loading administrator panel}
+    \label{fig:seq-admin-load}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[inkscapelatex=false, scale=0.57]{uml/render/seq-admin-add-task.svg}
+    \caption{Adding a new task}
+    \label{fig:seq-admin-add-task}
+\end{figure}

@@ -1,0 +1,27 @@
+@startuml
+actor       User      as U
+participant Server    as S
+database    Database  as DB
+
+note over U, DB
+User must be logged in, subission is from a task page - see previous diagrams
+end note
+
+U -> S : Submit flag
+activate S
+S -> DB : Fetch task details
+activate DB
+DB --> S : FullTaskDoc
+deactivate DB
+S -> S : Verify flag
+break Flag is invalid
+	S --> U : Task page with error
+end
+S -> DB : Mark as solved in user document
+activate DB
+DB --> S : UpdateResult
+deactivate DB
+S --> U : Task page with success message and question
+deactivate S
+
+@enduml

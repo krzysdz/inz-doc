@@ -1,0 +1,90 @@
+@startuml
+actor       User      as U
+participant Server    as S
+database    Database  as DB
+participant Challenge as C
+
+
+U -> S : Request category page
+activate S
+S -> DB : Fetch category details
+activate DB
+break Category does not exist
+    DB --> S : null
+    S --> U : 404 Not Found page
+end
+DB --> S : Category document
+deactivate DB
+S --> U : Render category page
+deactivate S
+
+U -> S : Click on a link to a related task
+activate S
+S -> DB : Fetch task details
+activate DB
+break Task does not exist
+    DB --> S : null
+    S --> U : 404 Not Found page
+end
+
+DB --> S : Task details
+deactivate DB
+
+opt User is logged in
+    S -> DB : Fetch user document
+    activate DB
+    DB --> S : UserDoc
+    deactivate DB
+
+    S -> S : Check if the challenge is solved
+    S -> S : Check user's answers to the question
+    S -> S : Check additional challenge solves
+end
+
+S --> U : Render task page
+deactivate S
+
+U -> C : Follow the challenge link and solve the challenge
+note over U, C
+Process of solving the challenge will vary between users and challenges.
+It may take some time.
+end note
+C --> U : Flag
+
+opt User is logged in
+    loop
+        U -> S : Submit flag
+        activate S
+        S -> DB : Fetch task details
+        activate DB
+        DB --> S : FullTaskDoc
+        deactivate DB
+        S -> S : Verify flag
+        opt Flag is invalid
+        S --> U : Task page with error
+        else Flag is valid
+            break (break out of the loop)
+                S -> DB : Mark as solved in user document
+                activate DB
+                DB --> S : UpdateResult
+                deactivate DB
+                S --> U : Task page with success message and question
+                deactivate S
+            end
+        end
+    end
+
+    U -> S : Answer question
+    activate S
+    S -> DB : Save answers in user document
+    activate DB
+    DB --> S : UpdateResult
+    deactivate DB
+    S --> U : 302, redirect to task page
+    deactivate S
+    activate U
+    U -> S : request task page
+    deactivate U
+end
+
+@enduml

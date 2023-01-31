@@ -1,0 +1,32 @@
+@startuml
+actor       User     as U
+participant Server   as S
+database    Database as DB
+
+U -> S : Request registration page
+S --> U : Rendered registration page
+
+
+U -> S : Submit registration form
+activate S
+
+S -> S : Check inputs length and whether\npassword and retyped password match
+
+break Validation failed
+    S --> U : 422, rendered registration\npage with error message
+end
+
+S -> S : Calculate password hash
+S -> DB : Insert a new user document
+activate DB
+
+alt Username already exists
+    DB --> S : E11000 duplicate key error
+    S --> U : 409, rendered registration\npage with error message
+else New username
+    DB --> S : InsertOneResult
+    deactivate DB
+    S --> U : Redirect to login page,\nshow a success message
+    deactivate S
+end
+@enduml

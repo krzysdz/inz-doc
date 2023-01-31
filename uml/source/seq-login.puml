@@ -1,0 +1,38 @@
+@startuml
+actor       User     as U
+participant Server   as S
+database    Database as DB
+
+U -> S : Request login page
+S --> U : Rendered login page
+
+
+U -> S : Submit login form
+activate S
+
+S -> S : Check inputs length
+
+break Validation failed
+    S --> U : 422, rendered login page\nwith error message
+end
+
+S -> DB : Fetch the user document
+activate DB
+
+alt User does not exist
+    DB --> S : null
+    S --> U : rendered login page\nwith error message
+else User found
+    DB --> S : user document
+    deactivate DB
+    S -> S : Verify password hash
+
+    break Hashes do not match
+        S --> U : rendered login page\nwith error message
+    end
+
+    S -> S : Save user details in session
+    S --> U : Redirect to home page
+    deactivate S
+end
+@enduml

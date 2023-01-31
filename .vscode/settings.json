@@ -32,5 +32,8 @@
 				"pdflatex_escape"
 			]
 		}
+	],
+	"cSpell.words": [
+		"inkscapelatex"
 	]
 }

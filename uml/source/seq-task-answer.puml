@@ -1,0 +1,24 @@
+@startuml
+actor       User      as U
+participant Server    as S
+database    Database  as DB
+
+note over U, DB
+User must be logged in, subission is from a solved task page - see previous diagrams
+end note
+
+U -> S : Answer question
+activate S
+S -> DB : Save answers in user document
+activate DB
+DB --> S : UpdateResult
+deactivate DB
+S --> U : 302, redirect to task page
+deactivate S
+activate U
+U -> S : Request task page (browser, automatically)
+deactivate U
+
+note right: Standard task handling like\nin Fig. \\ref{fig:seq-task} follows
+
+@enduml

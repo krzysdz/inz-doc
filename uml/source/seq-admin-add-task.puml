@@ -1,0 +1,75 @@
+@startuml
+skinparam maxMessageSize 200
+
+actor       Administrator as A
+participant Browser       as B
+participant Server        as S
+database    Database      as DB
+participant Docker        as D
+participant Filesystem    as FS
+participant "Operating System" as OS
+
+note across: Administrator panel must be loaded. See the previous diagram for details.
+
+A -> B ++: Click the tasks tab
+return Display the tasks tab
+
+A -> B ++: Click the "New task" button
+return Show the new task form
+
+A -> B : Fill the form
+A -> B ++: Submit the form
+B -> B : Read the inputs and prepare a JSON
+
+B -> S ++: POST the JSON
+S -> S : Verify the data
+S -> S : Parse the Markdown description
+S -> DB ++: Start a transaction
+
+S -> DB ++: Insert challenge document
+return InsertOneResult
+
+opt Additional challenges
+	S -> DB ++: Insert challenge documents for subtasks
+	return InsertManyResult
+end
+
+S -> DB ++: Insert task document
+return InsertOneResult
+
+loop For each new challenge document
+	S -> D ++: Pull the image
+	S (40)<-- D --: Pull progress (streamed)
+
+	S -> D ++: Create a container
+	return Container
+
+	S -> D ++: Start the container
+	return
+
+	opt Reset interval is specified
+		S -> S : Schedule container restarts
+	end
+
+	S -> FS ++: Write subdomain configuration file
+	return
+end
+
+S -> OS ++: Spawn nginx process with "-s reload" to reload configuration
+return Exit code
+
+S -> DB : Commit the transaction
+deactivate DB
+
+return {error: null}
+
+B -> B : Hide the form
+
+B -> S ++: Request tasks list
+S -> DB ++: Fetch all documents from "fullTasks"
+return FullTaskDoc[]
+return Tasks list
+B -> B: Update tasks list
+
+return Updated tasks list
+@enduml

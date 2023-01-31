@@ -1,0 +1,56 @@
+@startuml
+skinparam maxMessageSize 173
+
+actor       Administrator as A
+participant Browser       as B
+participant Server        as S
+database    Database      as DB
+
+A -> B: Click "Admin panel" button
+activate B
+B -> S: Request admin panel page
+activate S
+S --> B: Rendered admin panel page
+deactivate S
+B --> A: Display admin panel
+
+par
+    B -> S: Request list of users (1-10)
+    activate S
+    S -> DB: Fetch 10 documents from "users"
+    activate DB
+    DB --> S: UserDoc[]
+    deactivate DB
+    S -> DB: Get estimated document count in "users"
+    activate DB
+    DB --> S: Estimated document count
+    deactivate DB
+    S --> B: Users list and count
+    deactivate S
+    B -> A: Display updated list and pagination
+
+    else
+
+    B -> S: Request categories list
+    activate S
+    S -> DB: Fetch all documents from "categories"
+    activate DB
+    DB --> S: CategoryDoc[]
+    deactivate DB
+    S --> B: Categories list
+    deactivate S
+    B -> B: Update categories list
+
+    B -> S: Request tasks list
+    activate S
+    S -> DB: Fetch all documents from "fullTasks"
+    activate DB
+    DB --> S: FullTaskDoc[]
+    deactivate DB
+    S --> B: Tasks list
+    deactivate S
+    B -> B: Update tasks list
+end
+deactivate B
+
+@enduml
