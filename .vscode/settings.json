@@ -14,6 +14,18 @@
 			"env": {}
 		},
 		{
+			"name": "lualatex",
+			"command": "lualatex",
+			"args": [
+				"-shell-escape",
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"%DOC%"
+			],
+			"env": {}
+		},
+		{
 			"name": "bibtex",
 			"command": "bibtex",
 			"args": [
@@ -24,12 +36,22 @@
 	],
 	"latex-workshop.latex.recipes": [
 		{
-			"name": "Build thesis",
+			"name": "Build thesis (pdflatex)",
 			"tools": [
 				"pdflatex_escape",
 				"bibtex",
 				"pdflatex_escape",
 				"pdflatex_escape"
+			]
+		},
+		// LuaLaTeX build takes almost twice as much time, leave it as an option, not default
+		{
+			"name": "Build thesis (lualatex)",
+			"tools": [
+				"lualatex",
+				"bibtex",
+				"lualatex",
+				"lualatex"
 			]
 		}
 	],
