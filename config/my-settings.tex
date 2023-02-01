@@ -65,6 +65,10 @@
 % TikZ figures generated with -tlatex:nopreamble are not displayed correctly
 \usepackage{svg}
 
+\ifluatex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Ligatures=TeX} % to support TeX conventions like ``——-''
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                             %

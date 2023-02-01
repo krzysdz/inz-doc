@@ -15,11 +15,14 @@
 	             right=2.5cm}
 
 	\ifxetex
-	  \begingroup
-	  \setsansfont{Calibri}
-
+		\begingroup
+		\setsansfont{Calibri}
+	\else \ifluatex
+			\begingroup
+			\setsansfont{Calibri}
+		\fi
 	\fi
-	 \sffamily
+	\sffamily
 	\begin{center}
 	\includegraphics[width=50mm]{\Logo}
 
@@ -61,10 +64,13 @@
 
     {\large\bfseries  Gliwice \the\year}
 
-   \end{center}
-       \ifxetex
-       	  \endgroup
-       \fi
+	\end{center}
+	\ifxetex
+		\endgroup
+	\else \ifluatex
+			\endgroup
+		\fi
+	\fi
 	\restoregeometry
 }
 
