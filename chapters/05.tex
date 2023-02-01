@@ -1,16 +1,5 @@
 \chapter{Internal specification}
 
-\begin{itemize}
-\item concept of the system
-\item system architecture
-\item description of data structures (and data bases)
-\item components, modules, libraries, resume of important classes (if used)
-\item resume of important algorithms (if used)
-\item details of implementation of selected parts
-\item applied design patterns
-\item UML diagrams
-\end{itemize}
-
 % \section{Concept of the system}
 % Let's just skip this section. I believe that the requirements contain enough information
 
@@ -106,7 +95,7 @@ Challenges are managed using functions from the \texttt{src/challenges.js} modul
 \begin{itemize}
     \item \mintinline{js}|getChallengeContainers(all = false)| - returns challenge containers (only running, unless \texttt{all} is \texttt{true}). It relies on label \texttt{pl.krzysdz.inz.challenge-kind} being present.
     \item \texttt{startupChallenges()} - removes all nginx subdomain configuration files, stops and removes all challenge containers and calls \texttt{addChallenge} with each challenge document from the database.
-    \item \mintinline{js}|addChallenge(challengeDoc, reload = false)| - verifies the image tag, calls functions \texttt{startChallengeContainer} and \texttt{createNginxConfig}. If \texttt{reload} is \texttt{true}, calls a function responsible for reloading nginx configuration.
+    \item \mintinline{js}|addChallenge(challengeDoc, reload = false)| - verifies the image tag, then calls functions \texttt{startChallengeContainer} and \texttt{createNginxConfig}. If \texttt{reload} is \texttt{true}, calls a function responsible for reloading nginx configuration.
     \item \texttt{checkTag(challengeDoc)} - checks if the document contains an image with a tag. If there is no tag, \texttt{:latest} is appended to the image name. Returns the \texttt{challengeDoc} with corrected \texttt{taskImage} field.
     \item \texttt{startChallengeContainer(challengeDoc)} - pulls the image specified in the argument, stops and removes containers with the same name if they exist, creates a new container and starts it. If \texttt{resetInterval} is not 0, \texttt{setInterval} is created, which uses \texttt{restartChallengeContainer} to periodically restart the container.
     \item \texttt{restartChallengeContainer(port, challengeDoc)} - restarts the container specified in \texttt{challengeDoc}. This function is not exported and called only in interval, which is created after starting the container for the first time. It stops and removes the container including volumes, creates a new container reusing the same port and starts the new container.
