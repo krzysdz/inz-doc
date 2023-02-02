@@ -1,36 +1,83 @@
 \chapter{Verification and validation}
 \begin{itemize}
-\item testing paradigm (eg V model)
-\item test cases, testing scope (full / partial)
-\item detected and fixed bugs
-\item results of experiments (optional)
+	\item testing paradigm (eg V model)
+	\item test cases, testing scope (full / partial)
+	\item detected and fixed bugs
+	\item results of experiments (optional)
 \end{itemize}
 
+\section{Testing procedure}
 
-\begin{table}
-\centering
-\caption{A caption of a table is \textbf{above} it.}
-\label{id:tab:wyniki}
-\begin{tabular}{rrrrrrrr}
-\toprule
-	         &                                     \multicolumn{7}{c}{method}                                      \\
-	         \cmidrule{2-8}
-	         &         &         &        \multicolumn{3}{c}{alg. 3}        & \multicolumn{2}{c}{alg. 4, $\gamma = 2$} \\
-	         \cmidrule(r){4-6}\cmidrule(r){7-8}
-	$\zeta$ &     alg. 1 &   alg. 2 & $\alpha= 1.5$ & $\alpha= 2$ & $\alpha= 3$ &   $\beta = 0.1$  &   $\beta = -0.1$ \\
-\midrule
-	       0 &  8.3250 & 1.45305 &       7.5791 &    14.8517 &    20.0028 & 1.16396 &                       1.1365 \\
-	       5 &  0.6111 & 2.27126 &       6.9952 &    13.8560 &    18.6064 & 1.18659 &                       1.1630 \\
-	      10 & 11.6126 & 2.69218 &       6.2520 &    12.5202 &    16.8278 & 1.23180 &                       1.2045 \\
-	      15 &  0.5665 & 2.95046 &       5.7753 &    11.4588 &    15.4837 & 1.25131 &                       1.2614 \\
-	      20 & 15.8728 & 3.07225 &       5.3071 &    10.3935 &    13.8738 & 1.25307 &                       1.2217 \\
-	      25 &  0.9791 & 3.19034 &       5.4575 &     9.9533 &    13.0721 & 1.27104 &                       1.2640 \\
-	      30 &  2.0228 & 3.27474 &       5.7461 &     9.7164 &    12.2637 & 1.33404 &                       1.3209 \\
-	      35 & 13.4210 & 3.36086 &       6.6735 &    10.0442 &    12.0270 & 1.35385 &                       1.3059 \\
-	      40 & 13.2226 & 3.36420 &       7.7248 &    10.4495 &    12.0379 & 1.34919 &                       1.2768 \\
-	      45 & 12.8445 & 3.47436 &       8.5539 &    10.8552 &    12.2773 & 1.42303 &                       1.4362 \\
-	      50 & 12.9245 & 3.58228 &       9.2702 &    11.2183 &    12.3990 & 1.40922 &                       1.3724 \\
-\bottomrule
-\end{tabular}
-\end{table}
+The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing much more time consuming. Additionally the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
 
+\section{Requirements verification}
+
+% TODO
+
+\section{Detected and fixed bugs}
+
+Most issues were found while writing new features and immediately fixed as a part of adding these features. Some issues, however, slipped through unnoticed and were found and patched separately.
+
+\subsection{Containers were not started at launch if stopped}
+
+If for some reason (eg. OS restart) challenge containers were stopped while starting the server, these would not be removed and their recreation and start would fail.
+
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/9fd9017ce994f577233ce0544bbd0cf1df3e0e55}{\texttt{9fd9017}} by ignoring \textit{"container already stopped"} errors when stopping a container.
+
+\subsection{Cookies not set in production}
+
+Cookies were not sent in responses if \mintinline{bash}|NODE_ENV="production"| environmental variable was set. The problem happened, because Express does not send cookies marked as \texttt{secure} if the request was not made with HTTPS. While nginx terminates the external connections with HTTPS, it uses plain unencrypted HTTP to communicate with the server which recognises it as an insecure protocol.
+
+This problem was fixed in \href{https://github.com/krzysdz/inz/commit/94ca9c4124954c94c9fe8e27dc59305aa59b31ad}{\texttt{94ca9c4}} by setting appropriate headers in the proxy
+\begin{minted}{nginx}
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-For $remote_addr;
+\end{minted}
+and telling Express to trust the proxy
+\begin{minted}[breaklines]{js}
+// In production the only way is through nginx, which sets X-Forwarded-For to $remote_addr
+if (process.env.NODE_ENV === "production") app.set("trust proxy", true);
+\end{minted}
+With this change Express recognises HTTPS connections to the proxy as secure and sends cookies in responses.
+
+\subsection{Unsolved question on task page was escaped}
+
+Task questions should support HTML content and be inserted into template without escaping. In commit \href{https://github.com/krzysdz/inz/commit/b5ae1b16e9be6060b43f28dbb56b090bfb46dd98}{\texttt{b5ae1b1}} support for HTML in questions and answers was added, but this particular place has been overlooked.
+
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/91128c835889ac0429b478d03c6992541fcdd5c3}{\texttt{91128c8}} with a single line patch:
+\begin{minted}[]{diff}
+- <h4><%= locals.task.question %></h4>
++ <h4><%- locals.task.question %></h4>
+\end{minted}
+
+\subsection{Flag not set as an environmental variable on start}
+\label{chap:bug-env-not-set-start}
+
+If \texttt{flagInEnv} was \texttt{true}, the flag would be exposed as an environmental variable when restarting the container, but not after creating it for the first time or restarting the server.
+
+In this instance the problem was fixed in \href{https://github.com/krzysdz/inz/commit/99a0035c61de55ddd7203e7ced1e9fc554959f24}{\texttt{99a0035}} by adding the missing \texttt{Env} option to the \texttt{createContainer} call in \texttt{startChallengeContainer}.
+
+\subsection{Flag not set as an environmental variable for the main challenge}
+
+The \texttt{flagInEnv} option was not saved for the main challenge. The problem was discovered when testing the fix for \ref{chap:bug-env-not-set-start}.
+
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/f934efb0c50f0156d73bd78fcfcd6a12b5943b1e}{\texttt{f934efb}} by passing the missing option.
+
+\subsection{Task creation fails without additional challenges}
+
+If there were no additional challenges for the incorrect answers, task creation would fail, because \texttt{insertMany()} throws an error if an empty array is passed. There was an empty array check, but it had been implemented incorrectly.
+
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/f934efb0c50f0156d73bd78fcfcd6a12b5943b1e}{\texttt{f934efb}} by verifying the truthiness of array length instead of the array itself:
+\begin{minted}[tabsize=4, obeytabs]{diff}
+-		const subChallengeResult = answerChallengeDocs
++		const subChallengeResult = answerChallengeDocs.length
+			? await challengesCollection.insertMany(answerChallengeDocs, {
+				session,
+			})
+\end{minted}
+
+\subsection{HSTS header set three times per response}
+
+The \texttt{Strict-Transport-Security} header was sent 3 times with each response. The problem was detected by one of external tools while checking compatibility, accessibility and HTTPS configuration.
+
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/eec703c98ecb6720c3c2eb0ceee36ca3d7da8aa2}{\texttt{eec703c}} by setting the \texttt{hsts} option of the \href{https://helmetjs.github.io/}{Helmet} middleware to \texttt{false} and removing an \texttt{add\_header} directive from the main configuration, since the shared \texttt{ssl\_common.conf} configuration already contains one.
