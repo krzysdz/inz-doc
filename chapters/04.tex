@@ -93,8 +93,8 @@ main-ui.com.        60  IN A        127.0.0.1
     Bash/dash/zsh/csh:\\
     \mintinline{bash}|export NODE_ENV="production"|
 
-    Powershell:\\
-    \mintinline{pwsh}|$env:NODE_ENV="production"|
+    Powershell:\\%TC:ignore
+    \mintinline{pwsh}|$env:NODE_ENV="production"|%TC:endignore
     \item Start the server:\\
     \mintinline{bash}|node index.js|
 
@@ -143,3 +143,129 @@ Regular users gain access to profile page and unlock challenge and quiz submissi
 Administrators expand on the regular user permissions and can use an administration panel for managing the system.
 
 \section{User manual}
+
+This manual is intended for the end users. The functionality available for administrators is described in section \ref{chap:system-administration}.
+
+\subsection{Account creation}
+\label{chap:account-creation}
+
+To access all features of the system a user account is required. Without it flag submission and later stages of solving tasks are impossible.
+
+The account can be created on the \textit{Register} page which can be accessed from the home page or by clicking \textit{Create an account} on the login page. On that page the desired username and password have to be filled into the input fields. The password has to be between 8 and 64 characters long. To prevent mistakes in the password it has to be entered twice. If the passwords do not match the browser will prevent form submission and display an appropriate error.
+
+The registration may fail if there already exists an account with the provided username. In such case a different username should be used.
+
+\subsection{Logging in}
+
+To use the account created in \ref{chap:account-creation} one has to log in into the account. To do that the user has to submit their username and password using a form on the login page. The page can be accessed by clicking a button in the navbar, a button on the home page or a link on the registration page.
+
+\subsection{Account management}
+
+The profile page (\texttt{/profile}) is available for logged-in users through a link in the navbar. This page allows changing the account password. To change the password one has to provide their current password and enter the new one two times. After submitting the form the system will show a message informing about the success or failure of the operation. Password change does not invalidate existing sessions.
+
+\subsection{Browsing categories}
+
+Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists contain names of the categories which link to appropriate category pages.
+
+Category pages describe classes of vulnerabilities, why these exist and how they can be avoided. Additionally, on the bottom of each category page there is a list of related tasks which demonstrate examples of such issues.
+
+\subsection{Tasks}
+
+Tasks show specific examples of vulnerabilities. Each task contains a link to a challenge website which has to be exploited. The process will look differently for each challenge. As a result of a successful attack the user should obtain a flag. The flags should follow the \texttt{flag\{xxx\}} scheme unless specified otherwise in the task description. Tasks can contain hints which may help in case of problems when solving the linked challenge. The hints are collapsed by default to avoid spoilers and can be uncovered by clicking them.
+
+Once the flag is found it should be submitted on the task page. The form is shown only if the challenge is not solved. After a successful submission a message and a question appear instead of the form.
+
+The second step of completing a task is answering a question. Questions are related to the challenge and usually concern avoiding the problem or fixing it. There are multiple answers, each of which can be marked as true by marking the checkbox next to it. Conversely, if an answer is thought to be false the checkbox should be left empty. Finally, the answers should be sent by clicking the \textit{Submit} button.
+
+If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while incorrect are shown in red. Additionally, the true answers are listed on the bottom of the page. Below some answers an explanation may appear which expands on the answer.
+
+Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer.
+
+\section{System administration}
+\label{chap:system-administration}
+
+The system is managed using and administrator panel \texttt{/admin}. It can be accessed from the dropdown in upper-right corner. JavaScript is strictly required for all functionalities of the panel. There are three tabs for different categories of administrative capabilities.
+
+\subsection{Managing users}
+
+The \textit{Users} tab offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} or the other way. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
+
+\subsection{Managing categories}
+
+The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button.
+
+New categories can be created by clicking the \textit{New category} button at the top of the tab. The button opens a simple editor which can be used to create new categories. The name and description must be filled before creating the category using the \textit{Create} button. The name must use plain text, since it will always be escaped before displaying. The description should be entered using Markdown. To help with writing in Markdown a preview mode can be toggled by clicking the \textit{Preview} button on the right above the description input.
+
+If the \textit{Edit category} button at the bottom of category description the editor will be populated with the stored details. The editor is the same as the one for new categories, but instead of the \textit{Create} button, a \textit{Save} button will appear.
+
+Both creating a new category as well as editing an existing one causes reloading of the categories list. The description editor uses Marked for compiling Markdown content. The supported specification is listed at the bottom the discussion \href{https://github.com/markedjs/marked/discussions/1202}{markedjs/marked\#1202}.
+
+\subsection{Managing tasks}
+
+The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items.
+
+New tasks can be added using a form which appears after clicking the \textit{New task} button at the to of the tab. The following data should be entered in the form:
+
+\begin{itemize}
+    \item \textbf{Task name:} The task name. It is displayed on the top of the task page and as a tile title on the bottom of relevant category page.
+    \item \textbf{Category:} The category of vulnerabilities this task is assigned to. Must be chosen from one of the existing categories.
+    \item \textbf{Description:} Task description displayed on the task page. The editor supports markdown and can be used the same way as the category description editor.
+    \item \textbf{Challenge details:} The details for the main challenge. These options include:
+    \begin{itemize}
+        \item \textbf{Docker image:} Docker image to use for the challenge container. The image will be pulled after creating the task.
+        \item \textbf{Subdomain:} Subdomain of the domain specified in the config file, which will be used to hosting the challenge.
+        \item \textbf{Flag:} Flag which should be found by the users. Flags submitted by users will be compared to this value.
+        \item \textbf{Expose flag as \texttt{FLAG} environmental variable:} Whether the flag should be exposed in the container as an environmental variable \texttt{FLAG}. This option can be used to avoid hardcoding flag values in challenge images.
+        \item \textbf{Reset interval:} How often the challenge container should be removed and recreated. The value should be given in seconds. Set to 0 to disable automated restarts.
+    \end{itemize}
+    \item \textbf{Hints:} A list of hints for the main challenge. Hints are rendered inside a collapsed \mintinline{html}|<details>| tag on the task page, because they are supposed to contain \textit{spoilers}. New hints can be added by clicking \textit{Add a hint}. All hint inputs must be filled. The X button on the right of a hint input can be used to remove it. It is possible to create a task with no hints.
+    \item \textbf{Question:} The question shown after solving the challenge. The question is rendered without escaping, so inline HTML can be used, but the content is placed inside an \mintinline{html}|<h4>| tag.
+    \item \textbf{Answers:} These are the answers to the question from the field above. Additional answers can be added using the \textit{Add an answer} button. It is not possible to remove an answer. An answer has the following properties:
+    \begin{itemize}
+        \item \textbf{Answer:} The answer text that is presented to the users. The text is not escaped and can include HTML.
+        \item \textbf{Answer is correct:} Whether the answer is correct and users are expected to check it.
+        \item \textbf{Add challenge:} Shows an additional set of fields related to an extra challenge. \textbf{Available only if the answer is not marked as correct.}
+        \item \textbf{Explanation:} An \textbf{optional} explanation that is shown after answering the question. It may underline the reasons why an answer is right or wrong.
+        \item \textbf{Challenge details:} Challenge details for an additional challenge related to the answer. Options are the same as for the main challenge. \textbf{Shown only if the \textit{Add challenge} option is checked.}
+    \end{itemize}
+\end{itemize}
+
+An expanded task accordion item presents the task properties. Challenge details other than the \textit{expose flag...} option are shown in collapsed \mintinline{html}|<details>|. Checkboxes next to answers indicate whether these answers are marked as correct. Optional explanations are shown in italics below respective answers.
+
+\section{Security issues}
+
+Secure design is an important part of the project. The target audience is expected to be or become experienced with exploitation, so the system had to be carefully created and must be responsibly managed.
+
+\subsection{Project author's considerations}
+
+Security of the system in a huge part depends on the main server design and implementation details.
+
+\subsubsection{Data flow analysis}
+
+The data sources provided by regular users are:
+
+\begin{itemize}
+    \item username set in the registration process - a string of at most 255 characters, always escaped in templates, inserted as \texttt{textContent} in admin panel, encoded with \mintinline{js}|encodeURIComponent()| in URLs,
+    \item category name - a string (part of the URL), used for comparison in \texttt{\$match} stage of an aggregation pipeline as %TC:ignore
+    \mintinline{js}|{ $match: { name: name } }|%TC:endignore
+    ,
+    \item task id and challenge id in challenge and quiz submissions - always a conversion to \texttt{ObjectId} is attempted, only the converted value is used later,
+    \item flag in challenge solution submission - trimmed using \mintinline{js}|String.prototype.trim()| and compared using \mintinline{js}|===|,
+    \item \texttt{answer[n]} properties in quiz submission - iterated from 0 to the number of answers in the task and compared to \mintinline{js}|"on"|.
+\end{itemize}
+
+The data coming from these sources is always used in a safe way. Data entered by administrators can be \textit{dangerous} by design, since they must be able to insert raw HTML and run any software using containers.
+
+\subsubsection{Known vulnerabilities}
+
+Express version used in the project depends on a vulnerable version of qs library (\href{https://www.cve.org/CVERecord?id=CVE-2022-24999}{CVE-2022-24999}). qs package is used in Express only if the \texttt{query parser} setting is set to \mintinline{js}|"extended"| or the \texttt{urlencoded} middleware's \texttt{extended} option is a truthy value. The \texttt{query parser} option is \mintinline{js}|"simple"| by default and the \texttt{urlencoded} middleware is created with \mintinline{js}|{ extended: false }|, so this vulnerability should not affect the project.
+
+\subsection{Administrator's responsibilities}
+
+Regardless of the project design it has to be configured and used properly so as not to introduce new security issues. System administrators should keep in mind the following warnings:
+
+\begin{itemize}
+    \item  Challenges should use a different domain than the main website so that users who exploit a challenge will not be able to set cookies valid for the main domain.
+    \item Special care must be taken when designing challenges, especially ones leading to RCE. Since challenges are running as Docker containers a misbehaving container can bring the whole system down. To provide isolation and limit resources use of \href{https://github.com/google/nsjail}{nsjail} is suggested.
+\end{itemize}
+

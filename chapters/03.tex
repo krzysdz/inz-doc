@@ -32,7 +32,7 @@ Functional requirements list functionality available in the system. Each of the 
 
 	\item \textbf{Solving challenge}: Users must be able to submit a form with flag from the task page. This action is allowed only for signed in users. Submitted flag must be verified with the one stored in the database for the given challenge. If the flags match, a success message should be shown to the user and date of solving the challenge by user ought to be saved to the database. Otherwise, a message informing the user about incorrect flag should be presented.
 
-	\item \textbf{Answering quiz}: User who have solved the main challenge from a task, should be able to to see a question on the task page and be able to answer it. Only signed in users can submit answers. Checkboxes which status indicates whether the user thinks that they are correct must be presented along answers from the database. After the answers are submitted, the quiz should be disabled without a button to submit, checkboxes disabled and reflecting the user's answer and an indication which answers were correct.
+	\item \textbf{Answering quiz}: User who have solved the main challenge from a task, should be able to see a question on the task page and be able to answer it. Only signed in users can submit answers. Checkboxes which status indicates whether the user thinks that they are correct must be presented along answers from the database. After the answers are submitted, the quiz should be disabled without a button to submit, checkboxes disabled and reflecting the user's answer and an indication which answers were correct.
 
 	\item \textbf{Administrator panel}: Users with the \texttt{"admin"} role (administrators) should have access to a separate administration panel. The panel should expose additional functionality related to the system management.
 
@@ -126,11 +126,11 @@ The project is stored in a Git repository to track changes in the code. The repo
 
 \subsubsection{ESLint}
 
-ESLint is a JavaScript linter, which can be used to detect problems and potential issues in code. It was used with a Visual Studio Plugin, which automatically analysed open files and provided in-editor warnings and suggestions.
+ESLint is a JavaScript linter, which can be used to detect problems and potential issues in code. It was used with a Visual Studio extension, which automatically analysed open files and provided in-editor warnings and suggestions.
 
 \subsubsection{Prettier}
 
-Prettier is a popular code formatting tool. It was used to maintain a consistent style in JavaScript files. Thanks to Visual Studio Code plugin the tool could be used as a default formatter in the editor. A plugin for ESLint allowed marking improperly formatted code as lint error.
+Prettier is a popular code formatting tool. It was used to maintain a consistent style in JavaScript files. Thanks to Visual Studio Code plug-in the tool could be used as a default formatter in the editor. A plug-in for ESLint allowed marking improperly formatted code as lint error.
 
 \section{Methodology of design and implementation}
 
@@ -168,7 +168,7 @@ The last problem to solve during the design phase, was coming up with an idea to
 
 \subsection{Implementation}
 
-The implementation started with setting up a Node.js project with some of the required dependencies and a basic \textit{Hello world} Express server. Additional tools such as Eslint were also set up at the beginning so that they could be used during the development.
+The implementation started with setting up a Node.js project with some of the required dependencies and a basic \textit{Hello world} Express server. Additional tools such as ESLint were also set up at the beginning so that they could be used during the development.
 
 The next step was preparing database connection and setting up code for session support. Once the server could handle sessions, related utilities such as message flashing were prepared. Sessions were required to implement authentication, which was done in the next step. The first part of implementing authentication was enabling user account creation, so that it would be possible to test each element as it was developed. With the code responsible for registration ready, logging in could be worked on. In both cases the server logic was prepared first with the UI following right after to test the whole component.
 
