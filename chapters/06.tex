@@ -144,3 +144,9 @@ The problem was fixed in \href{https://github.com/krzysdz/inz/commit/f934efb0c50
 The \texttt{Strict-Transport-Security} header was sent 3 times with each response. The problem was detected by one of external tools while checking compatibility, accessibility and HTTPS configuration.
 
 The problem was fixed in \href{https://github.com/krzysdz/inz/commit/eec703c98ecb6720c3c2eb0ceee36ca3d7da8aa2}{\texttt{eec703c}} by setting the \texttt{hsts} option of the \href{https://helmetjs.github.io/}{Helmet} middleware to \texttt{false} and removing an \texttt{add\_header} directive from the main configuration, since the shared \texttt{ssl\_common.conf} configuration already contains one.
+
+\subsection{Accounts with \texttt{U+0000} character in username cannot be manipulated by administrators}
+
+Username is used as a part of URI path of account management endpoints. This part of the path always is encoded using \mintinline{js}|encodeURIComponent()| and can be safely sent to the server. Unfortunately, nginx since version 0.8.38 responds with status code 400 if the URI contains a NULL character, even if it is properly encoded. According to Neal Poole the nginx author decided that \enquote{zero byte in URI should not appear in any encoding, operating system, etc., and just makes more problems than helps} and removed support for it in \href{https://hg.nginx.org/nginx/rev/84905c7b2aa7}{changeset 3527} \cite{bib:nginx-null}.
+
+The problem was worked around in \href{https://github.com/krzysdz/inz/commit/0cc6258451fb69f4763be15cf77772b226d2a974}{\texttt{0cc6258}} by forbidding the creation of accounts with the null character in username.
