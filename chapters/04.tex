@@ -1,15 +1,4 @@
 \chapter{External specification}
-\begin{itemize}
-\item hardware and software requirements
-\item installation procedure
-\item activation procedure
-\item types of users
-\item user manual
-\item system administration
-\item security issues
-\item example of usage
-\item working scenarios (with screenshots or output files)
-\end{itemize}
 
 \section{Hardware and software requirements}
 
@@ -146,26 +135,97 @@ Administrators expand on the regular user permissions and can use an administrat
 
 This manual is intended for the end users. The functionality available for administrators is described in section \ref{chap:system-administration}.
 
+\subsection{Theme selection}
+
+The system can use light or dark mode acording to user preferences. By default the browser or OS determines the theme. A dropdown (Fig. \ref{fig:manual-theme}) shown after clicking an icon in the upper right corner can be used to manually change the page theme. The preference is stored in the browser. Three options are available:
+
+\begin{itemize}
+    \item Light - shown on Fig. \ref{fig:manual-theme-light},
+    \item Dark - visible on Fig. \ref{fig:manual-theme-auto},
+    \item Auto - determined by browser or OS preferences, presented on Fig. \ref{fig:manual-theme-auto} with browser theme set to dark.
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-theme-auto.png}
+        \caption{Automatic theme - dark}
+        \label{fig:manual-theme-auto}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-theme-light.png}
+        \caption{Light theme}
+        \label{fig:manual-theme-light}
+    \end{subfigure}
+    \caption{Theme selection dropdown}
+    \label{fig:manual-theme}
+\end{figure}
+
 \subsection{Account creation}
 \label{chap:account-creation}
 
 To access all features of the system a user account is required. Without it flag submission and later stages of solving tasks are impossible.
 
-The account can be created on the \textit{Register} page which can be accessed from the home page or by clicking \textit{Create an account} on the login page. On that page the desired username and password have to be filled into the input fields. The password has to be between 8 and 64 characters long. To prevent mistakes in the password it has to be entered twice. If the passwords do not match the browser will prevent form submission and display an appropriate error.
+The account can be created on the \textit{Register} page which can be accessed from the home page as shown on Fig. \ref{fig:manual-home} or by clicking \textit{Create an account} on the login page. On that page the desired username and password have to be filled into the input fields. The password has to be between 8 and 64 characters long. To prevent mistakes in the password it has to be entered twice. If the passwords do not match the browser will prevent form submission and display an appropriate error.
 
 The registration may fail if there already exists an account with the provided username. In such case a different username should be used.
 
+\begin{figure}
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/manual-home.png}
+        \caption{Home page - logged out.}
+        \label{fig:manual-home}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/manual-registration.png}
+        \caption{The registration page.}
+        \label{fig:manual-registration}
+    \end{minipage}
+\end{figure}
+
 \subsection{Logging in}
 
-To use the account created in \ref{chap:account-creation} one has to log in into the account. To do that the user has to submit their username and password using a form on the login page. The page can be accessed by clicking a button in the navbar, a button on the home page or a link on the registration page.
+To use the account created in \ref{chap:account-creation} one has to log in into the account. To do that the user has to submit their username and password using a form on the login page (shown on Fig. \ref{fig:manual-login}). The page can be accessed by clicking a button in the navbar, a button on the home page or a link on the registration page.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/manual-login.png}
+    \caption{Login page viewed on mobile}
+    \label{fig:manual-login}
+\end{figure}
+
+\subsection{Logging out}
+
+A logged in user can log out using the \textit{Log out} button in the dorpdown appearing after the username in upper right corner is clicked. The dropdown is presented on Fig. \ref{fig:manual-home-dropdown-user}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/manual-home-dropdown-user.png}
+    \caption{Username dropdown on home page for a regular user.}
+    \label{fig:manual-home-dropdown-user}
+\end{figure}
 
 \subsection{Account management}
 
-The profile page (\texttt{/profile}) is available for logged-in users through a link in the navbar. This page allows changing the account password. To change the password one has to provide their current password and enter the new one two times. After submitting the form the system will show a message informing about the success or failure of the operation. Password change does not invalidate existing sessions.
+The profile page (\texttt{/profile}) shown on Fig. \ref{fig:manual-profile} is available for logged-in users through a link in the navbar (see Fig. \ref{fig:manual-home-dropdown-user}). This page allows changing the account password. To change the password one has to provide their current password and enter the new one two times. After submitting the form the system will show a message informing about the success or failure of the operation. Password change does not invalidate existing sessions.
+
+\begin{figure}
+    \centering
+    \includegraphics{img/manual-profile.png}
+    \caption{Profile page in a narrow window.}
+    \label{fig:manual-profile}
+\end{figure}
 
 \subsection{Browsing categories}
 
 Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists contain names of the categories which link to appropriate category pages.
+
+% TODO: Insert dropdown and categories list page screenshots
 
 Category pages describe classes of vulnerabilities, why these exist and how they can be avoided. Additionally, on the bottom of each category page there is a list of related tasks which demonstrate examples of such issues.
 
@@ -191,6 +251,7 @@ The system is managed using and administrator panel \texttt{/admin}. It can be a
 The \textit{Users} tab offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} or the other way. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
 
 \subsection{Managing categories}
+\label{ssec:managing-categories}
 
 The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button.
 
@@ -201,6 +262,7 @@ If the \textit{Edit category} button at the bottom of category description the e
 Both creating a new category as well as editing an existing one causes reloading of the categories list. The description editor uses Marked for compiling Markdown content. The supported specification is listed at the bottom the discussion \href{https://github.com/markedjs/marked/discussions/1202}{markedjs/marked\#1202}.
 
 \subsection{Managing tasks}
+\label{ssec:managing-tasks}
 
 The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items.
 
@@ -269,3 +331,12 @@ Regardless of the project design it has to be configured and used properly so as
     \item Special care must be taken when designing challenges, especially ones leading to RCE. Since challenges are running as Docker containers a misbehaving container can bring the whole system down. To provide isolation and limit resources use of \href{https://github.com/google/nsjail}{nsjail} is suggested.
 \end{itemize}
 
+\section{Covered categories of issues}
+
+The design of the project separates the system from the content. Categories and tasks can be added at any time as described in sections \ref{ssec:managing-categories} and \ref{ssec:managing-tasks}. The example deployment covers some of common security vulnerabilities found in web applications.
+
+\subsection{SQL injection}
+
+This category covers basics of SQL injection exploitation and prevention. Small code snippets and examples are provided to help users understand the reason behind this class of vulnerabilities. At the bottom of the description a \textit{Read more} section contains links to additional resources connected to this topic.
+
+An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering TODO list creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them which proposes filtering some SQL keywords has an additional challenge.
