@@ -233,27 +233,80 @@ Category pages describe classes of vulnerabilities, why these exist and how they
 
 Tasks show specific examples of vulnerabilities. Each task contains a link to a challenge website which has to be exploited. The process will look differently for each challenge. As a result of a successful attack the user should obtain a flag. The flags should follow the \texttt{flag\{xxx\}} scheme unless specified otherwise in the task description. Tasks can contain hints which may help in case of problems when solving the linked challenge. The hints are collapsed by default to avoid spoilers and can be uncovered by clicking them.
 
-Once the flag is found it should be submitted on the task page. The form is shown only if the challenge is not solved. After a successful submission a message and a question appear instead of the form.
+Once the flag is found it should be submitted on the task page. Users who are not logged in will be prompted to log in as demonstrated on Fig. \ref{fig:manual-task-anon}. The form is shown only if the challenge is not solved as presented on Fig. \ref{fig:manual-task-user}. After a successful submission a message and a question appear instead of the form.
 
-The second step of completing a task is answering a question. Questions are related to the challenge and usually concern avoiding the problem or fixing it. There are multiple answers, each of which can be marked as true by marking the checkbox next to it. Conversely, if an answer is thought to be false the checkbox should be left empty. Finally, the answers should be sent by clicking the \textit{Submit} button.
+The second step of completing a task is answering a question like the one presented on Fig. \ref{fig:manual-task-solved}. Questions are related to the challenge and usually concern avoiding the problem or fixing it. There are multiple answers, each of which can be marked as true by marking the checkbox next to it. Conversely, if an answer is thought to be false the checkbox should be left empty. Finally, the answers should be sent by clicking the \textit{Submit} button.
 
-If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while incorrect are shown in red. Additionally, the true answers are listed on the bottom of the page. Below some answers an explanation may appear which expands on the answer.
+If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while incorrect are shown in red. Additionally, the true answers are listed on the bottom of the page. Below some answers an explanation may appear which expands on the answer. An example of this behaviour with an incorrectly marked first answer is presented on Fig. \ref{fig:manual-task-answered}.
 
-Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer.
+Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer. If the additional challenge is solved a succcess message will replace the form as can be seen on figures \ref{fig:manual-task-answered} and \ref{fig:manual-task-complete}.
+
+The whole process of solving a task can be observed on Fig. \ref{fig:manual-task}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-task-anon.png}
+        \caption{viewed while logged out}
+        \label{fig:manual-task-anon}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-task-user.png}
+        \caption{viewed by user}
+        \label{fig:manual-task-user}
+    \end{subfigure}
+
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-task-solved.png}
+        \caption{main challenge solved}
+        \label{fig:manual-task-solved}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-task-answered.png}
+        \caption{question answered, correct answers FTTF}
+        \label{fig:manual-task-answered}
+    \end{subfigure}
+
+    \begin{subfigure}{0.7\textwidth}
+        \includegraphics[width=\textwidth]{img/manual-task-complete.png}
+        \caption{additional challenge solved}
+        \label{fig:manual-task-complete}
+    \end{subfigure}
+    \caption{Task page at different stages of completion.}
+    \label{fig:manual-task}
+\end{figure}
 
 \section{System administration}
 \label{chap:system-administration}
 
-The system is managed using and administrator panel \texttt{/admin}. It can be accessed from the dropdown in upper-right corner. JavaScript is strictly required for all functionalities of the panel. There are three tabs for different categories of administrative capabilities.
+The system is managed using and administrator panel \texttt{/admin}. It can be accessed from the dropdown in upper-right corner which is presented on Fig. \ref{fig:manual-admin-dropdown}. JavaScript is strictly required for all functionalities of the panel. There are three tabs for different categories of administrative capabilities.
+
+\begin{figure}
+    \centering
+    \includegraphics{img/manual-admin-dropdown.png}
+    \caption{Dorpdown with admin panel link.}
+    \label{fig:manual-admin-dropdown}
+\end{figure}
 
 \subsection{Managing users}
 
-The \textit{Users} tab offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} or the other way. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
+The \textit{Users} tab presented on Fig. \ref{fig:manual-admin-users} offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} or the other way. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/manual-admin-users.png}
+    \caption{Users tab in admin panel.}
+    \label{fig:manual-admin-users}
+\end{figure}
 
 \subsection{Managing categories}
 \label{ssec:managing-categories}
 
-The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button.
+The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button at the bottom.
+
+% TODO: Add images
 
 New categories can be created by clicking the \textit{New category} button at the top of the tab. The button opens a simple editor which can be used to create new categories. The name and description must be filled before creating the category using the \textit{Create} button. The name must use plain text, since it will always be escaped before displaying. The description should be entered using Markdown. To help with writing in Markdown a preview mode can be toggled by clicking the \textit{Preview} button on the right above the description input.
 
@@ -265,6 +318,8 @@ Both creating a new category as well as editing an existing one causes reloading
 \label{ssec:managing-tasks}
 
 The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items.
+
+% TODO: Add images
 
 New tasks can be added using a form which appears after clicking the \textit{New task} button at the to of the tab. The following data should be entered in the form:
 
