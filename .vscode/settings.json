@@ -33,6 +33,8 @@
 			]
 		}
 	],
+	"ltex.language": "en-GB",
+	"ltex.additionalRules.motherTongue": "pl-PL",
 	"cSpell.words": [
 		"endignore",
 		"inkscapelatex"
