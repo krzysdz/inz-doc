@@ -19,7 +19,7 @@ The nginx process is the only one exposed publicly. Other software can listen on
 
 \section{Database structure}
 
-The use of a NoSQL database, allowed for a more flexible schema, based on the desired access to the data. A mix of embedded data model and normalized data model is used. The used database schema is presented on Fig. \ref{fig:db-schema}. Despite preferring the denormalised model, it was necessary to keep some relations between documents. This is achieved by storing fields with \texttt{\_id}s of referenced documents. There is also a relation between keys of embedded documents in the \texttt{users} collection, which are stored as stringified \texttt{ObjectId}s and documents from \texttt{tasks} and \texttt{challenges}. This relation, however, is not used in queries to the database, but managed completely by the server code.
+The use of a NoSQL database, allowed for a more flexible schema, based on the desired access to the data. A mix of embedded data model and normalized data model is used. The used database schema is presented on Fig. \ref{fig:db-schema}. Despite preferring the denormalized model, it was necessary to keep some relations between documents. This is achieved by storing fields with \texttt{\_id}s of referenced documents. There is also a relation between keys of embedded documents in the \texttt{users} collection, which are stored as stringified \texttt{ObjectId}s and documents from \texttt{tasks} and \texttt{challenges}. This relation, however, is not used in queries to the database, but managed completely by the server code.
 
 There are two additional indexes:
 
@@ -38,7 +38,7 @@ The view \texttt{fullTasks} is a view collection on the \texttt{tasks}, which us
     \label{fig:db-schema}
 \end{figure}
 
-\section{Code organisation}
+\section{Code organization}
 
 The code is divided into ECMAScript modules. The main one is \texttt{index.js}, which imports all the other required modules, some external tools, configures and starts the server. Each module serves a separate function.
 
@@ -55,7 +55,6 @@ One of them, \texttt{src/middleware.js}, contains general utility middleware fun
 \end{itemize}
 
 The other module was separated, because it alters the request object and has an associated \texttt{.d.ts} typings file to help with type checking and code suggestions. It is \texttt{src/flash.js} and adds the following methods to each request object:
-
 \begin{itemize}
     \item \mintinline{js}|flash(message, category = "info")| - a function which adds a message with category to a list of flash messages connected with the session
     \item \texttt{getFlashedMessages(options)} - a function which returns the flashed messages with associated categories. This function can also filter the returned flashes by category. It is also available in response locals for direct use in templates.
@@ -66,7 +65,6 @@ The behaviour of this middleware is supposed to mimic the message flashing \href
 \subsection{Routers}
 
 The \texttt{index.js} module provides only the request handler for the root path \texttt{/}. Other paths are delegated to separate routers, which live inside modules under \texttt{src/routes}. The following paths are registered:
-
 \begin{itemize}
     \item \texttt{/auth} handled by \texttt{authRouter} from the \texttt{auth.js} module. It serves the register, login and logout pages, as well as handles password change requests.
     \item \texttt{/profile} guarded by the \texttt{authenticated} middleware, handled by \texttt{profileRouter} from the \texttt{profile.js} module. It serves only the profile page.
@@ -91,7 +89,6 @@ The module \texttt{src/db.js} does not export any functions. When it is imported
 \subsection{Challenge management}
 
 Challenges are managed using functions from the \texttt{src/challenges.js} module. The module has the following functions:
-
 \begin{itemize}
     \item \mintinline{js}|getChallengeContainers(all = false)| - returns challenge containers (only running, unless \texttt{all} is \texttt{true}). It relies on label \texttt{pl.krzysdz.inz.challenge-kind} being present.
     \item \texttt{startupChallenges()} - removes all nginx subdomain configuration files, stops and removes all challenge containers and calls \texttt{addChallenge} with each challenge document from the database.

@@ -2,7 +2,7 @@
 
 \section{Results}
 
-The project at least partially meets all the requirements listed in chapter \ref{chap:req-and-tools}. The only requirement not met completely is compatibility and it should not cause problems for the overwhelming majority of users.
+The project at least partially meets all the requirements listed in chapter \ref{chap:req-and-tools}. The only requirement not met completely is compatibility, but it should not cause problems for the overwhelming majority of users.
 
 \section{Future development ideas}
 
@@ -17,12 +17,11 @@ Increasing the number of tasks in a single category with different difficulty le
 \subsection{Better task management}
 
 Current task management is restricted to task creation, which is rather complicated and involves filling a complex form properly in one try. This aspect can be greatly improved by introducing the following changes:
-
 \begin{itemize}
-	\item allow editing existing tasks - ideally the edits would be applied separately to each part (name, description, question, challenge, etc.) of the task to reduce the complexity of changes and make the implementation simpler; this functionality could be used to fix mistakes in the text or update challenges if a the image is fixed to a specific version,
+	\item allow editing existing tasks - ideally the edits would be applied separately to each part (name, description, question, challenge, etc.) of the task to reduce the complexity of changes and make the implementation simpler; this functionality could be used to fix mistakes in the text or update challenges if the image is fixed to a specific version,
 	\item task drafts - tasks hidden from users, which may not have all the required fields filled,
 	\item health checks and container status - monitoring the status of a challenge container and periodical checks of the application inside could help diagnose issues and prevent users accidentally or purposefully taking the tasks down; could be paired with an alert system to administrators and automated restarts,
-	\item forced manual restart - in case a task is down or vandalised and the automatic reset is not going to happen soon, the administrators should be able to force a challenge container reset,
+	\item forced manual restart - in case a task is down or vandalized and the automatic reset is not going to happen soon, the administrators should be able to force a challenge container reset,
 	\item time to the next restart - when the challenge will be recreated from the initial state automatically, this could be also shown on the task page to users.
 \end{itemize}
 

@@ -56,7 +56,7 @@ It may be possible to run the server on other operating systems and architecture
 
 \section{Server installation}
 
-The process of server software installation and configuration can be summarised in the following steps:
+The process of server software installation and configuration can be summarized in the following steps:
 
 \begin{enumerate}
     \item Install the required software as described in section \ref{chap:server-soft}.
@@ -137,7 +137,7 @@ This manual is intended for the end users. The functionality available for admin
 
 \subsection{Theme selection}
 
-The system can use light or dark mode acording to user preferences. By default the browser or OS determines the theme. A dropdown (Fig. \ref{fig:manual-theme}) shown after clicking an icon in the upper right corner can be used to manually change the page theme. The preference is stored in the browser. Three options are available:
+The system can use light or dark mode according to user preferences. By default, the browser or OS determines the theme. A dropdown (Fig. \ref{fig:manual-theme}) shown after clicking an icon in the upper right corner can be used to manually change the page theme. The preference is stored in the browser. Three options are available:
 
 \begin{itemize}
     \item Light - shown on Fig. \ref{fig:manual-theme-light},
@@ -201,7 +201,7 @@ To use the account created in \ref{chap:account-creation} one has to log in into
 
 \subsection{Logging out}
 
-A logged in user can log out using the \textit{Log out} button in the dorpdown appearing after the username in upper right corner is clicked. The dropdown is presented on Fig. \ref{fig:manual-home-dropdown-user}.
+A logged-in user can log out using the \textit{Log out} button in the dropdown appearing after the username in upper right corner is clicked. The dropdown is presented on Fig. \ref{fig:manual-home-dropdown-user}.
 
 \begin{figure}
     \centering
@@ -239,7 +239,7 @@ The second step of completing a task is answering a question like the one presen
 
 If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while incorrect are shown in red. Additionally, the true answers are listed on the bottom of the page. Below some answers an explanation may appear which expands on the answer. An example of this behaviour with an incorrectly marked first answer is presented on Fig. \ref{fig:manual-task-answered}.
 
-Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer. If the additional challenge is solved a succcess message will replace the form as can be seen on figures \ref{fig:manual-task-answered} and \ref{fig:manual-task-complete}.
+Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer. If the additional challenge is solved a success message will replace the form as can be seen on figures \ref{fig:manual-task-answered} and \ref{fig:manual-task-complete}.
 
 The whole process of solving a task can be observed on Fig. \ref{fig:manual-task}.
 
@@ -286,7 +286,7 @@ The system is managed using and administrator panel \texttt{/admin}. It can be a
 \begin{figure}
     \centering
     \includegraphics{img/manual-admin-dropdown.png}
-    \caption{Dorpdown with admin panel link.}
+    \caption{Dropdown with admin panel link.}
     \label{fig:manual-admin-dropdown}
 \end{figure}
 
@@ -312,7 +312,7 @@ New categories can be created by clicking the \textit{New category} button at th
 
 If the \textit{Edit category} button at the bottom of category description the editor will be populated with the stored details. The editor is the same as the one for new categories, but instead of the \textit{Create} button, a \textit{Save} button will appear.
 
-Both creating a new category as well as editing an existing one causes reloading of the categories list. The description editor uses Marked for compiling Markdown content. The supported specification is listed at the bottom the discussion \href{https://github.com/markedjs/marked/discussions/1202}{markedjs/marked\#1202}.
+Both creating a new category and editing an existing one causes reloading of the categories list. The description editor uses Marked for compiling Markdown content. The supported specification is listed at the bottom the discussion \href{https://github.com/markedjs/marked/discussions/1202}{markedjs/marked\#1202}.
 
 \subsection{Managing tasks}
 \label{ssec:managing-tasks}
@@ -321,7 +321,7 @@ The tab \textit{Tasks} show an overview of existing tasks and allows creating ne
 
 % TODO: Add images
 
-New tasks can be added using a form which appears after clicking the \textit{New task} button at the to of the tab. The following data should be entered in the form:
+New tasks can be added using a form which appears after clicking the \textit{New task} button at the top of the tab. The following data should be entered in the form:
 
 \begin{itemize}
     \item \textbf{Task name:} The task name. It is displayed on the top of the task page and as a tile title on the bottom of relevant category page.
@@ -360,7 +360,6 @@ Security of the system in a huge part depends on the main server design and impl
 \subsubsection{Data flow analysis}
 
 The data sources provided by regular users are:
-
 \begin{itemize}
     \item username set in the registration process - a string of at most 255 characters, always escaped in templates, inserted as \texttt{textContent} in admin panel, encoded with \mintinline{js}|encodeURIComponent()| in URLs,
     \item category name - a string (part of the URL), used for comparison in \texttt{\$match} stage of an aggregation pipeline as %TC:ignore
@@ -382,16 +381,16 @@ Express version used in the project depends on a vulnerable version of qs librar
 Regardless of the project design it has to be configured and used properly so as not to introduce new security issues. System administrators should keep in mind the following warnings:
 
 \begin{itemize}
-    \item  Challenges should use a different domain than the main website so that users who exploit a challenge will not be able to set cookies valid for the main domain.
+    \item Challenges should use a different domain than the main website so that users who exploit a challenge will not be able to set cookies valid for the main domain.
     \item Special care must be taken when designing challenges, especially ones leading to RCE. Since challenges are running as Docker containers a misbehaving container can bring the whole system down. To provide isolation and limit resources use of \href{https://github.com/google/nsjail}{nsjail} is suggested.
 \end{itemize}
 
 \section{Covered categories of issues}
 
-The design of the project separates the system from the content. Categories and tasks can be added at any time as described in sections \ref{ssec:managing-categories} and \ref{ssec:managing-tasks}. The example deployment covers some of common security vulnerabilities found in web applications.
+The design of the project separates the system from the content. Categories and tasks can be added at any time as described in sections \ref{ssec:managing-categories} and \ref{ssec:managing-tasks}. The example deployment covers some of the common security vulnerabilities found in web applications.
 
 \subsection{SQL injection}
 
 This category covers basics of SQL injection exploitation and prevention. Small code snippets and examples are provided to help users understand the reason behind this class of vulnerabilities. At the bottom of the description a \textit{Read more} section contains links to additional resources connected to this topic.
 
-An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering TODO list creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them which proposes filtering some SQL keywords has an additional challenge.
+An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering to-do list creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them which proposes filtering some SQL keywords has an additional challenge.

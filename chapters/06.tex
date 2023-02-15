@@ -5,7 +5,7 @@ The solution was tested to ensure that it meets all the requirements and provide
 
 \section{Testing procedure}
 
-The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing much more time consuming. Additionally the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
+The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing much more time-consuming. Additionally, the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
 
 \section{Requirements verification}
 
@@ -14,7 +14,7 @@ The verification of chapter \ref{chap:req-and-tools} requirements fulfilment.
 \subsection{Verification of functional requirements}
 
 \begin{enumerate}
-	\item \textbf{Account creation}: There is an option to register a new account. Minimum password length is verified both on the client side and on server. It is impossible to register an account with the same username. Additionally the password has to be typed twice to prevent typos. Stored password is hashed and salted. Accounts are created with the \texttt{"user"} role. The functionality is available under \texttt{/auth/register}. \textbf{Requirement met completely.}
+	\item \textbf{Account creation}: There is an option to register a new account. Minimum password length is verified both on the client side and on server. It is impossible to register an account with the same username. Additionally, the password has to be typed twice to prevent typos. Stored password is hashed and salted. Accounts are created with the \texttt{"user"} role. The functionality is available under \texttt{/auth/register}. \textbf{Requirement met completely.}
 
 	\item \textbf{Signing in}: Possible through a login page, which is linked in the navbar and on the home page. The functionality is available under \texttt{/auth/login}. \textbf{Requirement met completely.}
 
@@ -28,7 +28,7 @@ The verification of chapter \ref{chap:req-and-tools} requirements fulfilment.
 
 	\item \textbf{Displaying task}: All task properties specified in the requirements are displayed on task pages \texttt{/task/<id>}. \textbf{Requirement met completely.}
 
-	\item \textbf{Solving challenge}: Logged in users can solve tasks as described in the requirements. \textbf{Requirement met completely.}
+	\item \textbf{Solving challenge}: Logged-in users can solve tasks as described in the requirements. \textbf{Requirement met completely.}
 
 	\item \textbf{Answering quiz}: Users who have solved the task challenge can answer the quiz. After answering the correctly marked answers are displayed in green. A summary of correct answers is displayed below the quiz. \textbf{Requirement met completely.}
 
@@ -60,7 +60,7 @@ The verification of chapter \ref{chap:req-and-tools} requirements fulfilment.
 
 	\item \textbf{Page load performance}: 98 points performance score in PageSpeed Insights mobile test. Test results are presented on Fig. \ref{fig:verify-perf}. \textbf{Requirement met completely.}
 
-	\item \textbf{Compatibility}: The user interface has been verified to display and work correctly on Firefox, Chrome and Tor Browser (based on Firefox ESR) on Windows, Firefox on Ubuntu and Firefox on Android. Client-side form verification errors are not displayed on Firefox for Android due to \href{https://bugzilla.mozilla.org/show_bug.cgi?id=1510450}{bug 1510450}. Bootstrap dropdowns do not work without JavaScript, so it is impossible to logout or access the profile page with JS disabled. Changing page theme also requires JavaScript, but it is not a core functionality. \textbf{Requirement met partially.}
+	\item \textbf{Compatibility}: The user interface has been verified to display and work correctly on Firefox, Chrome and Tor Browser (based on Firefox ESR) on Windows, Firefox on Ubuntu and Firefox on Android. Client-side form verification errors are not displayed on Firefox for Android due to \href{https://bugzilla.mozilla.org/show_bug.cgi?id=1510450}{bug 1510450}. Bootstrap dropdowns do not work without JavaScript, so it is impossible to log out or access the profile page with JS disabled. Changing page theme also requires JavaScript, but it is not a core functionality. \textbf{Requirement met partially.}
 \end{enumerate}
 
 \begin{figure}
@@ -83,13 +83,13 @@ Most issues were found while writing new features and immediately fixed as a par
 
 \subsection{Containers were not started at launch if stopped}
 
-If for some reason (eg. OS restart) challenge containers were stopped while starting the server, these would not be removed and their recreation and start would fail.
+If for some reason (e.g. OS restart) challenge containers were stopped while starting the server, these would not be removed and their recreation and start would fail.
 
 The problem was fixed in \href{https://github.com/krzysdz/inz/commit/9fd9017ce994f577233ce0544bbd0cf1df3e0e55}{\texttt{9fd9017}} by ignoring \textit{"container already stopped"} errors when stopping a container.
 
 \subsection{Cookies not set in production}
 
-Cookies were not sent in responses if \mintinline{bash}|NODE_ENV="production"| environmental variable was set. The problem happened, because Express does not send cookies marked as \texttt{secure} if the request was not made with HTTPS. While nginx terminates the external connections with HTTPS, it uses plain unencrypted HTTP to communicate with the server which recognises it as an insecure protocol.
+Cookies were not sent in responses if \mintinline{bash}|NODE_ENV="production"| environmental variable was set. The problem happened, because Express does not send cookies marked as \texttt{secure} if the request was not made with HTTPS. While nginx terminates the external connections with HTTPS, it uses plain unencrypted HTTP to communicate with the server which recognizes it as an insecure protocol.
 
 This problem was fixed in \href{https://github.com/krzysdz/inz/commit/94ca9c4124954c94c9fe8e27dc59305aa59b31ad}{\texttt{94ca9c4}} by setting appropriate headers in the proxy
 \begin{minted}{nginx}
@@ -101,7 +101,7 @@ and telling Express to trust the proxy
 // In production the only way is through nginx, which sets X-Forwarded-For to $remote_addr
 if (process.env.NODE_ENV === "production") app.set("trust proxy", true);
 \end{minted}
-With this change Express recognises HTTPS connections to the proxy as secure and sends cookies in responses.
+With this change Express recognizes HTTPS connections to the proxy as secure and sends cookies in responses.
 
 \subsection{Unsolved question on task page was escaped}
 
@@ -147,6 +147,6 @@ The problem was fixed in \href{https://github.com/krzysdz/inz/commit/eec703c98ec
 
 \subsection{Accounts with \texttt{U+0000} character in username cannot be manipulated by administrators}
 
-Username is used as a part of URI path of account management endpoints. This part of the path always is encoded using \mintinline{js}|encodeURIComponent()| and can be safely sent to the server. Unfortunately, nginx since version 0.8.38 responds with status code 400 if the URI contains a NULL character, even if it is properly encoded. According to Neal Poole the nginx author decided that \enquote{zero byte in URI should not appear in any encoding, operating system, etc., and just makes more problems than helps} and removed support for it in \href{https://hg.nginx.org/nginx/rev/84905c7b2aa7}{changeset 3527} \cite{bib:nginx-null}.
+Username is used as a part of URI path of account management endpoints. This part of the path is always encoded using \mintinline{js}|encodeURIComponent()| and can be safely sent to the server. Unfortunately, nginx since version 0.8.38 responds with status code 400 if the URI contains a NULL character, even if it is properly encoded. According to Neal Poole the nginx author decided that \enquote{zero byte in URI should not appear in any encoding, operating system, etc., and just makes more problems than helps} and removed support for it in \href{https://hg.nginx.org/nginx/rev/84905c7b2aa7}{changeset 3527} \cite{bib:nginx-null}.
 
 The problem was worked around in \href{https://github.com/krzysdz/inz/commit/0cc6258451fb69f4763be15cf77772b226d2a974}{\texttt{0cc6258}} by forbidding the creation of accounts with the null character in username.
