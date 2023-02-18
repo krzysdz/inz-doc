@@ -1,17 +1,35 @@
 \chapter{Problem analysis}
 
-\begin{itemize}
-\item  problem analysis
-\item state of the art, problem statement
-\item  literature research (all sources in the thesis have to be referenced \cite{bib:article,bib:book,bib:conference,bib:internet})
-\item description of existing solutions (also scientific ones, if the problem is scientifically researched), algorithms,  location of the thesis in the scientific domain
-\end{itemize}
+Traditional capture the flag game requires the player to take a flag or a similar object from opponent base and bring it back to their own. Similarly, in cybersecurity CTF the objective is obtaining a flag from the \textit{opponent}. There are two formats of CTFs - attack-defence and jeopardy. In the first type competing teams have to both attack other teams and protect their own system. The latter requires participants to \textit{steal} the flags from organiser-prepared challenges. The tools developed for this thesis are supposed to help programmers understand security issues, therefore only jeopardy-style are considered.
 
+\section{Literature research}
 
+Using CTF-style challenges for cybersecurity education is not a new idea. Gamification is helpful for increasing user engagement and works in cybersecurity too \cite{bib:exploring-game-design}. An analysis of PicoCTF 2013 competition by Chapman et al. \cite{bib:picoCTF} shows that properly prepared CTFs are suitable even for high school students with no security experience. According to the survey answers the teachers observed that the students put more effort into the CTF than usually during lessons.
 
-Mathematical formulae
-\begin{align}
-y = \frac{\partial x}{\partial t}
-\end{align}
-and single math symbols $x$ and $y$ are typeset in the mathematical mode.
+\subsection{CTF as university laboratories}
 
+CTF challenges are already used during cybersecurity laboratories on some universities. The topic has been approached in various ways by the instructors.
+
+Karagiannis and Magkos \cite{bib:Karagiannis2021} use CTFd for managing the challenges. Challenges were divided into subsequent steps to guide the participants through the process and present the knowledge better. \href{https://vulnhub.com/}{VulnHub} VMs were used as the challenges and most of them were running locally on students' computers.
+
+In \cite{bib:teaching-ctf-PL} Ksiezopolski et al. present their web application security course based on CTF. Students connect to the infrastructure using individual VPN configurations. A challenge must be started by the student using a web portal to make it available on the VPN network. This solution allows \textit{cheap} scaling by starting challenges as required.
+
+\subsection{Technical details of CTF organization}
+
+CERT Polska describes their approach to hosting CTF competitions in \cite{bib:hack.cert.pl}. Their solution for hosting \textit{web} and \textit{pwn} challenges is based on Docker Compose. This decision allows them using different environments for each challenge, which should behave identically on different devices, therefore eliminating compatibility problems. Routing network traffic to appropriate containers is achieved by using server blocks with \mintinline{nginx}|server_name| and \mintinline{nginx}|proxy_pass| directives in nginx configuration files.
+
+Authors detail also their remarks regarding task design. The article suggests using NsJail to prevent accidental or purposeful denial of service (DOS) on high-risk challenges such as those leading to RCE. Another helpful idea is using \href{https://github.com/Supervisor/supervisor}{supervisord} for managing multiple processes inside a single container.
+
+\section{Existing solutions}
+
+\cite{bib:CTF-analysis}
+
+\subsection{CyTrONE}
+
+\cite{bib:cytrone}
+
+\subsection{kCTF}
+
+\subsection{CTFd}
+
+\subsection{FBCTF}

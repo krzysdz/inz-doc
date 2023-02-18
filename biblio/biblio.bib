@@ -1,40 +1,35 @@
-
-
-@Book{bib:book,
-  Title                    = {Title of a book},
-  Author                   = {Name Surname and Name Surname},
-  Publisher                = {Publisher},
-  Year                     = {2017},
-  Address                  = {Hong Kong},
-  ISBN                     = {83-204-3229-9-434}
+@inproceedings{bib:CTF-analysis,
+  author    = {Karagiannis, Stylianos
+               and Maragkos-Belmpas, Elpidoforos
+               and Magkos, Emmanouil},
+  editor    = {Drevin, Lynette
+               and Von Solms, Sun{\'e}
+               and Theocharidou, Marianthi},
+  title     = {An Analysis and Evaluation of Open Source Capture the Flag Platforms as Cybersecurity e-Learning Tools},
+  booktitle = {Information Security Education. Information Security in Action},
+  year      = {2020},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  pages     = {61--77},
+  isbn      = {978-3-030-59291-2},
+  doi       = {10.1007/978-3-030-59291-2_5}
 }
 
-
-@Article{bib:article,
-  Title                    = {Title of an article in a journal},
-  Author                   = {Surname, Name and Name Surname},
-  Journal                  = {Journal Title},
-  Year                     = {2016},
-  Number                   = {8},
-  Pages                    = {1092--1113},
-  Volume                   = {157}
-}
-
-
-@InProceedings{bib:conference,
-  Title                    = {Title of a conference article},
-  Author                   = {Name Surname and Surname, Name and N. Surname},
-  Booktitle                = {Conference title},
-  Year                     = {2006},
-  Pages                    = {5346--5349}
-}
-
-@online{bib:internet,
-  author                   = {Name Surname and Surname, Name and N. Surname},
-  title                    = {Title of a web page},
-  year                     = {2021},
-  url                      = {http://somewhere/on/the/internet.html},
-  urldate                  = {2021-09-30}
+@article{bib:cytrone,
+  title   = {Integrated framework for hands-on cybersecurity training: CyTrONE},
+  author  = {Razvan Beuran
+             and Dat Tang
+             and Cuong Pham
+             and Ken-ichi Chinen
+             and Yasuo Tan
+             and Yoichi Shinoda},
+  journal = {Computers \& Security},
+  volume  = {78},
+  pages   = {43-59},
+  year    = {2018},
+  issn    = {0167-4048},
+  doi     = {https://doi.org/10.1016/j.cose.2018.06.001},
+  url     = {https://www.sciencedirect.com/science/article/pii/S0167404818306527}
 }
 
 @online{bib:digital-2023,
@@ -45,15 +40,61 @@
   urldate = {2023-02-13}
 }
 
-@inbook{bib:securitum-wstep,
-  author         = {Michał Sajdak},
-  title          = {Wstęp},
-  pages          = {35-39},
-  publisher      = {Securitum Szkolenia},
-  year           = {2019},
-  bookauthor     = {Michał Bentkowski and Artur Czyż and Rafał {\enquote{bl4de}\nopunct} Janicki and Jarosław Kamiński and Adrian {\enquote{vizzdoom}\nopunct} Michalczyk and Mateusz Niezabitowski and Marcin Piosek and Michał Sajdak and Grzegorz Trawiński and Bohdan Widła},
-  booktitle      = {Bezpieczeństwo aplikacji webowych},
-  isbn           = {978-83-954853-0-5},
+@online{bib:event-loop-blocking,
+  author  = {Node.js},
+  title   = {Don't Block the Event Loop (or the Worker Pool)},
+  url     = {https://nodejs.org/en/docs/guides/dont-block-the-event-loop/},
+  urldate = {2023-01-27}
+}
+
+@online{bib:event-loop-explained,
+  author  = {Node.js},
+  title   = {The Node.js Event Loop, Timers, and process.nextTick()},
+  url     = {https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/},
+  urldate = {2023-01-27}
+}
+
+@inproceedings{bib:exploring-game-design,
+  author    = {Nagarajan, Ajay
+               and Allbeck, Jan M.
+               and Sood, Arun
+               and Janssen, Terry L.},
+  booktitle = {2012 IEEE International Conference on Cyber Technology in Automation, Control, and Intelligent Systems (CYBER)},
+  title     = {Exploring game design for cybersecurity training},
+  year      = {2012},
+  pages     = {256-262},
+  doi       = {10.1109/CYBER.2012.6392562}
+}
+
+@online{bib:hack.cert.pl,
+  author  = {Michał Leszczyński},
+  title   = {Techniczne aspekty organizacji zawodów i ćwiczeń CTF},
+  date    = {2018-07-09},
+  url     = {https://cert.pl/posts/2018/07/techniczne-aspekty-organizacji-zawodow-i-cwiczen-ctf/},
+  urldate = {2023-02-16}
+}
+
+@article{bib:Karagiannis2021,
+  author    = {Karagiannis, Stylianos and Magkos, Emmanouil},
+  title     = {Adapting CTF challenges into virtual cybersecurity learning environments},
+  journal   = {Information {\&} Computer Security},
+  year      = {2021},
+  month     = {Jan},
+  day       = {01},
+  publisher = {Emerald Publishing Limited},
+  volume    = {29},
+  number    = {1},
+  pages     = {105-132},
+  issn      = {2056-4961},
+  doi       = {10.1108/ICS-04-2019-0050}
+}
+
+@online{bib:nginx-null,
+  author  = {Neal Poole},
+  title   = {Possible Arbitrary Code Execution with Null Bytes, PHP, and Old Versions of nginx},
+  date    = {2011-08-24},
+  url     = {https://nealpoole.com/blog/2011/08/possible-arbitrary-code-execution-with-null-bytes-php-and-old-versions-of-nginx/},
+  urldate = {2023-02-10}
 }
 
 @online{bib:npm-packages,
@@ -64,24 +105,50 @@
   urldate = {2023-01-19}
 }
 
-@online{bib:event-loop-explained,
-  author  = {Node.js},
-  title   = {The Node.js Event Loop, Timers, and process.nextTick()},
-  url     = {https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/},
-  urldate = {2023-01-27}
+@inproceedings{bib:picoCTF,
+  author    = {Peter Chapman and Jonathan Burket and David Brumley},
+  title     = {{PicoCTF}: A {Game-Based} Computer Security Competition for High School Students},
+  booktitle = {2014 USENIX Summit on Gaming, Games, and Gamification in Security Education (3GSE 14)},
+  year      = {2014},
+  address   = {San Diego, CA},
+  url       = {https://www.usenix.org/conference/3gse14/summit-program/presentation/chapman},
+  publisher = {USENIX Association},
+  month     = {aug}
 }
 
-@online{bib:event-loop-blocking,
-  author  = {Node.js},
-  title   = {Don't Block the Event Loop (or the Worker Pool)},
-  url     = {https://nodejs.org/en/docs/guides/dont-block-the-event-loop/},
-  urldate = {2023-01-27}
+@inbook{bib:securitum-wstep,
+  author     = {Michał Sajdak},
+  editor     = {Michał Sajdak},
+  title      = {Wstęp},
+  pages      = {35-39},
+  publisher  = {Securitum Szkolenia},
+  year       = {2019},
+  bookauthor = {Michał Bentkowski
+                and Artur Czyż
+                and Rafał {\enquote{bl4de}\nopunct} Janicki
+                and Jarosław Kamiński
+                and Adrian {\enquote{vizzdoom}\nopunct} Michalczyk
+                and Mateusz Niezabitowski
+                and Marcin Piosek
+                and Michał Sajdak
+                and Grzegorz Trawiński
+                and Bohdan Widła},
+  booktitle  = {Bezpieczeństwo aplikacji webowych},
+  isbn       = {978-83-954853-0-5}
 }
 
-@online{bib:nginx-null,
-  author  = {Neal Poole},
-  title   = {Possible Arbitrary Code Execution with Null Bytes, PHP, and Old Versions of nginx},
-  date    = {2011-08-24},
-  url     = {https://nealpoole.com/blog/2011/08/possible-arbitrary-code-execution-with-null-bytes-php-and-old-versions-of-nginx/},
-  urldate = {2023-02-10}
+@article{bib:teaching-ctf-PL,
+  author         = {Ksiezopolski, Bogdan
+                    and Mazur, Katarzyna
+                    and Miskiewicz, Marek
+                    and Rusinek, Damian},
+  title          = {Teaching a Hands-On CTF-Based Web Application Security Course},
+  journal        = {Electronics},
+  volume         = {11},
+  year           = {2022},
+  number         = {21},
+  article-number = {3517},
+  url            = {https://www.mdpi.com/2079-9292/11/21/3517},
+  issn           = {2079-9292},
+  doi            = {10.3390/electronics11213517}
 }
