@@ -22,7 +22,9 @@ Current task management is restricted to task creation, which is rather complica
 	\item task drafts - tasks hidden from users, which may not have all the required fields filled,
 	\item health checks and container status - monitoring the status of a challenge container and periodical checks of the application inside could help diagnose issues and prevent users accidentally or purposefully taking the tasks down; could be paired with an alert system to administrators and automated restarts,
 	\item forced manual restart - in case a task is down or vandalized and the automatic reset is not going to happen soon, the administrators should be able to force a challenge container reset,
-	\item time to the next restart - when the challenge will be recreated from the initial state automatically, this could be also shown on the task page to users.
+	\item time to the next restart - when the challenge will be recreated from the initial state automatically, this could be also shown on the task page to users,
+	\item importing from file - tasks could be imported from a JSON, YAML or other file to help with sharing task configurations between separate deployments,
+	\item file attachments - files attached to tasks could be used to share source code to help users and would be useful if someone wanted to use the platform for demonstration of not web-related vulnerabilities.
 \end{itemize}
 
 \subsection{User overview for administrators}
