@@ -1,5 +1,7 @@
 \chapter{Internal specification}
 
+The internal specification includes details regarding the system architecture and code which are useful for deep understanding of the platform's behaviour and introducing modifications.
+
 % \section{Concept of the system}
 % Let's just skip this section. I believe that the requirements contain enough information
 
@@ -56,7 +58,7 @@ One of them, \texttt{src/middleware.js}, contains general utility middleware fun
 
 The other module was separated, because it alters the request object and has an associated \texttt{.d.ts} typings file to help with type checking and code suggestions. It is \texttt{src/flash.js} and adds the following methods to each request object:
 \begin{itemize}
-    \item \mintinline{js}|flash(message, category = "info")| - a function which adds a message with category to a list of flash messages connected with the session
+    \item \mintinline{js}|flash(message, category = "info")| - a function which adds a message with category to a list of flash messages connected with the session,
     \item \texttt{getFlashedMessages(options)} - a function which returns the flashed messages with associated categories. This function can also filter the returned flashes by category. It is also available in response locals for direct use in templates.
 \end{itemize}
 
@@ -76,7 +78,7 @@ The \texttt{index.js} module provides only the request handler for the root path
 
 \subsection{Markdown parser}
 
-To parse descriptions in Markdown the \href{https://marked.js.org/}{\texttt{marked}} parser is used together with syntax highlighting library \href{https://highlightjs.org/}{\texttt{highlight.js}}. Because the processing can take some time and the execution runtime is single-threaded, it is offloaded to a \href{https://nodejs.org/dist/latest-v19.x/docs/api/worker_threads.html}{worker thread}. The thread is terminated after a timeout passes to avoid blocking the thread pool. \cite{bib:event-loop-explained,bib:event-loop-blocking}
+To parse descriptions in Markdown the \href{https://marked.js.org/}{\texttt{marked}} parser is used together with syntax highlighting library \href{https://highlightjs.org/}{\texttt{highlight.js}}. Because the processing can take some time and the execution runtime is single-threaded, it is offloaded to a \href{https://nodejs.org/dist/latest-v19.x/docs/api/worker_threads.html}{worker thread}. The thread is terminated after a timeout passes to avoid blocking the thread pool \cite{bib:event-loop-explained,bib:event-loop-blocking}.
 
 The first module responsible for this functionality \texttt{src/markedThread.js} listens to messages on \texttt{parentPort} and responds to them with an HTML string containing parsed Markdown.
 

@@ -21,6 +21,7 @@ CERT Polska describes their approach to hosting CTF competitions in \cite{bib:ha
 Authors detail also their remarks regarding task design. The article suggests using NsJail to prevent accidental or purposeful denial of service (DOS) on high-risk challenges such as those leading to RCE. Another helpful idea is using \href{https://github.com/Supervisor/supervisor}{supervisord} for managing multiple processes inside a single container.
 
 \section{Existing solutions}
+\label{sec:existing-solutions}
 
 There are many open-source platforms developed for hosting CTF competitions and some of them were created with education in mind. This section shortly describes some of the most popular solutions which could be used to introduce CTF challenges in the context of education. However, the presented projects frequently solve only a part of the problem - either providing the user interface or the infrastructure for hosting challenges.
 
@@ -32,11 +33,13 @@ There are many open-source platforms developed for hosting CTF competitions and 
 
 \href{https://github.com/google/kctf}{kCTF} is a Kubernetes-based infrastructure for hosting CTFs developed by Google. Thanks to the use of Kubernetes the challenges should scale automatically as required. The templates available for kCTF include healthcheck containers and use NsJail for sandboxing the incoming connections and securing challenges with remote code execution. kCTF provides only the infrastructure, so the user interface must be deployed separately.
 
-\subsection{CTFd} \label{ssec:CTFd}
+\subsection{CTFd}
+\label{ssec:CTFd}
 
 \href{https://github.com/CTFd/CTFd}{CTFd} is a highly configurable CTF framework. Challenges can be configured to depend on other challenges so that they are solved in order. It supports plugins which extend the functionality. It is liked for its clear UI which is intuitive even for beginners \cite{bib:CTF-analysis, bib:bangladesh-CTFd}. Unfortunately, the official multiple choice challenge plugin is available only in paid versions. The targets for web challenges can only be linked to and must be hosted separately.
 
-\subsection{FBCTF} \label{ssec:FBCTF}
+\subsection{FBCTF}
+\label{ssec:FBCTF}
 
 \href{https://github.com/facebookarchive/fbctf}{Facebook CTF (FBCTF)} is a \textbf{deprecated} platform for hosting CTF competitions. Because it targets mostly competitions it has a highly-configurable scoring system. Besides jeopardy-style challenges it supports also quizzes (text answer) and \textit{King of the hill} games in which teams compete for control over a target system. The \textit{flag levels}, which are the jeopardy tasks, have a file or a link to the target attached, but how the target system is maintained is left up to the administrator. According to Karagiannis et al. \cite{bib:CTF-analysis} FBCTF is best suited for organizing CTF competitions as events.
 

@@ -1,5 +1,7 @@
 \chapter{External specification}
 
+The external specification contains information important for the users and administrators of the system. This chapter describes necessary requirements for system usage, presents relevant instructions and other useful details.
+
 \section{Hardware and software requirements}
 
 Depending on whether one wants to use the user interface via a web browser or host the server themselves there are different requirements for each part.
@@ -11,43 +13,44 @@ The user interface requires a modern browser with JavaScript enabled. It is poss
 On desktop the latest stable versions of the following browsers are supported:
 
 \begin{itemize}
-    \item Google Chrome
-    \item Microsoft Edge
-    \item Firefox and Firefox ESR
-    \item Opera
-    \item Safari (macOS only)
+    \item Google Chrome,
+    \item Microsoft Edge,
+    \item Firefox and Firefox ESR,
+    \item Opera,
+    \item Safari (macOS only).
 \end{itemize}
 
 On Android and iOS support is restricted to the latest stable versions of:
 
 \begin{itemize}
-    \item Google Chrome
-    \item Firefox
-    \item Safari (iOS only)
-    \item Android Browser and WebView (Android only)
+    \item Google Chrome,
+    \item Firefox,
+    \item Safari (iOS only),
+    \item Android Browser and WebView (Android only).
 \end{itemize}
 
 Different and older browsers may work, but compatibility is not guaranteed.
 
-\subsection{Server software} \label{chap:server-soft}
+\subsection{Server software}
+\label{chap:server-soft}
 
 The server software requires the following external software to be installed:
 
 \begin{itemize}
-    \item Node.js 18.x or newer (not as a \href{https://snapcraft.io/node}{snap})
-    \item MongoDB 6.0
-    \item Docker Engine 20.10
-    \item nginx 1.23.2 or newer
+    \item Node.js 18.x or newer (not as a \href{https://snapcraft.io/node}{snap}),
+    \item MongoDB 6.0,
+    \item Docker Engine 20.10,
+    \item nginx 1.23.2 or newer.
 \end{itemize}
 
 Supported operating systems:
 
 % https://github.com/ranisalt/node-argon2/tree/v0.30.3#prebuilt-binaries
 \begin{itemize}
-    \item Ubuntu 20.04 or newer (x86-64, arm64)
-    \item macOS 11 (x86-64), 12 or newer (x86-64, arm64)
-    \item Windows 10 1809 or newer (x86-64)
-    \item Windows Server 2019 or newer (x86-64)
+    \item Ubuntu 20.04 or newer (x86-64, arm64),
+    \item macOS 11 (x86-64), 12 or newer (x86-64, arm64),
+    \item Windows 10 1809 or newer (x86-64),
+    \item Windows Server 2019 or newer (x86-64).
 \end{itemize}
 
 It may be possible to run the server on other operating systems and architectures as long as the required software can be installed. These unsupported systems, however, will probably require \href{https://github.com/ranisalt/node-argon2/tree/v0.30.3#before-installing}{additional installation steps} related to \texttt{argon2} package setup.
@@ -120,11 +123,10 @@ If setting up the server with a fresh database, an administrator account must be
 \label{chap:types-of-users}
 
 There are three types of users considered in the system:
-
 \begin{itemize}
-    \item anonymous/not signed in
-    \item regular users - account with role \texttt{"user"}
-    \item administrators - account with role \texttt{"admin"}
+    \item anonymous/not signed in,
+    \item regular users - account with role \texttt{"user"},
+    \item administrators - account with role \texttt{"admin"}.
 \end{itemize}
 
 Anonymous users can freely browse the application, but have a limited functionality on the task page.\\
