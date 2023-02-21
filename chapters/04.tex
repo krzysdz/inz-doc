@@ -225,9 +225,14 @@ The profile page (\texttt{/profile}) shown on Fig. \ref{fig:manual-profile} is a
 
 \subsection{Browsing categories}
 
-Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists contain names of the categories which link to appropriate category pages.
+Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists, presented on Fig. \ref{fig:manual-categories}, contain names of the categories which link to appropriate category pages.
 
-% TODO: Insert dropdown and categories list page screenshots
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/manual-categories.png}
+    \caption{Categories page with the categories dropdown open, viewed on mobile.}
+    \label{fig:manual-categories}
+\end{figure}
 
 Category pages describe classes of vulnerabilities, why these exist and how they can be avoided. Additionally, on the bottom of each category page there is a list of related tasks which demonstrate examples of such issues.
 
@@ -306,9 +311,14 @@ The \textit{Users} tab presented on Fig. \ref{fig:manual-admin-users} offers bas
 \subsection{Managing categories}
 \label{ssec:managing-categories}
 
-The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button at the bottom.
+The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button at the bottom. The categories tab with a single category expanded and an editor open is presented on Fig. \ref{fig:manual-admin-edit-category}.
 
-% TODO: Add images
+\begin{figure}
+    \centering
+    \includegraphics[width=0.539\textwidth]{img/manual-admin-edit-category.png}
+    \caption{Categories tab with editor open and a category expanded.}
+    \label{fig:manual-admin-edit-category}
+\end{figure}
 
 New categories can be created by clicking the \textit{New category} button at the top of the tab. The button opens a simple editor which can be used to create new categories. The name and description must be filled before creating the category using the \textit{Create} button. The name must use plain text, since it will always be escaped before displaying. The description should be entered using Markdown. To help with writing in Markdown a preview mode can be toggled by clicking the \textit{Preview} button on the right above the description input.
 
@@ -319,9 +329,14 @@ Both creating a new category and editing an existing one causes reloading of the
 \subsection{Managing tasks}
 \label{ssec:managing-tasks}
 
-The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items.
+The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items. Fig. \ref{fig:manual-admin-add-task} presents the said tab and its options.
 
-% TODO: Add images
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/manual-admin-add-task-2col.png}
+    \caption{Tasks tab with task editor open, presented in two columns.}
+    \label{fig:manual-admin-add-task}
+\end{figure}
 
 New tasks can be added using a form which appears after clicking the \textit{New task} button at the top of the tab. The following data should be entered in the form:
 
@@ -396,3 +411,9 @@ The design of the project separates the system from the content. Categories and 
 This category covers basics of SQL injection exploitation and prevention. Small code snippets and examples are provided to help users understand the reason behind this class of vulnerabilities. At the bottom of the description a \textit{Read more} section contains links to additional resources connected to this topic.
 
 An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering to-do list creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them which proposes filtering some SQL keywords has an additional challenge.
+
+\subsection{Path traversal}
+
+The path traversal category gives a short overview of the vulnerability. The page presents a code which allows the user to read any file named index.html and execute it as template, therefore leaking some data and possibly introducing template injection. Consequences of this issue such as leaking any data the process has access to or even RCE with a short explanation are listed on this page. The prevention methods described in this category include using APIs which can restrict accessible directories, path verification after resolving them and characters which can be used for exploitation of this vulnerability.
+
+The \textit{Apple gallery} task presents a simple gallery page with option to download albums. The download functionality is susceptible to path traversal and allows downloading almost any file from the system in a ZIP archive. The objective is reading a flag stored as an environmental variable using only path traversal. To help users the challenge exposes its own source code under \texttt{/source}, which is also mentioned in \texttt{/robots.txt}. The quiz presented after solving the challenge asks about the exploitation and gained access in this particular case.
