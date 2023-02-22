@@ -103,6 +103,7 @@
 \begin{document}
 %\kslistofremarks
 
+\frontmatter
 \input{config/titlepage.tex}  % Please to not modify the titlepage.tex file!
 
 \cleardoublepage
@@ -118,9 +119,10 @@
 
 %%%%%%%%%%%%%%%%%% Table of contents %%%%%%%%%%%%%%%%%%%%%%
 %\pagenumbering{Roman}
-\thispagestyle{empty}
+
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-\thispagestyle{empty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{pagesWithoutNumbers}{\value{page}}
