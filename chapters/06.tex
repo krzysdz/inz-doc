@@ -3,13 +3,11 @@
 
 The solution was tested to ensure that it meets all the requirements and provides a bug-free experience.
 
-\section{Testing procedure}
+\section{Testing procedure and requirements verification}
 
 The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing much more time-consuming. Additionally, the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
 
-\section{Requirements verification}
-
-The verification of chapter \ref{chap:req-and-tools} requirements fulfilment.
+During testing all requirements from chapter \ref{chap:req-and-tools} have been thoroughly verified to ensure their fulfilment.
 
 \subsection{Verification of functional requirements}
 
@@ -85,7 +83,7 @@ Most issues were found while writing new features and immediately fixed as a par
 
 If for some reason (e.g. OS restart) challenge containers were stopped while starting the server, these would not be removed and their recreation and start would fail.
 
-The problem was fixed in \href{https://github.com/krzysdz/inz/commit/9fd9017ce994f577233ce0544bbd0cf1df3e0e55}{\texttt{9fd9017}} by ignoring \textit{"container already stopped"} errors when stopping a container.
+The problem was fixed in \href{https://github.com/krzysdz/inz/commit/9fd9017ce994f577233ce0544bbd0cf1df3e0e55}{\texttt{9fd9017}} by ignoring \textit{\enquote{container already stopped}} errors when stopping a container.
 
 \subsection{Cookies not set in production}
 

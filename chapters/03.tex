@@ -52,13 +52,24 @@ Functional requirements list functionality available in the system. Each of the 
 		\item Docker image to pull and start,
 		\item subdomain used for serving the challenge,
 		\item flag that the users will try to find,
-		\item an interval specifying how frequently the challenge container should be regenerated
+		\item an interval specifying how frequently the challenge container should be regenerated.
 	\end{itemize}
 
 	\item \textbf{Starting challenges}: The system must be able to pull challenge images, create and containers and direct connections to specified subdomains into appropriate containers. This must be done automatically during system startup and for each new challenge added when creating new tasks.
 \end{enumerate}
 
+Functional requirements are related to actions that the system offers to actors using it. These actions are presented by the use case diagram on Fig. \ref{fig:use-case-diag}. There are two actors, with different sets of allowed interactions. The actor \textit{User} represents anyone with access to the system. Users with special account role \texttt{"admin"}, which allows them to perform operations related to management of the system.
+
+\begin{figure}
+	\centering
+	\includesvg[inkscapelatex=false,scale=0.9]{uml/render/usecase.svg}
+	\caption{Use case diagram}
+	\label{fig:use-case-diag}
+\end{figure}
+
 \section{Non-functional requirements}
+
+Non-functional requirements listed below describe project evaluation criteria not related to specific system behaviours.
 
 \begin{enumerate}
 	\item \textbf{Responsiveness}: UI should properly scale across different display sizes. It must be mobile-friendly.
@@ -71,17 +82,6 @@ Functional requirements list functionality available in the system. Each of the 
 
 	\item \textbf{Compatibility}: User interface should work in latest (as of January 2023) versions of Firefox, Firefox ESR, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
 \end{enumerate}
-
-\section{Use cases}
-
-The use case diagram presented on Fig. \ref{fig:use-case-diag} shows actions offered to actors using the system. There are two actors, with different sets of allowed interactions. The actor \textit{User} represents anyone with access to the system. Users with special account role \texttt{"admin"}, which allows them to perform operations related to management of the system.
-
-\begin{figure}
-	\centering
-	\includesvg[scale=0.9]{uml/render/usecase.svg}
-	\caption{Use case diagram}
-	\label{fig:use-case-diag}
-\end{figure}
 
 \section{Tools}
 
