@@ -44,8 +44,10 @@
 
 
 \usepackage{csquotes}
-\usepackage[natbib=true,backend=bibtex,maxbibnames=99]{biblatex}  % compilation of bibliography with BibTeX
-%\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % compilation of bibliography with Biber
+% I know that students are NOT ALLOWED to change it and the behaviour was expected,
+% but my supervisor wants bibliography sorted in order of first appearance.
+\usepackage[natbib=true,backend=bibtex,maxbibnames=99,sorting=none]{biblatex}  % compilation of bibliography with BibTeX
+%\usepackage[natbib=true,backend=biber,maxbibnames=99,sorting=none]{biblatex}  % compilation of bibliography with Biber
 \bibliography{biblio/biblio}
 
 \usepackage{ifmtarg}   % empty commands
