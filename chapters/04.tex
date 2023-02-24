@@ -391,7 +391,7 @@ The data coming from these sources is always used in a safe way. Data entered by
 
 \subsubsection{Known vulnerabilities}
 
-Express version used in the project depends on a vulnerable version of qs library (\href{https://www.cve.org/CVERecord?id=CVE-2022-24999}{CVE-2022-24999}). qs package is used in Express only if the \texttt{query parser} setting is set to \mintinline{js}|"extended"| or the \texttt{urlencoded} middleware's \texttt{extended} option is a truthy value. The \texttt{query parser} option is \mintinline{js}|"simple"| by default and the \texttt{urlencoded} middleware is created with \mintinline{js}|{ extended: false }|, so this vulnerability should not affect the project.
+Express version used in the project depends on a vulnerable version of qs library (\href{https://www.cve.org/CVERecord?id=CVE-2022-24999}{CVE-2022-24999}). qs package is used in Express only if the \texttt{query parser} setting is set to \mintinline{js}|"extended"| or the \texttt{urlencoded} middleware's \texttt{extended} option is a truthy value. The \texttt{query parser} option is \mintinline{js}|"simple"| by default \cite{bib:express-simple-parser} and the \texttt{urlencoded} middleware is created with \mintinline{js}|{ extended: false }|, so this vulnerability should not affect the project.
 
 \subsection{Administrator's responsibilities}
 
