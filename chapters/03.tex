@@ -10,7 +10,7 @@ Functional requirements list functionality available in the system. Each of the 
 \begin{enumerate}
 	\item \textbf{Account creation}: Users must be able to register an account in the system.
 	This operation requires username and password submission from an HTML form in a POST request.
-	Registration is allowed only using unique username. If there already exists an account in the system with the same username, the action must be refused.
+	Registration is allowed only using a unique username. If there already exists an account in the system with the same username, the action must be refused.
 	As a result of a successful registration, a document with the username, cryptographic hash of the user's password and a default role \texttt{"user"} is inserted into a collection storing user accounts. After the registration succeeds, the user is redirected to the login page.
 
 	\item \textbf{Signing in}: Users must be able to log into their accounts.
@@ -24,23 +24,23 @@ Functional requirements list functionality available in the system. Each of the 
 	New password must be sent in a POST request as HTML form data. User must be logged-in in order to change the password.
 	As a result of this operation, user's password hash in the database is updated.
 
-	\item \textbf{Listing categories}: Users must be able to see a list of categories that exist in the system. List of categories must link to category pages.
+	\item \textbf{Listing categories}: Users must be able to see a list of categories that exist in the system. The list of categories must link to category pages.
 
 	\item \textbf{Displaying category}: Users must be able to see category details on a category page. The details should include category name, description and a list of related tasks.
 
 	\item \textbf{Displaying task}: Users must be able to display task details on task pages. The details should include task name, description, challenge URL, hints (if any), and if the user is logged in, a flag submission form. If the task has been solved by the user, instead of the flag submission form, a question is displayed.
 
-	\item \textbf{Solving challenge}: Users must be able to submit a form with flag from the task page. This action is allowed only for signed-in users. Submitted flag must be verified with the one stored in the database for the given challenge. If the flags match, a success message should be shown to the user and date of solving the challenge by user ought to be saved to the database. Otherwise, a message informing the user about incorrect flag should be presented.
+	\item \textbf{Solving challenge}: Users must be able to submit a form with a flag from the task page. This action is allowed only for signed-in users. The submitted flag must be verified with the one stored in the database for the given challenge. If the flags match, a success message should be shown to the user and the date of solving the challenge by user ought to be saved to the database. Otherwise, a message informing the user about an incorrect flag should be presented.
 
-	\item \textbf{Answering quiz}: User who have solved the main challenge from a task, should be able to see a question on the task page and be able to answer it. Only signed-in users can submit answers. Checkboxes which status indicates whether the user thinks that they are correct must be presented along answers from the database. After the answers are submitted, the quiz should be disabled without a button to submit, checkboxes disabled and reflecting the user's answer and an indication which answers were correct.
+	\item \textbf{Answering quiz}: Users who have solved the main challenge from a task, should be able to see a question on the task page and be able to answer it. Only signed-in users can submit answers. Checkboxes whose status indicates whether the user thinks that they are correct must be presented along answers from the database. After the answers are submitted, the quiz should be disabled without a button to submit, checkboxes disabled and reflecting the user's answer and an indication which answers were correct.
 
 	\item \textbf{Administrator panel}: Users with the \texttt{"admin"} role (administrators) should have access to a separate administration panel. The panel should expose additional functionality related to the system management.
 
-	\item \textbf{Listing users}: Users with access to the administrator panel should be able to get a list of user account in the system. Each entry must contain information about username and user role. The list should be paginated as there may exist many accounts.
+	\item \textbf{Listing users}: Users with access to the administrator panel should be able to get a list of user accounts in the system. Each entry must contain information about username and user role. The list should be paginated, as there may exist many accounts.
 
 	\item \textbf{Changing user permissions}: Administrators should be able to grant the \texttt{"admin"} role to other users, as well as change it back to \texttt{"user"}.
 
-	\item \textbf{Deleting user}: Administrators should be able to remove user accounts from the database. It must not be possible to remove own user account this way.
+	\item \textbf{Deleting user}: Administrators should be able to remove user accounts from the database. It must not be possible for the administrator to remove their own user account this way.
 
 	\item \textbf{Creating category}: Administrators must be able to create new categories. The categories must have a name and description. The description must support Markdown input.
 
@@ -49,21 +49,21 @@ Functional requirements list functionality available in the system. Each of the 
 	\item \textbf{Creating task}: Administrators must be able to add new tasks to the system. For each task it must be possible to set the name, description (in Markdown), hints, challenge details, question, answers to the question. Each answer must be marked as correct or incorrect.\\
 	Challenge details must include:
 	\begin{itemize}
-		\item Docker image to pull and start,
-		\item subdomain used for serving the challenge,
-		\item flag that the users will try to find,
+		\item a Docker image to pull and start,
+		\item a subdomain used for serving the challenge,
+		\item a flag that the users will try to find,
 		\item an interval specifying how frequently the challenge container should be regenerated.
 	\end{itemize}
 
-	\item \textbf{Starting challenges}: The system must be able to pull challenge images, create and containers and direct connections to specified subdomains into appropriate containers. This must be done automatically during system startup and for each new challenge added when creating new tasks.
+	\item \textbf{Starting challenges}: The system must be able to pull challenge images, create and start containers and direct connections to specified subdomains into appropriate containers. This must be done automatically during system startup and for each new challenge added when creating new tasks.
 \end{enumerate}
 
-Functional requirements are related to actions that the system offers to actors using it. These actions are presented by the use case diagram on Fig. \ref{fig:use-case-diag}. There are two actors, with different sets of allowed interactions. The actor \textit{User} represents anyone with access to the system. Users with special account role \texttt{"admin"}, which allows them to perform operations related to management of the system.
+Functional requirements are related to actions that the system offers to actors using it. These actions are presented by the use case diagram in Fig. \ref{fig:use-case-diag}. There are two actors, with different sets of allowed interactions. The actor \textit{User} represents anyone with access to the system. Administrators are users with a special account role \texttt{"admin"}, which allows them to perform operations related to management of the system.
 
 \begin{figure}
 	\centering
 	\includesvg[inkscapelatex=false,scale=0.9]{uml/render/usecase.svg}
-	\caption{Use case diagram}
+	\caption{Use case diagram.}
 	\label{fig:use-case-diag}
 \end{figure}
 
@@ -76,11 +76,11 @@ Non-functional requirements listed below describe project evaluation criteria no
 
 	\item \textbf{Accessibility}: There should be no errors in the Accessibility section of a \href{https://webhint.io/}{webhint} scan.
 
-	\item \textbf{Visual consistency}: A single set of styling rules, such as colours, fonts and icons should be used across whole user interface.
+	\item \textbf{Visual consistency}: A single set of styling rules, such as colours, fonts and icons should be used across the whole user interface.
 
 	\item \textbf{Page load performance}: The system should have a score of over 90 in \href{https://pagespeed.web.dev}{PageSpeed Insights} report for mobile.
 
-	\item \textbf{Compatibility}: User interface should work in latest (as of January 2023) versions of Firefox, Firefox ESR, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
+	\item \textbf{Compatibility}: User interface should work in the latest (as of January 2023) versions of Firefox, Firefox ESR, Chrome and Safari browsers for desktops and mobile devices. Basic system functionality, except for the administrator panel, should be available in browsers with JavaScript disabled.
 \end{enumerate}
 
 \section{Tools}
@@ -93,7 +93,7 @@ The system is built on tools, which are regarded to as \textit{core tools}. Thes
 
 \subsubsection{Node.js + Express + EJS}
 
-Node.js is a JavaScript runtime based on V8 engine. There is an enormous ecosystem built around Node.js with over 1.3 million packages available in the npm registry \cite{bib:npm-packages}. The server code runs on Node.js and uses the Express framework for request routing and middleware management. Express is a popular web framework with many features and compatible middleware packages. One of Express' features is template rendering support. The project uses EJS templates, which allows creating HTML templates using embedded JavaScript logic.
+Node.js is a JavaScript runtime based on V8 engine. There is an enormous ecosystem built around Node.js with over 1.3 million packages available in the npm registry \cite{bib:npm-packages}. The server code runs on Node.js and uses the Express framework for request routing and middleware management. Express is a popular web framework with many features and compatible middleware packages. One of Express' features is template rendering support. The project uses EJS templates which allow creating HTML templates using embedded JavaScript logic.
 
 \subsubsection{MongoDB}
 
@@ -102,7 +102,7 @@ During development MongoDB Compass, MongoDB Visual Studio Code extension and mon
 
 \subsubsection{Docker}
 
-Docker is a platform for managing containerized software. Challenges are running as Docker containers and managed using Docker Engine API. For debugging, development and management standalone Docker tools such as Docker CLI and Docker Desktop can be used.
+Docker is a platform for managing containerized software. Challenges are running as Docker containers and managed using Docker Engine API. For debugging, development and management, standalone Docker tools such as Docker CLI and Docker Desktop can be used.
 
 \subsubsection{nginx}
 
@@ -114,7 +114,7 @@ Bootstrap is a frontend toolkit, which is helpful for designing user interfaces.
 
 \subsection{Development tools}
 
-The following tools are in no way required for the systems. These were used to aid development.
+The following tools are not required for the systems to be fully operational. These were used to aid development.
 
 \subsubsection{Visual Studio Code}
 
@@ -130,20 +130,20 @@ ESLint is a JavaScript linter, which can be used to detect problems and potentia
 
 \subsubsection{Prettier}
 
-Prettier is a popular code formatting tool. It was used to maintain a consistent style in JavaScript files. Thanks to Visual Studio Code plug-in the tool could be used as a default formatter in the editor. A plug-in for ESLint allowed marking improperly formatted code as lint error.
+Prettier is a popular code formatting tool. It was used to maintain a consistent style in JavaScript files. Thanks to Visual Studio Code plug-in, the tool could be used as a default formatter in the editor. A plug-in for ESLint allowed marking improperly formatted code as lint error.
 
 \section{Methodology of design and implementation}
 
-The development process was split into two parts. Before the implementation started the system had to be designed.
+The development process was split into two parts. Before the implementation started, the system had to be designed.
 
 \subsection{Design}
 
 The first step in designing the project was defining initial requirements.
-This resulted in the first (and only) UI concept drawing, which is presented on Fig. \ref{fig:init-ui-sketch}. It was meant to help with defining the exact functionality and the structure of documents in the database. Based on that the structure presented on Fig. \ref{fig:init-db-struct} was created.
+This resulted in the first (and only) UI concept drawing, which is presented in Fig. \ref{fig:init-ui-sketch}. It was meant to help with defining the exact functionality and the structure of documents in the database. Based on that the structure presented in Fig. \ref{fig:init-db-struct} was created.
 
-After those first ideas were noted, the process of defining the architecture began. The choice of Node.js and Express as a base for the server was easy, as the author had already years of experience with those tools. Similarly, MongoDB was selected as a database server, because of experience and because it can store arrays and objects. To improve experience on low-end devices and enable basic functionality on browsers without JavaScript, server-side rendering was chosen instead of a JavaScript user interface library such as React or Vue. For a template rendering engine two solutions were considered - Handlebars and EJS. Ultimately, EJS was chosen, because of its richer capabilities.
+After those first ideas were noted, the process of defining the architecture began. The choice of Node.js and Express as a base for the server was easy, as the author had significant experience with those tools. Similarly, MongoDB was selected as a database server, because of earlier experience and because it can store arrays and objects. To improve experience on low-end devices and enable basic functionality on browsers without JavaScript, server-side rendering was chosen instead of a JavaScript user interface library such as React or Vue. For a template rendering engine two solutions were considered - Handlebars and EJS. Ultimately, EJS was chosen due to its richer capabilities.
 
-The last problem to solve during the design phase, was coming up with an idea to direct different subdomains to appropriate challenge containers. The simplest solution was using a wildcard DNS record and setting up virtual servers in the proxy (Fig. \ref{fig:subdomain-idea}). Creation of subdomains could be achieved by creating additional configuration files, which could be automatically picked up by the proxy on reload.
+The last problem to solve during the design phase was coming up with an idea to direct different subdomains to appropriate challenge containers. The simplest solution was using a wildcard DNS record and setting up virtual servers in the proxy (Fig. \ref{fig:subdomain-idea}). Creation of subdomains could be achieved by creating additional configuration files, which could be automatically picked up by the proxy on reload.
 
 \begin{figure}
 	\centering
@@ -168,7 +168,7 @@ The last problem to solve during the design phase, was coming up with an idea to
 
 \subsection{Implementation}
 
-The implementation started with setting up a Node.js project with some required dependencies and a basic \textit{Hello world} Express server. Additional tools such as ESLint were also set up at the beginning so that they could be used during the development.
+The implementation started with setting up a Node.js project with some required dependencies and a basic \textit{Hello world} Express server. Additional tools such as ESLint were also set up at the beginning, so that they could be used during the development.
 
 The next step was preparing database connection and setting up code for session support. Once the server could handle sessions, related utilities such as message flashing were prepared. Sessions were required to implement authentication, which was done in the next step. The first part of implementing authentication was enabling user account creation, so that it would be possible to test each element as it was developed. With the code responsible for registration ready, logging in could be worked on. In both cases the server logic was prepared first with the UI following right after to test the whole component.
 
@@ -176,6 +176,6 @@ After the authentication was done and there were some simple pages ready, work o
 
 Before more public pages could be created, an administration panel had to be made in order to insert data for testing. Unlike all other components, this panel required a lot of interactivity and relied on client-side scripting. To facilitate this requirement, the server code exposes REST-like API, which is consumed by scripts running in the browser. The administrator panel started with user management, continued to category management and finished with task creation.\\
 Since some inputs supported Markdown, a Markdown parser was integrated on both the server and in browser. To allow for syntax highlighting in code blocks, \href{https://highlightjs.org}{highlight.js} was added to the Markdown parser. Syntax highlighting required additional styles, which were available separately in light and dark modes and would not integrate well with Bootstrap's theming. To avoid this problem, a variable-based style sheet with colours from Panda Syntax Light and Dark themes was created with CSS variables set depending on the theme used in Bootstrap.\\
-With the last part of the administration panel, task creation, a system for managing challenge containers had to be prepared. During the implementation of this functionality, the initial database schema shown on Fig \ref{fig:init-db-struct} was recognized as suboptimal and had to be changed.
+With the last part of the administration panel, task creation, a system for managing challenge containers had to be prepared. During the implementation of this functionality, the initial database schema shown in Fig \ref{fig:init-db-struct} was recognized as suboptimal and had to be changed.
 
 Finally, user-facing category and task pages were prepared. These were template-based and in case of the task page relatively complicated, so the user interface and server code could be implemented in parallel. As a finishing touch a simple home page was added.

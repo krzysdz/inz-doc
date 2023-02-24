@@ -30,7 +30,7 @@ processManagement:
 replication:
   replSetName: rs0
 	\end{minted}
-	\caption{Example \texttt{/etc/mongod.conf} configuration file. Based on the default \href{https://github.com/mongodb/mongo/blob/e4fff3e1fe7b31b25cedde7b05205325b47b4a7d/debian/mongod.conf}{config} for Debian and Ubuntu}
+	\caption{Example \texttt{/etc/mongod.conf} configuration file. Based on the default \href{https://github.com/mongodb/mongo/blob/e4fff3e1fe7b31b25cedde7b05205325b47b4a7d/debian/mongod.conf}{config} for Debian and Ubuntu.}
 	\label{fig:example-mongod}
 \end{figure}
 
@@ -102,7 +102,7 @@ await client
 	.updateOne({ _id: USERNAME }, { $set: { role: "user" } });
 await client.close();
 	\end{minted}
-	\caption{A simple Node.js script, which makes the user \texttt{administrator\_username} an administrator.}
+	\caption{A simple Node.js script which makes the user \texttt{administrator\_username} an administrator.}
 	\label{fig:make-admin-script}
 \end{figure}
 

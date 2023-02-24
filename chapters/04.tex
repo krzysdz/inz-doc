@@ -4,7 +4,7 @@ The external specification contains information important for the users and admi
 
 \section{Hardware and software requirements}
 
-Depending on whether one wants to use the user interface via a web browser or host the server themselves there are different requirements for each part.
+Depending on whether one wants to use the user interface via a web browser or host the server themselves, there are different requirements for each part.
 
 \subsection{Browser}
 
@@ -53,7 +53,7 @@ Supported operating systems:
     \item Windows Server 2019 or newer (x86-64).
 \end{itemize}
 
-It may be possible to run the server on other operating systems and architectures as long as the required software can be installed. These unsupported systems, however, will probably require \href{https://github.com/ranisalt/node-argon2/tree/v0.30.3#before-installing}{additional installation steps} related to \texttt{argon2} package setup.
+It may be possible to run the server on other operating systems and architectures, as long as the required software can be installed. These unsupported systems, however, will probably require \href{https://github.com/ranisalt/node-argon2/tree/v0.30.3#before-installing}{additional installation steps} related to \texttt{argon2} package setup.
 
 \textbf{Warning:} Challenge Docker images must be compatible with the server architecture. Images presented in this project support only x86-64.
 
@@ -92,10 +92,10 @@ main-ui.com.        60  IN A        127.0.0.1
 
     \item \textit{Optional.} Configure services to automatically start the software. Example configuration for systemd based operating systems:
     \begin{enumerate}
-        \item Modify the default mongod.conf file to specify replica set name as shown on Fig. \ref{fig:example-mongod} and enable the \href{https://github.com/mongodb/mongo/blob/e4fff3e1fe7b31b25cedde7b05205325b47b4a7d/debian/mongod.service}{mongod service}:\\
+        \item Modify the default mongod.conf file to specify replica set name as shown in Fig. \ref{fig:example-mongod} and enable the \href{https://github.com/mongodb/mongo/blob/e4fff3e1fe7b31b25cedde7b05205325b47b4a7d/debian/mongod.service}{mongod service}:\\
         \mintinline{bash}|systemctl enable mongod|
-        \item Create a unit file for the proxy. An example is presented on Fig. \ref{fig:example-nginx-service}.
-        \item Create a unit file for the main server. An example is presented on Fig. \ref{fig:example-server-service}.
+        \item Create a unit file for the proxy. An example is presented in Fig. \ref{fig:example-nginx-service}.
+        \item Create a unit file for the main server. An example is presented in Fig. \ref{fig:example-server-service}.
         \item Enable and start the services:
         \begin{minted}{bash}
 # Reload systemd configuration to pick up the new services
@@ -115,7 +115,7 @@ If setting up the server with a fresh database, an administrator account must be
 
 \begin{itemize}
     \item Create a user account (\texttt{/auth/register}).
-    \item Set the \texttt{role} field of the user document to string \texttt{admin}. A Node.js script which does that is presented on Fig. \ref{fig:make-admin-script}.
+    \item Set the \texttt{role} field of the user document to string \texttt{admin}. A Node.js script which does that is presented in Fig. \ref{fig:make-admin-script}.
     \item Log in into the account again.
 \end{itemize}
 
@@ -142,9 +142,9 @@ This manual is intended for the end users. The functionality available for admin
 The system can use light or dark mode according to user preferences. By default, the browser or OS determines the theme. A dropdown (Fig. \ref{fig:manual-theme}) shown after clicking an icon in the upper right corner can be used to manually change the page theme. The preference is stored in the browser. Three options are available:
 
 \begin{itemize}
-    \item Light - shown on Fig. \ref{fig:manual-theme-light},
-    \item Dark - visible on Fig. \ref{fig:manual-theme-auto},
-    \item Auto - determined by browser or OS preferences, presented on Fig. \ref{fig:manual-theme-auto} with browser theme set to dark.
+    \item Light - shown in Fig. \ref{fig:manual-theme-light},
+    \item Dark - visible in Fig. \ref{fig:manual-theme-auto},
+    \item Auto - determined by browser or OS preferences, presented in Fig. \ref{fig:manual-theme-auto} with browser theme set to dark.
 \end{itemize}
 
 \begin{figure}
@@ -160,16 +160,16 @@ The system can use light or dark mode according to user preferences. By default,
         \caption{Light theme}
         \label{fig:manual-theme-light}
     \end{subfigure}
-    \caption{Theme selection dropdown}
+    \caption{Theme selection dropdown.}
     \label{fig:manual-theme}
 \end{figure}
 
 \subsection{Account creation}
 \label{chap:account-creation}
 
-To access all features of the system a user account is required. Without it flag submission and later stages of solving tasks are impossible.
+To access all features of the system a user account is required. Without one, flag submissions and later stages of solving tasks are impossible.
 
-The account can be created on the \textit{Register} page which can be accessed from the home page as shown on Fig. \ref{fig:manual-home} or by clicking \textit{Create an account} on the login page. On that page the desired username and password have to be filled into the input fields. The password has to be between 8 and 64 characters long. To prevent mistakes in the password it has to be entered twice. If the passwords do not match the browser will prevent form submission and display an appropriate error.
+The account can be created on the \textit{Register} page which can be accessed from the home page as shown in Fig. \ref{fig:manual-home} or by clicking \textit{Create an account} on the login page. On that page the desired username and password have to be filled into the input fields. The password has to be between 8 and 64 characters long. To prevent mistakes in the password it has to be entered twice. If the passwords do not match, the browser will prevent the form submission and display an appropriate error.
 
 The registration may fail if there already exists an account with the provided username. In such case a different username should be used.
 
@@ -192,18 +192,18 @@ The registration may fail if there already exists an account with the provided u
 
 \subsection{Logging in}
 
-To use the account created in \ref{chap:account-creation} one has to log in into the account. To do that the user has to submit their username and password using a form on the login page (shown on Fig. \ref{fig:manual-login}). The page can be accessed by clicking a button in the navbar, a button on the home page or a link on the registration page.
+To use the account created in \ref{chap:account-creation} one has to log in into the account. To do that the user has to submit their username and password using a form on the login page (shown in Fig. \ref{fig:manual-login}). The page can be accessed by clicking a button in the navbar, a button on the home page or a link on the registration page.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.4\textwidth]{img/manual-login.png}
-    \caption{Login page viewed on mobile}
+    \caption{Login page viewed on mobile.}
     \label{fig:manual-login}
 \end{figure}
 
 \subsection{Logging out}
 
-A logged-in user can log out using the \textit{Log out} button in the dropdown appearing after the username in upper right corner is clicked. The dropdown is presented on Fig. \ref{fig:manual-home-dropdown-user}. For browsers with JavaScript disabled there is an additional \textit{Log out} button on the profile page.
+A logged-in user can log out using the \textit{Log out} button in the dropdown appearing after the username in upper right corner is clicked. The dropdown is presented in Fig. \ref{fig:manual-home-dropdown-user}. For browsers with JavaScript disabled there is an additional \textit{Log out} button on the profile page.
 
 \begin{figure}
     \centering
@@ -214,7 +214,7 @@ A logged-in user can log out using the \textit{Log out} button in the dropdown a
 
 \subsection{Account management}
 
-The profile page (\texttt{/profile}) shown on Fig. \ref{fig:manual-profile} is available for logged-in users through a link in the navbar (see Fig. \ref{fig:manual-home-dropdown-user}). This page allows changing the account password. To change the password one has to provide their current password and enter the new one two times. After submitting the form the system will show a message informing about the success or failure of the operation. Password change does not invalidate existing sessions.
+The profile page (\texttt{/profile}) shown in Fig. \ref{fig:manual-profile} is available for logged-in users through a link in the navbar (see Fig. \ref{fig:manual-home-dropdown-user}). This page allows changing the account password. To change the password one has to provide their current password and enter the new one two times. After submitting the form the system will show a message informing about the success or failure of the operation. Password change does not invalidate existing sessions.
 
 \begin{figure}
     \centering
@@ -225,7 +225,7 @@ The profile page (\texttt{/profile}) shown on Fig. \ref{fig:manual-profile} is a
 
 \subsection{Browsing categories}
 
-Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists, presented on Fig. \ref{fig:manual-categories}, contain names of the categories which link to appropriate category pages.
+Categories in the system describe classes of vulnerabilities. A list of available categories can be accessed from the \textit{Categories} dropdown in navbar and from the \textit{Categories} (\texttt{/categories}) page. Both lists, presented in Fig. \ref{fig:manual-categories}, contain names of the categories which link to appropriate category pages.
 
 \begin{figure}
     \centering
@@ -234,21 +234,21 @@ Categories in the system describe classes of vulnerabilities. A list of availabl
     \label{fig:manual-categories}
 \end{figure}
 
-Category pages describe classes of vulnerabilities, why these exist and how they can be avoided. Additionally, on the bottom of each category page there is a list of related tasks which demonstrate examples of such issues.
+Category pages describe classes of vulnerabilities, why these exist and how they can be avoided. Additionally, at the bottom of each category page there is a list of related tasks which demonstrate examples of such issues.
 
 \subsection{Tasks}
 
 Tasks show specific examples of vulnerabilities. Each task contains a link to a challenge website which has to be exploited. The process will look differently for each challenge. As a result of a successful attack the user should obtain a flag. The flags should follow the \texttt{flag\{xxx\}} scheme unless specified otherwise in the task description. Tasks can contain hints which may help in case of problems when solving the linked challenge. The hints are collapsed by default to avoid spoilers and can be uncovered by clicking them.
 
-Once the flag is found it should be submitted on the task page. Users who are not logged in will be prompted to log in as demonstrated on Fig. \ref{fig:manual-task-anon}. The form is shown only if the challenge is not solved as presented on Fig. \ref{fig:manual-task-user}. After a successful submission a message and a question appear instead of the form.
+Once the flag is found it should be submitted on the task page. Users who are not logged in will be prompted to log in as demonstrated in Fig. \ref{fig:manual-task-anon}. The form is shown only if the challenge is not solved, as presented in Fig. \ref{fig:manual-task-user}. After a successful submission a message and a question appear instead of the form.
 
-The second step of completing a task is answering a question like the one presented on Fig. \ref{fig:manual-task-solved}. Questions are related to the challenge and usually concern avoiding the problem or fixing it. There are multiple answers, each of which can be marked as true by marking the checkbox next to it. Conversely, if an answer is thought to be false the checkbox should be left empty. Finally, the answers should be sent by clicking the \textit{Submit} button.
+The second step of completing a task is answering a question like the one presented in Fig. \ref{fig:manual-task-solved}. Questions are related to the challenge and usually concern avoiding the problem or fixing it. There are multiple answers, each of which can be marked as true by marking the checkbox next to it. Conversely, if an answer is thought to be false the checkbox should be left empty. Finally, the answers should be sent by clicking the \textit{Submit} button.
 
-If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while incorrect are shown in red. Additionally, the true answers are listed on the bottom of the page. Below some answers an explanation may appear which expands on the answer. An example of this behaviour with an incorrectly marked first answer is presented on Fig. \ref{fig:manual-task-answered}.
+If the question has been answered the checkboxes are disabled and reflect user's choices. Answers correctly marked as true or false are displayed in green, while the incorrect ones are shown in red. Additionally, the true answers are listed at the bottom of the page. Below some answers an explanation may appear which expands on the answer. An example of this behaviour with an incorrectly marked first answer is presented in Fig. \ref{fig:manual-task-answered}.
 
-Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer. If the additional challenge is solved a success message will replace the form as can be seen on figures \ref{fig:manual-task-answered} and \ref{fig:manual-task-complete}.
+Selected incorrect answers may contain additional challenges. Below these answers a link to the challenge will appear. These challenges are modified versions of the original challenge. After solving such challenge the obtained flag should be submitted using a form below the answer. If the additional challenge is solved a success message will replace the form, as can be seen in Figures \ref{fig:manual-task-answered} and \ref{fig:manual-task-complete}.
 
-The whole process of solving a task can be observed on Fig. \ref{fig:manual-task}.
+The whole process of solving a task can be observed in Fig. \ref{fig:manual-task}.
 
 \begin{figure}
     \centering
@@ -288,7 +288,7 @@ The whole process of solving a task can be observed on Fig. \ref{fig:manual-task
 \section{System administration}
 \label{chap:system-administration}
 
-The system is managed using and administrator panel \texttt{/admin}. It can be accessed from the dropdown in upper-right corner which is presented on Fig. \ref{fig:manual-admin-dropdown}. JavaScript is strictly required for all functionalities of the panel. There are three tabs for different categories of administrative capabilities.
+The system is managed using and administrator panel \texttt{/admin}. It can be accessed from the dropdown in upper-right corner which is presented in Fig. \ref{fig:manual-admin-dropdown}. JavaScript is strictly required for all functionalities of the panel. There are three tabs for different categories of administrative capabilities.
 
 \begin{figure}
     \centering
@@ -299,7 +299,7 @@ The system is managed using and administrator panel \texttt{/admin}. It can be a
 
 \subsection{Managing users}
 
-The \textit{Users} tab presented on Fig. \ref{fig:manual-admin-users} offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} or the other way. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
+The \textit{Users} tab presented in Fig. \ref{fig:manual-admin-users} offers basic account management features. In this tab a list of users registered in the system is presented. Next to each username their role is displayed. Finally, in the third column there are two action buttons. The first one changes user role from \texttt{user} to \texttt{admin} and vice versa. The second one can be used to delete a user account. The list contains at most 10 entries. Pagination buttons below the table can be used to display another page of users.
 
 \begin{figure}
     \centering
@@ -311,7 +311,7 @@ The \textit{Users} tab presented on Fig. \ref{fig:manual-admin-users} offers bas
 \subsection{Managing categories}
 \label{ssec:managing-categories}
 
-The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button at the bottom. The categories tab with a single category expanded and an editor open is presented on Fig. \ref{fig:manual-admin-edit-category}.
+The next tab \textit{Categories} allows creating and editing category pages. All existing categories are displayed as collapsed accordion items. Clicking on them opens a preview of the category description with an \textit{Edit category} button at the bottom. The categories tab with a single category expanded and an editor open is presented in Fig. \ref{fig:manual-admin-edit-category}.
 
 \begin{figure}
     \centering
@@ -329,7 +329,7 @@ Both creating a new category and editing an existing one causes reloading of the
 \subsection{Managing tasks}
 \label{ssec:managing-tasks}
 
-The tab \textit{Tasks} show an overview of existing tasks and allows creating new. Like categories the existing tasks are listed as expandable accordion items. Fig. \ref{fig:manual-admin-add-task} presents the said tab and its options.
+The tab \textit{Tasks} shows an overview of existing tasks and allows creating new ones. Similarly to categories, the existing tasks are listed as expandable accordion items. Fig. \ref{fig:manual-admin-add-task} presents the said tab and its options.
 
 \begin{figure}
     \centering
@@ -341,15 +341,15 @@ The tab \textit{Tasks} show an overview of existing tasks and allows creating ne
 New tasks can be added using a form which appears after clicking the \textit{New task} button at the top of the tab. The following data should be entered in the form:
 
 \begin{itemize}
-    \item \textbf{Task name:} The task name. It is displayed on the top of the task page and as a tile title on the bottom of relevant category page.
-    \item \textbf{Category:} The category of vulnerabilities this task is assigned to. Must be chosen from one of the existing categories.
+    \item \textbf{Task name:} The task name which is displayed at the top of the task page and as a tile title at the bottom of the relevant category page.
+    \item \textbf{Category:} The category of vulnerabilities this task is assigned to. It must be chosen from one of the existing categories.
     \item \textbf{Description:} Task description displayed on the task page. The editor supports markdown and can be used the same way as the category description editor.
     \item \textbf{Challenge details:} The details for the main challenge. These options include:
     \begin{itemize}
         \item \textbf{Docker image:} Docker image to use for the challenge container. The image will be pulled after creating the task.
         \item \textbf{Subdomain:} Subdomain of the domain specified in the config file, which will be used to hosting the challenge.
         \item \textbf{Flag:} Flag which should be found by the users. Flags submitted by users will be compared to this value.
-        \item \textbf{Expose flag as \texttt{FLAG} environmental variable:} Whether the flag should be exposed in the container as an environmental variable \texttt{FLAG}. This option can be used to avoid hardcoding flag values in challenge images.
+        \item \textbf{Expose flag as \texttt{FLAG} environmental variable:} States whether the flag should be exposed in the container as an environmental variable \texttt{FLAG}. This option can be used to avoid hardcoding flag values in challenge images.
         \item \textbf{Reset interval:} How often the challenge container should be removed and recreated. The value should be given in seconds. Set to 0 to disable automated restarts.
     \end{itemize}
     \item \textbf{Hints:} A list of hints for the main challenge. Hints are rendered inside a collapsed \mintinline{html}|<details>| tag on the task page, because they are supposed to contain \textit{spoilers}. New hints can be added by clicking \textit{Add a hint}. All hint inputs must be filled. The X button on the right of a hint input can be used to remove it. It is possible to create a task with no hints.
@@ -357,14 +357,14 @@ New tasks can be added using a form which appears after clicking the \textit{New
     \item \textbf{Answers:} These are the answers to the question from the field above. Additional answers can be added using the \textit{Add an answer} button. It is not possible to remove an answer. An answer has the following properties:
     \begin{itemize}
         \item \textbf{Answer:} The answer text that is presented to the users. The text is not escaped and can include HTML.
-        \item \textbf{Answer is correct:} Whether the answer is correct and users are expected to check it.
+        \item \textbf{Answer is correct:} Determines whether the answer is correct and users are expected to check it.
         \item \textbf{Add challenge:} Shows an additional set of fields related to an extra challenge. \textbf{Available only if the answer is not marked as correct.}
-        \item \textbf{Explanation:} An \textbf{optional} explanation that is shown after answering the question. It may underline the reasons why an answer is right or wrong.
+        \item \textbf{Explanation:} An \textbf{optional} explanation that is shown after answering the question. It may specify the reasons why an answer is right or wrong.
         \item \textbf{Challenge details:} Challenge details for an additional challenge related to the answer. Options are the same as for the main challenge. \textbf{Shown only if the \textit{Add challenge} option is checked.}
     \end{itemize}
 \end{itemize}
 
-An expanded task accordion item presents the task properties. Challenge details other than the \textit{expose flag...} option are shown in collapsed \mintinline{html}|<details>|. Checkboxes next to answers indicate whether these answers are marked as correct. Optional explanations are shown in italics below respective answers.
+An expanded task accordion item presents the task properties. Challenge details other than the \textit{expose flag...} option are shown in collapsed \mintinline{html}|<details>|. Checkboxes next to answers indicate whether these answers are marked as correct. Optional explanations are shown in italics below the respective answers.
 
 \section{Security issues}
 
@@ -395,7 +395,7 @@ Express version used in the project depends on a vulnerable version of qs librar
 
 \subsection{Administrator's responsibilities}
 
-Regardless of the project design it has to be configured and used properly so as not to introduce new security issues. System administrators should keep in mind the following warnings:
+Regardless of the project design, it has to be configured and used properly so as not to introduce new security issues. System administrators should keep in mind the following warnings:
 
 \begin{itemize}
     \item Challenges should use a different domain than the main website so that users who exploit a challenge will not be able to set cookies valid for the main domain.
@@ -410,10 +410,10 @@ The design of the project separates the system from the content. Categories and 
 
 This category covers basics of SQL injection exploitation and prevention. Small code snippets and examples are provided to help users understand the reason behind this class of vulnerabilities. At the bottom of the description a \textit{Read more} section contains links to additional resources connected to this topic.
 
-An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering to-do list creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them which proposes filtering some SQL keywords has an additional challenge.
+An example of a vulnerable application is presented in the \textit{Private todo} task. The target is a simple website offering to-do lists creation and sharing. These lists are accessed using an \texttt{id} parameter, which is insecurely concatenated with the database query allowing for an injection attack. The question shown after solving the challenge presents the vulnerable line and answers show suggested methods of fixing the problem. One of them, which proposes filtering some SQL keywords, has an additional challenge.
 
 \subsection{Path traversal}
 
-The path traversal category gives a short overview of the vulnerability. The page presents a code which allows the user to read any file named index.html and execute it as template, therefore leaking some data and possibly introducing template injection. Consequences of this issue such as leaking any data the process has access to or even RCE with a short explanation are listed on this page. The prevention methods described in this category include using APIs which can restrict accessible directories, path verification after resolving them and characters which can be used for exploitation of this vulnerability.
+The path traversal category gives a short overview of the vulnerability. The page presents a code which allows the user to read any file named index.html and execute it as template, therefore leaking some data and possibly introducing template injection. Consequences of this issue, such as leaking any data the process has access to or even RCE with a short explanation, are listed on this page. The prevention methods described in this category include using APIs which can restrict accessible directories, path verification after resolving them and characters which can be used for exploitation of this vulnerability.
 
-The \textit{Apple gallery} task presents a simple gallery page with option to download albums. The download functionality is susceptible to path traversal and allows downloading almost any file from the system in a ZIP archive. The objective is reading a flag stored as an environmental variable using only path traversal. To help users the challenge exposes its own source code under \texttt{/source}, which is also mentioned in \texttt{/robots.txt}. The quiz presented after solving the challenge asks about the exploitation and gained access in this particular case.
+The \textit{Apple gallery} task presents a simple gallery page with option to download albums. The download functionality is susceptible to path traversal and allows downloading almost any file from the system in a ZIP archive. The objective is reading a flag stored as an environmental variable using only path traversal. To help users, the challenge exposes its own source code under \texttt{/source}, which is also mentioned in \texttt{/robots.txt}. The quiz presented after solving the challenge asks about the exploitation and gained access in this particular case.

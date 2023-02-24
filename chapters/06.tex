@@ -5,14 +5,14 @@ The solution was tested to ensure that it meets all the requirements and provide
 
 \section{Testing procedure and requirements verification}
 
-The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing much more time-consuming. Additionally, the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
+The testing was performed entirely manually. Features were tested as they were developed. The manual incremental approach was chosen due to time considerations. The project is rather small and the result of many operations is a UI rendered from an HTML template, which would make automated testing far more time-consuming. Additionally, the interface had to be visually inspected, so feature testing could be performed as a part of this procedure. Some features such as creating and restarting challenges were tested by either running small scripts or using them via the Node.js REPL and observing results in external tools.
 
 During testing all requirements from chapter \ref{chap:req-and-tools} have been thoroughly verified to ensure their fulfilment.
 
 \subsection{Verification of functional requirements}
 
 \begin{enumerate}
-	\item \textbf{Account creation}: There is an option to register a new account. Minimum password length is verified both on the client side and on server. It is impossible to register an account with the same username. Additionally, the password has to be typed twice to prevent typos. Stored password is hashed and salted. Accounts are created with the \texttt{"user"} role. The functionality is available under \texttt{/auth/register}. \textbf{Requirement met completely.}
+	\item \textbf{Account creation}: There is an option to register a new account. Minimum password length is verified both on the client side and on the server. It is impossible to register an account with the same username. Additionally, the password has to be typed twice to prevent typos. The stored password is hashed and salted. Accounts are created with the \texttt{"user"} role. The functionality is available under \texttt{/auth/register}. \textbf{Requirement met completely.}
 
 	\item \textbf{Signing in}: Possible through a login page, which is linked in the navbar and on the home page. The functionality is available under \texttt{/auth/login}. \textbf{Requirement met completely.}
 
@@ -28,7 +28,7 @@ During testing all requirements from chapter \ref{chap:req-and-tools} have been 
 
 	\item \textbf{Solving challenge}: Logged-in users can solve tasks as described in the requirements. \textbf{Requirement met completely.}
 
-	\item \textbf{Answering quiz}: Users who have solved the task challenge can answer the quiz. After answering the correctly marked answers are displayed in green. A summary of correct answers is displayed below the quiz. \textbf{Requirement met completely.}
+	\item \textbf{Answering quiz}: Users who have solved the task challenge can answer the quiz. After answering the question, the correctly marked answers are displayed in green. A summary of correct answers is displayed below the quiz. \textbf{Requirement met completely.}
 
 	\item \textbf{Administrator panel}: Administrator panel is available only for administrators as \texttt{/admin} page. \textbf{Requirement met completely.}
 
@@ -50,13 +50,13 @@ During testing all requirements from chapter \ref{chap:req-and-tools} have been 
 \subsection{Verification of non-functional requirements}
 
 \begin{enumerate}
-	\item \textbf{Responsiveness}: The interface has been tested on multiple screen sizes and devices as well as in-browser zoom. The tested native resolutions include: $1920 \times 1080$ (24 in - desktop), $1440 \times 900$ (19 in), $1336 \times 768$ (15.6 in - laptop) and $2400 \times 1080$ (6.67 in - smartphone). Additional screen sizes were tested using the \textit{responsive mode} option in Firefox developer tools. No issues were found during the visual inspection although some answers may cause the viewport to scroll on small screens if they contain specific HTML. \textbf{Requirement met completely.}
+	\item \textbf{Responsiveness}: The interface has been tested on multiple screen sizes and devices as well as in-browser zoom. The tested native resolutions include: $1920 \times 1080$ (24 in - desktop), $1440 \times 900$ (19 in), $1336 \times 768$ (15.6 in - laptop) and $2400 \times 1080$ (6.67 in - smartphone). Additional screen sizes were tested using the \textit{responsive mode} option in Firefox developer tools. No issues were found during the visual inspection, although some answers may cause the viewport to scroll on small screens if they contain specific HTML. \textbf{Requirement met completely.}
 
-	\item \textbf{Accessibility}: There are no accessibility errors in the webhint scan results run from Firefox developer tools. Warning are related to contrast especially in code blocks in light mode. The accessibility results of the scan are presented on Fig. \ref{fig:verify-webhint}. \textbf{Requirement met completely.}
+	\item \textbf{Accessibility}: There are no accessibility errors in the webhint scan results run from Firefox developer tools. Warnings are related to contrast especially in code blocks in light mode. The accessibility results of the scan are presented in Fig. \ref{fig:verify-webhint}. \textbf{Requirement met completely.}
 
 	\item \textbf{Visual consistency}: Styles from the Bootstrap library were used. Additional style sheets follow the Bootstrap colours. Code highlighting follows the theme variant changes (light/dark) and in both modes an appropriate variation of the Panda Syntax theme is used. \textbf{Requirement met completely.}
 
-	\item \textbf{Page load performance}: 98 points performance score in PageSpeed Insights mobile test. Test results are presented on Fig. \ref{fig:verify-perf}. \textbf{Requirement met completely.}
+	\item \textbf{Page load performance}: 98 points performance score in PageSpeed Insights mobile test. Test results are presented in Fig. \ref{fig:verify-perf}. \textbf{Requirement met completely.}
 
 	\item \textbf{Compatibility}: The user interface has been verified to display and work correctly on Firefox, Chrome and Tor Browser (based on Firefox ESR) on Windows, Firefox on Ubuntu and Firefox on Android. Client-side form verification errors are not displayed on Firefox for Android due to \href{https://bugzilla.mozilla.org/show_bug.cgi?id=1510450}{bug 1510450}. Bootstrap dropdowns do not work without JavaScript, but they become ordinary links which provide the same functionality. Changing page theme also requires JavaScript, but it is not a core functionality. \textbf{Requirement met completely.}
 \end{enumerate}
@@ -64,14 +64,14 @@ During testing all requirements from chapter \ref{chap:req-and-tools} have been 
 \begin{figure}
 	\centering
 	\includegraphics{img/verify-webhint.png}
-	\caption{Webhint scan warnings and errors}
+	\caption{Webhint scan warnings and errors.}
 	\label{fig:verify-webhint}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{img/verify-performance-mobile.png}
-	\caption{PageSpeed Insights mobile test results}
+	\caption{PageSpeed Insights mobile test results.}
 	\label{fig:verify-perf}
 \end{figure}
 

@@ -7,7 +7,7 @@ The internal specification includes details regarding the system architecture an
 
 \section{System architecture}
 
-The system is managed by a server running on Node.js. As presented on Fig. \ref{fig:system-architecture}, this process manages the MongoDB database, challenge containers via Docker Engine API and the nginx proxy configuration. Challenges are run as Docker containers to enable easy configuration by just puling an appropriate image and each of them is bound to a different subdomain of a dedicated challenge domain thanks to the single proxy server.
+The system is managed by a server running on Node.js. As presented in Fig. \ref{fig:system-architecture}, this process manages the MongoDB database, challenge containers via Docker Engine API and the nginx proxy configuration. Challenges are run as Docker containers to enable easy configuration by just puling an appropriate image and each of them is bound to a different subdomain of a dedicated challenge domain thanks to the single proxy server.
 
 \begin{figure}
     \centering
@@ -21,7 +21,7 @@ The nginx process is the only one exposed publicly. Other software can listen on
 
 \section{Database structure}
 
-The use of a NoSQL database, allowed for a more flexible schema, based on the desired access to the data. A mix of embedded data model and normalized data model is used. The used database schema is presented on Fig. \ref{fig:db-schema}. Despite preferring the denormalized model, it was necessary to keep some relations between documents. This is achieved by storing fields with \texttt{\_id}s of referenced documents. There is also a relation between keys of embedded documents in the \texttt{users} collection, which are stored as stringified \texttt{ObjectId}s and documents from \texttt{tasks} and \texttt{challenges}. This relation, however, is not used in queries to the database, but managed completely by the server code.
+The use of a NoSQL database allowed for a more flexible schema, based on the desired access to the data. A mix of embedded data model and normalized data model is used. The used database schema is presented in Fig. \ref{fig:db-schema}. Despite preferring the denormalized model, it was necessary to keep some relations between documents. This is achieved by storing fields with \texttt{\_id}s of referenced documents. There is also a relation between keys of embedded documents in the \texttt{users} collection, which are stored as stringified \texttt{ObjectId}s and documents from \texttt{tasks} and \texttt{challenges}. This relation, however, is not used in queries to the database, but managed completely by the server code.
 
 There are two additional indexes:
 
@@ -30,7 +30,7 @@ There are two additional indexes:
     \item a unique index with a collation on the \texttt{name} field in the \texttt{categories} collection to accelerate case-insensitive search by category name and prevent duplicates.
 \end{itemize}
 
-The view \texttt{fullTasks} is a view collection on the \texttt{tasks}, which uses an aggregation pipeline to embed documents from the \texttt{challenges} collection using \texttt{\$lookup} where necessary. The pipeline is presented on Fig. \ref{fig:fullTasks-agg}.
+The view \texttt{fullTasks} is a view collection on the \texttt{tasks}, which uses an aggregation pipeline to embed documents from the \texttt{challenges} collection using \texttt{\$lookup} where necessary. The pipeline is presented in Fig. \ref{fig:fullTasks-agg}.
 
 \begin{figure}
     \centering
@@ -112,35 +112,35 @@ Basic system functionality in a simplified form can be presented in form of UML 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false]{uml/render/seq-register.svg}
-    \caption{Registration sequence diagram}
+    \caption{Registration sequence diagram.}
     \label{fig:seq-register}
 \end{figure}
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false]{uml/render/seq-login.svg}
-    \caption{Logging in sequence diagram}
+    \caption{Logging in sequence diagram.}
     \label{fig:seq-login}
 \end{figure}
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false]{uml/render/seq-change-pass.svg}
-    \caption{Password change sequence diagram}
+    \caption{Password change sequence diagram.}
     \label{fig:seq-change-pass}
 \end{figure}
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false, scale=0.9]{uml/render/seq-open-solve-task.svg}
-    \caption{Navigation and solving a task}
+    \caption{Navigation and solving a task.}
     \label{fig:seq-task}
 \end{figure}
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false]{uml/render/seq-task-flag.svg}
-    \caption{Submitting challenge flag}
+    \caption{Submitting challenge flag.}
     \label{fig:seq-task-flag}
 \end{figure}
 
@@ -149,22 +149,22 @@ Basic system functionality in a simplified form can be presented in form of UML 
     \fontsize{10}{12}\selectfont
     \centering
     \includesvg[]{uml/render/seq-task-answer.svg}
-    \caption{Answering task question}
+    \caption{Answering task question.}
     \label{fig:seq-task-answer}
 \end{figure}
 
-Actions available for the administrators involve an additional participant - a script running in the browser which is responsible for managing the UI and communication with the server. Because the panel is not rendered on the server, the process of loading it is more complicated as can be seen on Fig. \ref{fig:seq-admin-load}. The most complicated operation is adding a new task. The flow is presented on \ref{fig:seq-admin-add-task} and requires interactions with even more system components.
+Actions available for the administrators involve an additional participant - a script running in the browser which is responsible for managing the UI and communication with the server. Because the panel is not rendered on the server, the process of loading it is more complicated as can be seen in Fig. \ref{fig:seq-admin-load}. The most complicated operation is adding a new task. The flow is presented in Fig. \ref{fig:seq-admin-add-task} and requires interactions with even more system components.
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false, scale=0.9]{uml/render/seq-admin-load.svg}
-    \caption{Loading administrator panel}
+    \caption{Loading administrator panel.}
     \label{fig:seq-admin-load}
 \end{figure}
 
 \begin{figure}
     \centering
     \includesvg[inkscapelatex=false, scale=0.57]{uml/render/seq-admin-add-task.svg}
-    \caption{Adding a new task}
+    \caption{Adding a new task.}
     \label{fig:seq-admin-add-task}
 \end{figure}
