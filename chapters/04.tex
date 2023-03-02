@@ -1,4 +1,5 @@
 \chapter{External specification}
+\label{chap:external-specification}
 
 The external specification contains information important for the users and administrators of the system. This chapter describes necessary requirements for system usage, presents relevant instructions and other useful details.
 
@@ -10,7 +11,7 @@ Depending on whether one wants to use the user interface via a web browser or ho
 
 The user interface requires a modern browser with JavaScript enabled. It is possible to use the system without JS, but theme switching and dropdowns in the navigation bar will not work.
 
-On desktop the latest stable versions of the following browsers are supported:
+On desktop, the latest stable versions of the following browsers are supported:
 
 \begin{itemize}
     \item Google Chrome,
@@ -55,7 +56,7 @@ Supported operating systems:
 
 It may be possible to run the server on other operating systems and architectures, as long as the required software can be installed. These unsupported systems, however, will probably require \href{https://github.com/ranisalt/node-argon2/tree/v0.30.3#before-installing}{additional installation steps} related to \texttt{argon2} package setup.
 
-\textbf{Warning:} Challenge Docker images must be compatible with the server architecture. Images presented in this project support only x86-64.
+Challenge Docker images must be compatible with the server architecture. Images presented in this project support only x86-64.
 
 \section{Server installation}
 
@@ -366,11 +367,11 @@ New tasks can be added using a form which appears after clicking the \textit{New
 
 An expanded task accordion item presents the task properties. Challenge details other than the \textit{expose flag...} option are shown in collapsed \mintinline{html}|<details>|. Checkboxes next to answers indicate whether these answers are marked as correct. Optional explanations are shown in italics below the respective answers.
 
-\section{Security issues}
+\section{Security considerations}
 
 Secure design is an important part of the project. The target audience is expected to be or become experienced with exploitation, so the system had to be carefully created and must be responsibly managed.
 
-\subsection{Project author's considerations}
+\subsection{Project considerations}
 
 Security of the system in a huge part depends on the main server design and implementation details.
 
