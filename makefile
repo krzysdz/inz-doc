@@ -1,7 +1,7 @@
 :
 f=main
-minted=
-# minted=-shell-escape
+# minted=
+minted=-shell-escape
 minteddir=_minted-$(f)
 
 .PHONY : short
@@ -35,3 +35,4 @@ clean :
 		if [ -f $$p ] ; then rm $$p; fi; \
 	done;  \
 	if [ -d $(minteddir) ] ; then rm -r $(minteddir) ; fi;
+	if [ -d svg-inkscape ] ; then rm -r svg-inkscape ; fi;
