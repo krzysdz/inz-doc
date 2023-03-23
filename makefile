@@ -14,6 +14,12 @@ xelatex : $(f).tex
 	xelatex $(minted) -synctex=1 $(f)
 	xelatex $(minted) -synctex=1 $(f)
 
+lualatex : $(f).tex
+	lualatex $(minted) -synctex=1 $(f)
+	bibtex $(f)
+	lualatex $(minted) -synctex=1 $(f)
+	lualatex $(minted) -synctex=1 $(f)
+
 pdflatex : $(f).tex
 	pdflatex $(minted) -synctex=1 $(f)
 	bibtex $(f)
