@@ -67,6 +67,10 @@ The source code of the project is available in the [krzysdz/inz](https://github.
 
 The thesis in PDF format is available as [`main.pdf`](./main.pdf) and in [Releases](https://github.com/krzysdz/inz-doc/releases).
 
+### Title
+
+> Interactive security training platform based on CTF concept
+
 ### Abstract
 
 > The popularity of the internet and its broad usage in the contemporary world introduces new problems in the form of vulnerabilities. One of the best ways to prevent them is good and practical cybersecurity education of developers responsible for the said web services. The thesis aims to design and create an easy-to-use platform suitable for education about web security using capture the flag challenges. The project combines this popular type of tasks with multiple-choice quizzes and allows rich descriptions of vulnerability types. The solution uses Docker and nginx proxy for easy automated challenge management.
